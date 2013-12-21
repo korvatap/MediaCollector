@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import java.awt.BorderLayout;
+import java.io.IOException;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
@@ -28,7 +30,7 @@ public class MainWindow extends JFrame {
 	       
         Object rowData[][] = { { "Row1-Column1", "Row1-Column2", "Row1-Column3", "Row1-Column4" },
         		{ "Row2-Column1", "Row2-Column2", "Row2-Column3", "Row2-Column4" } };
-		Object columnNames[] = { "Nimi", "Kategoria", "Arvosana", "Poista" };
+		Object columnNames[] = { "Kategoria", "Nimi", "Arvosana", "Poista" };
 	    JTable table = new JTable(rowData, columnNames);
 	    JScrollPane scrollPane = new JScrollPane(table);
 	    table.setFillsViewportHeight(true);
@@ -106,6 +108,15 @@ public class MainWindow extends JFrame {
 	public static void main(String args[]) {
 		 SwingUtilities.invokeLater(new Runnable() {
 	            public void run() {
+	            	try {
+	            		FileParser fp = new FileParser();
+	            		//fp.readFile();
+	            		
+	            		fp.printWords();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 	                MainWindow ex = new MainWindow();
 	                ex.setVisible(true);
 	            }
