@@ -11,7 +11,7 @@ public class FileParser {
 	Path path = Paths.get(database);
     Scanner scanner = new Scanner(path, ENCODING.name());
     final static Charset ENCODING = StandardCharsets.UTF_8;
-    
+    // Test this
 
     public FileParser() throws IOException {}
     
