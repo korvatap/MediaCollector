@@ -17,6 +17,7 @@ public class FileParser {
     
     public void readFile() {
         //read file line by line
+    	//testing
         while(scanner.hasNextLine()){
             System.out.println("Lines: "+scanner.nextLine());
         }
