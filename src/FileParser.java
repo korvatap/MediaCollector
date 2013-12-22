@@ -39,5 +39,21 @@ public class FileParser {
     
     
     }
+    
+    public String getLine() {
+    	if(scanner.hasNextLine()) {
+    		return scanner.nextLine();
+    	} else {
+    		return null;
+    	}
+    }
+    
+    public boolean hasNextLine() {
+    	if(scanner.hasNextLine()) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
      
 }
