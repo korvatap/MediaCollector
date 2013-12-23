@@ -152,55 +152,46 @@ public class MainWindow extends JFrame {
 	    	}
 	    });
 
-        GridLayout tabbedGrid = new GridLayout(1,1);
+        GridLayout tabbedGrid = new GridLayout(1,2);
 	    JPanel north = new JPanel(tabbedGrid);
 	    JPanel south = new JPanel();
-	    JPanel center = new JPanel(new BorderLayout());
+	    JPanel center = new JPanel();
 	    GridLayout westGrid = new GridLayout(20,3);
 
 	    westGrid.setHgap(10);
 	    westGrid.setVgap(10);
 	    JPanel west = new JPanel(westGrid);
 
-	    JLabel category = new JLabel("Select Category:");
 	    JLabel searchLabel = new JLabel("Search:");
 	    searchLabel.setSize(50, 10);
 	    
 	    JTabbedPane tabbedPane = new JTabbedPane();
-	    JComponent panel1 = makeTextPanel("Panel #1");
 	    tabbedPane.addTab("Movies", null, scrollPane.getComponent(0),
 	                      "Does nothing");
 	    tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
 	    
-        JComponent panel2 = makeTextPanel("Panel #2");
         tabbedPane.addTab("Music", null, null,
                 "Does twice as much nothing");
         tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
          
-        JComponent panel3 = makeTextPanel("Panel #3");
         tabbedPane.addTab("Series", null, null,
                 "Still does nothing");
         tabbedPane.setMnemonicAt(2, KeyEvent.VK_3);
        
-        
-
-        
 	    
 	    panel.add(north, BorderLayout.NORTH);
 	    panel.add(south, BorderLayout.SOUTH);
 	    panel.add(center, BorderLayout.CENTER);
 	    panel.add(west, BorderLayout.WEST);
 	    
-	
-	  //  south.add(searchLabel);
-	   // south.add(search);
-	  //  south.add(searchButton);
-
-	    
 	    south.add(addButton);
 	    south.add(removeButton);
 	    south.add(helpButton);
 	    south.add(quitButton);
+	    
+	    center.add(searchLabel);
+	    center.add(search);
+	    center.add(searchButton);
 	  
 	    
 	    north.add(tabbedPane);
