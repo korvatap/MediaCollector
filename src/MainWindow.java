@@ -47,7 +47,7 @@ class ColorTableModel extends AbstractTableModel {
 	    return rowData[row][column];
 	  }
 
-	  public Class getColumnClass(int column) {
+	public Class getColumnClass(int column) {
 	    return (getValueAt(0, column).getClass());
 	  }
 
@@ -58,6 +58,7 @@ class ColorTableModel extends AbstractTableModel {
 	  public boolean isCellEditable(int row, int column) {
 	    return (column != 0);
 	  }
+	  
 }
 public class MainWindow extends JFrame {
 	
@@ -77,6 +78,7 @@ public class MainWindow extends JFrame {
         TableModel model = new ColorTableModel();
         JTextField search = new JTextField(20);
         JTable table = new JTable(model);
+        
         
 	    JScrollPane scrollPane = new JScrollPane(table);
 	    table.setFillsViewportHeight(true);
@@ -166,7 +168,7 @@ public class MainWindow extends JFrame {
 	    searchLabel.setSize(50, 10);
 	    
 	    JTabbedPane tabbedPane = new JTabbedPane();
-	    tabbedPane.addTab("Movies", null, scrollPane.getComponent(0),
+	    tabbedPane.addTab("Movies", null, scrollPane,
 	                      "Does nothing");
 	    tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
 	    
@@ -210,7 +212,7 @@ public class MainWindow extends JFrame {
         panel.add(filler);
         return panel;
     }
-
+	
 	public static void main(String args[]) {
 		  
 		 SwingUtilities.invokeLater(new Runnable() {
@@ -230,6 +232,7 @@ public class MainWindow extends JFrame {
 	            	
 	                MainWindow ex = new MainWindow();
 	                ex.setVisible(true);
+	                
 	            }
 	        });
 	}
