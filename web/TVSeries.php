@@ -1,16 +1,42 @@
 <?php
 
-class TVSeries {
-    private $episode;
-	private $season;
+class TVSeries extends Media {
 
-    public function __construct($episode, $season) {
-        //parent::__construct(something);
+    private $episode;
+    private $season;
+
+    public function __construct() {
+    
+    }
+    public function __construct($title, $season, $episode, $publishYear, $rating, $genre) {
+        parent::setTitle($title);
+        $this->season = $season;
         $this->episode = $episode;
-		$this->season = $season;
+		parent::setPublishYear($publishYear);
+        parent::setRating($rating);
+        parent::setGenre($genre);
     }
 
-    //public function something() {
-    //}
+    public function setEpisode($episode) {
+        $this->episode = $episode;
+    }
+    
+    public function getEpisode() {
+        return $this->episode;
+    }
+    
+    public function setSeason($season) {
+        $this->season = $season;
+    }
+    
+    public function getSeason() {
+        return $this->season;
+    }
+    
+    public function print() {
+        echo "-------------";
+        echo "Title: " .parent::getTitle() .", Season: " .getSeason() .", Episode: " .getEpisode() .", PublishYear: " .parent::getPublishYear() .", Rating: " .parent::getRating() .", Genre: " .parent::getGenre();
+        echo "-------------";
+    }
 }
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-interface MediaObject {
+interface MediaItem {
 
     public function print();
     public function add($item);
