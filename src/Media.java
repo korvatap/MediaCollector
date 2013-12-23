@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 
-public class Media {
+public class Media implements MediaItem {
 
 	/**
 	 * @param args
@@ -14,6 +14,10 @@ public class Media {
 	public Media() {
 		
 	}
+	
+	public Media(String title){
+        this.title = title;
+    }
 	
 	public void setTitle(String t) {
 		this.title = t;
@@ -53,5 +57,17 @@ public class Media {
 	
 	public String getGenre(int loc) {
 	   return genre.get(loc);
+	}
+	
+	public void print() {
+        System.out.println("-------------");
+        System.out.println("Name ="+getTitle());
+        System.out.println("-------------");
+    }
+
+	@Override
+	public void add(MediaItem item) {
+		// TODO Auto-generated method stub
+		
 	}
 }

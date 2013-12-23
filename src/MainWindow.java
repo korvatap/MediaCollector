@@ -106,6 +106,18 @@ public class MainWindow extends JFrame {
 	}
 
 	public static void main(String args[]) {
+		
+		MediaItem emp1=new Media("John");
+		MediaItem emp2=new Media("David");
+		MediaItem manager1=new Media("Daniel");
+		manager1.add(emp1);
+		manager1.add(emp2);
+		MediaItem emp3=new Media("Michael");
+		MediaObject generalManager=new MediaObject();
+		generalManager.add(emp3);
+		generalManager.add(manager1);
+		generalManager.print();
+		  
 		 SwingUtilities.invokeLater(new Runnable() {
 	            public void run() {
 	            	try {
