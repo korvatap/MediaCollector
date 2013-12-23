@@ -5,9 +5,9 @@ public class DatabaseCreator {
 	
 	FileParser fp;
 	String line;
-	MediaItem musicDb = new MediaObject();
-	MediaItem movieDb = new MediaObject();
-	MediaItem tvDb = new MediaObject();
+	MediaObject musicDb = new MediaObject();
+	MediaObject movieDb = new MediaObject();
+	MediaObject tvDb = new MediaObject();
 	MediaObject masterDb = new MediaObject();
 	
 	public DatabaseCreator(FileParser fp){
@@ -29,9 +29,16 @@ public class DatabaseCreator {
 			}
 		}
 		
-		masterDb.add(musicDb);
-		masterDb.add(movieDb);
-		masterDb.add(tvDb);
+		System.out.println(musicDb.isEmpty());
+		if(!musicDb.isEmpty()) {
+			masterDb.add(musicDb);
+		}
+		if(!movieDb.isEmpty()) {
+			masterDb.add(movieDb);
+		}
+		if(!tvDb.isEmpty()) {
+			masterDb.add(tvDb);
+		}
 	}
 	
 	public void createDatabase(String line) {

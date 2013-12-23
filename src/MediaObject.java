@@ -34,7 +34,7 @@ public class MediaObject implements MediaItem{
 	
 	public boolean isEmpty() {
 		boolean state = false;
-		if(!items.isEmpty()) {
+		if(items.isEmpty()) {
 			state = true;
 		}
 		return state;
