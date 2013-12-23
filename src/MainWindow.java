@@ -12,9 +12,47 @@ import java.io.IOException;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableModel;
 
 //import statements
 //Check if window closes automatically. Otherwise add suitable code
+
+class ColorTableModel extends AbstractTableModel {
+	
+    Object rowData[][] = { { "Row1-Column1", "Row1-Column2", "Row1-Column3", new Boolean(false) },
+			   { "Row2-Column1", "Row2-Column2", "Row2-Column3", new Boolean(false) } };
+    
+    String columnNames[] = { "Category", "Title", "Rating", "Poista" };
+
+	public int getColumnCount() {
+	    return columnNames.length;
+	  }
+
+	  public String getColumnName(int column) {
+	    return columnNames[column];
+	  }
+
+	  public int getRowCount() {
+	    return rowData.length;
+	  }
+
+	  public Object getValueAt(int row, int column) {
+	    return rowData[row][column];
+	  }
+
+	  public Class getColumnClass(int column) {
+	    return (getValueAt(0, column).getClass());
+	  }
+
+	  public void setValueAt(Object value, int row, int column) {
+	    rowData[row][column] = value;
+	  }
+
+	  public boolean isCellEditable(int row, int column) {
+	    return (column != 0);
+	  }
+}
 public class MainWindow extends JFrame {
 	
 	public MainWindow() {
@@ -26,12 +64,10 @@ public class MainWindow extends JFrame {
 	    getContentPane().add(panel);
 	    panel.setLayout(new BorderLayout());
 	    
-        panel.setToolTipText("NII VITTU USKALLA");
-	       
-        Object rowData[][] = { { "Row1-Column1", "Row1-Column2", "Row1-Column3", "Row1-Column4" },
-        		{ "Row2-Column1", "Row2-Column2", "Row2-Column3", "Row2-Column4" } };
-		Object columnNames[] = { "Kategoria", "Nimi", "Arvosana", "Poista" };
-	    JTable table = new JTable(rowData, columnNames);
+        panel.setToolTipText("NII VITTU USKALLA");	
+        TableModel model = new ColorTableModel();
+        JTable table = new JTable(model);
+        
 	    JScrollPane scrollPane = new JScrollPane(table);
 	    table.setFillsViewportHeight(true);
 	       
