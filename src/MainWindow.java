@@ -1,3 +1,4 @@
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -8,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.io.IOException;
 
 import javax.swing.JScrollPane;
@@ -62,7 +64,10 @@ public class MainWindow extends JFrame {
 	public final void initUI() {
 	    JPanel panel = new JPanel();
 	    getContentPane().add(panel);
-	    panel.setLayout(new BorderLayout());
+	    BorderLayout panelLayout = new BorderLayout();
+	    panelLayout.setHgap(10);
+	    panelLayout.setVgap(10);
+	    panel.setLayout(panelLayout);
 	    
         panel.setToolTipText("NII VITTU USKALLA");	
         TableModel model = new ColorTableModel();
@@ -115,28 +120,68 @@ public class MainWindow extends JFrame {
 	    		hw.setVisible(true);
 	    	}
 	    });
+	    
+	    JButton movieButton = new JButton("Movies");
+	    helpButton.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent event) {
+	    		//System.exit(0);
+	    		HelpWindow hw = new HelpWindow();
+	    		hw.setVisible(true);
+	    	}
+	    });
+	    
+	    JButton musicButton = new JButton("Music");
+	    helpButton.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent event) {
+	    		//System.exit(0);
+	    		HelpWindow hw = new HelpWindow();
+	    		hw.setVisible(true);
+	    	}
+	    });
+	    
+	    JButton tvButton = new JButton("TV");
+	    helpButton.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent event) {
+	    		//System.exit(0);
+	    		HelpWindow hw = new HelpWindow();
+	    		hw.setVisible(true);
+	    	}
+	    });
 
 	    JPanel north = new JPanel();
 	    JPanel south = new JPanel();
-	    JPanel center = new JPanel();
+	    JPanel center = new JPanel(new BorderLayout());
+	    GridLayout westGrid = new GridLayout(20,3);
+	    westGrid.setHgap(10);
+	    westGrid.setVgap(10);
+	    JPanel west = new JPanel(westGrid);
+	    
+	    JLabel category = new JLabel("Select Category:");
+	    JLabel searchLabel = new JLabel("Search:");
 	    
 	    panel.add(north, BorderLayout.NORTH);
 	    panel.add(south, BorderLayout.SOUTH);
 	    panel.add(center, BorderLayout.CENTER);
+	    panel.add(west, BorderLayout.WEST);
 	    
 	    south.add(addButton);
 	    south.add(removeButton);
 	    south.add(helpButton);
 	    south.add(quitButton);
 	    
+	    north.add(searchLabel);
 	    north.add(search);
 	    north.add(searchButton);
 
 	    center.add(scrollPane);
-   
+	    
+	    west.add(category);
+	    west.add(movieButton);
+	    west.add(musicButton);
+	    west.add(tvButton);
 
 	    setTitle("Media Collector");
-	    setSize(800, 600);
+	    setSize(800,600);
 	    setLocationRelativeTo(null);
 	    setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
