@@ -10,21 +10,27 @@ public class Movie extends Media{
 
 	public Movie() {}
 	
-	public Movie(String title, String l, int publishYear, int rating, String genre) {
+	public Movie(String title, String language, int publishYear, int rating, String genre) {
 		super.setTitle(title);
-		this.language = l;
+		this.language = language;
 		super.setPublishYear(publishYear);
 		super.setRating(rating);
 		super.setGenre(genre);
 	}
 	
-	public void setLanguage(String l) {
-		this.language = l;
+	public void setLanguage(String language) {
+		this.language = language;
 	}
 	
-	public String getLanguage(int loc) {
+	public String getLanguage() {
 		return language;
 	}
+	
+	public void print() {
+        System.out.println("-------------");
+        System.out.println("title: "+getTitle() + ", language: " + getLanguage() + ", PublishYear: " + getPublishYear() + ", Rating: " + getRating() + ", Genre: " + getGenre());
+        System.out.println("-------------");
+    }
 	
 	
 }

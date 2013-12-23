@@ -8,10 +8,10 @@ public class TVSeries extends Media{
 
 	public TVSeries() {}
 	
-	public TVSeries(String title, String s, String e, int publishYear, int rating, String genre) {
+	public TVSeries(String title, String series, String episode, int publishYear, int rating, String genre) {
 		super.setTitle(title);
-		this.series = s;
-		this.episode = e;
+		this.series = series;
+		this.episode = episode;
 		super.setPublishYear(publishYear);
 		super.setRating(rating);
 		super.setGenre(genre);
@@ -32,4 +32,10 @@ public class TVSeries extends Media{
 	public String getSeries() {
 		return series;
 	}
+	
+	public void print() {
+        System.out.println("-------------");
+        System.out.println("title: " + getTitle() + ", Series: " + getSeries() + ", Episode: " + getEpisode() +  ", PublishYear: " + getPublishYear() + ", Rating: " + getRating() + ", Genre: " + getGenre());
+        System.out.println("-------------");
+    }
 }

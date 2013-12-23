@@ -15,11 +15,7 @@ public class MediaObject implements MediaItem{
 		 items.remove(item);
 	 }
 	 
-	 public void print() {
-		  System.out.println("-------------");
-		  System.out.println("Name ="+getTitle());
-		  System.out.println("-------------");
-		  
+	 public void print() {	  
 		  Iterator<MediaItem> itemIterator = items.iterator();
 		    while(itemIterator.hasNext()){
 		     MediaItem item = itemIterator.next();
@@ -34,5 +30,13 @@ public class MediaObject implements MediaItem{
 	private String getTitle() {
 		// TODO Auto-generated method stub
 		return title;
+	}
+	
+	public boolean isEmpty() {
+		boolean state = false;
+		if(!items.isEmpty()) {
+			state = true;
+		}
+		return state;
 	}
 }

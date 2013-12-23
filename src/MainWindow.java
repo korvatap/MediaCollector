@@ -106,29 +106,22 @@ public class MainWindow extends JFrame {
 	}
 
 	public static void main(String args[]) {
-		
-		MediaItem leffa = new Movie("Die Hard", "English", 1988, 5, "Action");
-		MediaItem sarja = new TVSeries("MacGyver", "1", "3", 1985, 5, "Adventure");
-		MediaItem object = new MediaObject();
-		object.add(leffa);
-		object.add(sarja);
-		MediaItem albumi = new Music("Piece of Mind", "Iron Maiden", 1983, 5, "Metal");
-		MediaObject gobject = new MediaObject();
-		gobject.add(albumi);
-		gobject.add(object);
-		gobject.print();
 		  
 		 SwingUtilities.invokeLater(new Runnable() {
 	            public void run() {
+	            	FileParser fp;
+	            	DatabaseCreator dc;
 	            	try {
-	            		FileParser fp = new FileParser();
-	            		//fp.readFile();
+	            		fp = new FileParser();
+	            		dc = new DatabaseCreator(fp);
+	            		dc.createDatabases();
+	            		dc.print();
 	            		
-	            		fp.printWords();
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+	            	
 	                MainWindow ex = new MainWindow();
 	                ex.setVisible(true);
 	            }

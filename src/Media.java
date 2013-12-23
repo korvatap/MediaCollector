@@ -51,14 +51,16 @@ public class Media implements MediaItem {
 		return genre;
 	}
 	
-	public void print() {
-        System.out.println("-------------");
-        System.out.println("Name ="+getTitle());
-        System.out.println("-------------");
-    }
 
 	@Override
 	public void add(MediaItem item) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	// NOT NEEDED SINCE SUPER CLASS CAN BE LEFT AS STUB
+	public void print() {
 		// TODO Auto-generated method stub
 		
 	}

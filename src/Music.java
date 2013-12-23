@@ -6,9 +6,9 @@ public class Music extends Media {
 
 	public Music() {}
 	
-	public Music(String title, String a, int publishYear, int rating, String genre) {
+	public Music(String title, String artist, int publishYear, int rating, String genre) {
 		super.setTitle(title);
-		this.artist = a;
+		this.artist = artist;
 		super.setPublishYear(publishYear);
 		super.setRating(rating);
 		super.setGenre(genre);
@@ -21,4 +21,10 @@ public class Music extends Media {
 	public String getArtist() {
 		return this.artist;
 	}
+	
+	public void print() {
+        System.out.println("-------------");
+        System.out.println("title: " + getTitle() + ", artist: " + getArtist() + ", PublishYear: " + getPublishYear() + ", Rating: " + getRating() + ", Genre: " + getGenre());
+        System.out.println("-------------");
+    }
 }
