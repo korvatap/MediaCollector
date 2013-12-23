@@ -9,7 +9,7 @@ public class Media implements MediaItem {
 	private String title;
 	private int publishYear;
 	private int rating;
-	private ArrayList<String> genre = new ArrayList<String>();
+	private String genre;
 	
 	public Media() {
 		
@@ -43,20 +43,12 @@ public class Media implements MediaItem {
 		return this.rating;
 	}
 	
-	public void addGenre(String genre) {
-		this.genre.add(genre);
+	public void setGenre(String genre) {
+		this.genre = genre;
 	}
 	
-	public void addGenres(ArrayList<String> g) {
-		this.genre = g;
-	}
-	
-	public ArrayList<String> getGenres() {
+	public String getGenre() {
 		return genre;
-	}
-	
-	public String getGenre(int loc) {
-	   return genre.get(loc);
 	}
 	
 	public void print() {

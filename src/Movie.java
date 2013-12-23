@@ -6,24 +6,25 @@ public class Movie extends Media{
 	/**
 	 * @param args
 	 */
-	private ArrayList<String> language;
+	private String language;
 
 	public Movie() {}
 	
-	public void addLanguage(String l) {
-		this.language.add(l);
+	public Movie(String title, String l, int publishYear, int rating, String genre) {
+		super.setTitle(title);
+		this.language = l;
+		super.setPublishYear(publishYear);
+		super.setRating(rating);
+		super.setGenre(genre);
 	}
 	
-	public void addLanguages(ArrayList<String> la) {
-		this.language = la;
+	public void setLanguage(String l) {
+		this.language = l;
 	}
 	
 	public String getLanguage(int loc) {
-		return language.get(loc);
-	}
-	
-	public ArrayList<String> getLanguages() {
 		return language;
 	}
+	
 	
 }
