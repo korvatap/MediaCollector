@@ -2,12 +2,17 @@
 
 class Music extends Media {
 
-    private $artist
+    private $artist;
 
     public function __construct() {
+        $a = func_get_args();
+        $i = func_num_args();
+        if (method_exists($this,$f='__construct'.$i)) {
+            call_user_func_array(array($this,$f),$a);
+        } 
     }
     
-    public function __construct($title, $artist, $publishYear, $rating, $genre) {
+    public function __construct5($title, $artist, $publishYear, $rating, $genre) {
         parent::setTitle($title);
         $this->artist = $artist;
         parent::setPublishYear($publishYear);
@@ -23,10 +28,10 @@ class Music extends Media {
         return $this->artist;
     }
     
-    public function print() {
-        echo "-------------";
-        echo "Title: " .parent::getTitle() .", Artist: " .getArtist() .", PublishYear: " .parent::getPublishYear() .", Rating: " .parent::getRating() .", Genre: " .parent::getGenre();
-        echo "-------------";
+    public function info() {
+        echo "-------------<br/>";
+        echo "Title: " .parent::getTitle() .", Artist: " .$this->getArtist() .", PublishYear: " .parent::getPublishYear() .", Rating: " .parent::getRating() .", Genre: " .parent::getGenre() ."<br/>";
+        echo "-------------<br/>";
     }
 }
 ?>

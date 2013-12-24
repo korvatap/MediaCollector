@@ -6,9 +6,13 @@ class TVSeries extends Media {
     private $season;
 
     public function __construct() {
-    
+        $a = func_get_args();
+        $i = func_num_args();
+        if (method_exists($this,$f='__construct'.$i)) {
+            call_user_func_array(array($this,$f),$a);
+        } 
     }
-    public function __construct($title, $season, $episode, $publishYear, $rating, $genre) {
+    public function __construct6($title, $season, $episode, $publishYear, $rating, $genre) {
         parent::setTitle($title);
         $this->season = $season;
         $this->episode = $episode;
@@ -33,10 +37,10 @@ class TVSeries extends Media {
         return $this->season;
     }
     
-    public function print() {
-        echo "-------------";
-        echo "Title: " .parent::getTitle() .", Season: " .getSeason() .", Episode: " .getEpisode() .", PublishYear: " .parent::getPublishYear() .", Rating: " .parent::getRating() .", Genre: " .parent::getGenre();
-        echo "-------------";
+    public function info() {
+        echo "-------------<br/>";
+        echo "Title: " .parent::getTitle() .", Season: " .$this->getSeason() .", Episode: " .$this->getEpisode() .", PublishYear: " .parent::getPublishYear() .", Rating: " .parent::getRating() .", Genre: " .parent::getGenre() ."<br/>";
+        echo "-------------<br/>";
     }
 }
 ?>

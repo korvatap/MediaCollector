@@ -15,9 +15,9 @@ class MediaObject implements MediaItem {
         }
     }
     
-    public function print() {
+    public function info() {
         foreach ($this->items as $item) {
-            $item->print();
+            $item->info();
         }
     }
     
