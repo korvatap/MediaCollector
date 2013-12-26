@@ -11,19 +11,33 @@ import javax.swing.JComboBox;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 
 public class AddMediaWindow extends JFrame{
-
-	/**
-	 * @param args
-	 */
 	
-	private String[] mediaTypes = { "Ebullient", "Obtuse", "Recalcitrant", "Brilliant", "Somnescent", "Timorous", "Florid", "Putrescent" };
+	private String[] mediaTypes = { "Movie", "Music", "Series" };
 	private String[] categories = { "Ebullient", "Obtuse", "Recalcitrant", "Brilliant", "Somnescent", "Timorous", "Florid", "Putrescent" };  
+	
+    //Create table models for TV, movie, music
+    BTableModel tableModel = new BTableModel("Movie");
+    
+    //CREATE TABLES FOR TV, movie, music
+    JTable table = new JTable(tableModel);
+    
+	JScrollPane tableScrollPane = new JScrollPane(table);
+	
+	 JPanel north = new JPanel();
+	 JPanel south = new JPanel();
+	 JPanel center = new JPanel(new BorderLayout());
+	 
+	 JComboBox<String> type = new JComboBox<String>();
+
 	
 	public AddMediaWindow() {
 		initWindow();
@@ -34,54 +48,80 @@ public class AddMediaWindow extends JFrame{
 	    JPanel panel = new JPanel();
 	    getContentPane().add(panel);
 	    panel.setLayout(new BorderLayout());
+	    table.setEnabled(true);
+	    tableModel.setColumnCount(tableModel.getColumnCount()-1);
+	    tableModel.addRow(new Object[0]);
+	    
+	    table.setFillsViewportHeight(true);
 	    
         panel.setToolTipText("NII VITTU USKALLA");
-	    
-        JLabel mediaTitle = new JLabel("Media",JLabel.CENTER); 
-        JLabel nameTitle = new JLabel("Name", JLabel.CENTER);
-        JLabel categoryTitle = new JLabel("Category", JLabel.CENTER);
 	   
-	    JComboBox type = new JComboBox();
 	    
 	    for (int i = 0; i < mediaTypes.length; i++) {
 	        type.addItem(mediaTypes[i]);
 	    }
 	    
-	    JComboBox category = new JComboBox();
-	    
-	    for (int i = 0; i < categories.length; i++) {
-	        category.addItem(categories[i]);
-	    }
-	    
-	    JTextField name = new JTextField("mm");
-	    JTextField setti = new JTextField("SEK");
+	    type.addActionListener (new ActionListener () {
+	        public void actionPerformed(ActionEvent e) {
+	        	
+	           if(type.getSelectedItem().equals("Series")) {
+	        	   tableModel.setColumnCount(0);
+	        	   tableModel.addColumn("Title");
+	        	   tableModel.addColumn("Series");
+	        	   tableModel.addColumn("Episode");
+	        	   tableModel.addColumn("Publish Year");
+	        	   tableModel.addColumn("Rating");
+	        	   tableModel.addColumn("Genre");
+	           }
+	           
+	           if(type.getSelectedItem().equals("Movie")) {
+	        	   tableModel.setColumnCount(0);
+	        	   tableModel.addColumn("Title");
+	        	   tableModel.addColumn("Language");
+	        	   tableModel.addColumn("Publish Year");
+	        	   tableModel.addColumn("Rating");
+	        	   tableModel.addColumn("Genre");
+	           }
+	           
+	           if(type.getSelectedItem().equals("Music")) {
+	        	   tableModel.setColumnCount(0);
+	        	   tableModel.addColumn("Title");
+	        	   tableModel.addColumn("Artist");
+	        	   tableModel.addColumn("Publish Year");
+	        	   tableModel.addColumn("Rating");
+	        	   tableModel.addColumn("Genre");
+	           }
+	        }
+	    });
    
-	    JButton addButton = new JButton("Lisää");
+	    JButton addButton = new JButton("Add");
 	    addButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent event) {
-	    		//System.exit(0);
+	    		addRowsToDatabase();
 	    	}
 	    });
 	       
-	    JButton nextButton = new JButton("Seuraava");
+	    JButton nextButton = new JButton("Next");
 	    nextButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent event) {
-	    		//System.exit(0);
+	    		tableModel.addRow(new Object[0]);
+	    		table.editCellAt(table.getRowCount()-1, 0);
 	    	}
 	    });
 	       
-	    JButton cancelButton = new JButton("Peruuta");
+	    JButton cancelButton = new JButton("Cancel");
 	    cancelButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent event) {
-	    		//System.exit(0);
+	    		setVisible(false);
 	    	}
 	    });
 	       
+	    JPanel typePanel = new JPanel(new GridLayout(1,2));
+	    JLabel typeLabel = new JLabel("Type",JLabel.LEFT);
 
-	    JPanel north = new JPanel();
-	    JPanel south = new JPanel();
-	    JPanel center = new JPanel();
-	    
+	    typePanel.add(typeLabel);
+	    typePanel.add(type);
+
 	    panel.add(north, BorderLayout.NORTH);
 	    panel.add(south, BorderLayout.SOUTH);
 	    panel.add(center, BorderLayout.CENTER);
@@ -89,21 +129,35 @@ public class AddMediaWindow extends JFrame{
 	    south.add(addButton);
 	    south.add(nextButton);
 	    south.add(cancelButton);
-	    
-	    north.add(mediaTitle, BorderLayout.LINE_START);
-	    north.add(nameTitle, BorderLayout.CENTER);
-	    north.add(categoryTitle, BorderLayout.LINE_END);
 	   
-	   // north.add(searchButton);
+	    north.add(typePanel);
 
-	    center.add(type);
-	    center.add(name);
-	    center.add(setti);
+	    center.add(tableScrollPane);
    
 	    setTitle("Media Collector");
 	    setSize(800, 600);
 	    setLocationRelativeTo(null);
 	    setDefaultCloseOperation(EXIT_ON_CLOSE);
+	}
+	
+	public void addRowsToDatabase() {
+		int rowCount = table.getRowCount();
+		int columnCount = table.getColumnCount();
+		int currentRow = 0;
+		int currentColumn = 0;
+		List<String[]> rows = new ArrayList<String[]>();
+		
+		while(currentRow < rowCount) {
+			String[] tmp = new String[columnCount];
+			while(currentColumn < columnCount) {
+				tmp[currentColumn] = ((String) table.getValueAt(currentRow, currentColumn));
+				System.out.println(((String) table.getValueAt(currentRow, currentColumn)));
+				currentColumn++;
+			}
+			rows.add(tmp);
+			currentRow++;
+		}
+		
 	}
 
 }

@@ -30,6 +30,7 @@ import javax.swing.table.TableModel;
 //Check if window closes automatically. Otherwise add suitable code
 
 class BTableModel extends DefaultTableModel {
+	String type;
 	
 	public Class<?> getColumnClass(int column) {
 		switch (column) {
@@ -44,7 +45,10 @@ class BTableModel extends DefaultTableModel {
 		case 4:
 			return String.class;
 		case 5:
-			return String.class;
+			if(type.equals("TVSeries")) {
+				return String.class;
+			} else { return Boolean.class; }
+			
 		default:
 			return Boolean.class;
 		}
@@ -52,6 +56,7 @@ class BTableModel extends DefaultTableModel {
 	
 	
 	BTableModel(String type) {
+		this.type = type;
 		switch (type) {
 			case "TVSeries":
 				this.addColumn("Title");
@@ -347,11 +352,11 @@ public class MainWindow extends JFrame {
 	}
 	
 	protected void addRow(String type, String[] row) {
-		if(type == "TVSeries") {
+		if(type.equals("TVSeries")) {
 			tvModel.addRow(new Object[0]);
-		} else if (type == "Movie") {
+		} else if (type.equals("Movie")) {
 			movieModel.addRow(new Object[0]);
-		} else if (type == "Music") {
+		} else if (type.equals("Music")) {
 			musicModel.addRow(new Object[0]);
 		}
 
