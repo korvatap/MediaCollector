@@ -32,5 +32,9 @@ public class Movie extends Media{
         System.out.println("-------------");
     }
 	
+	public String[] getRow() {
+		String [] row = {super.getTitle(), language, Integer.toString(super.getPublishYear()), Integer.toString(super.getRating()), super.getGenre() };
+		return row;
+	}
 	
 }

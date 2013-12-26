@@ -38,4 +38,9 @@ public class TVSeries extends Media{
         System.out.println("title: " + getTitle() + ", Series: " + getSeries() + ", Episode: " + getEpisode() +  ", PublishYear: " + getPublishYear() + ", Rating: " + getRating() + ", Genre: " + getGenre());
         System.out.println("-------------");
     }
+	
+	public String[] getRow() {
+		String [] row = {super.getTitle(), series, episode, Integer.toString(super.getPublishYear()), Integer.toString(super.getRating()), super.getGenre() };
+		return row;
+	}
 }

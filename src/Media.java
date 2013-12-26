@@ -64,4 +64,10 @@ public class Media implements MediaItem {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public String[] getRow() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

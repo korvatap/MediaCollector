@@ -27,4 +27,9 @@ public class Music extends Media {
         System.out.println("title: " + getTitle() + ", artist: " + getArtist() + ", PublishYear: " + getPublishYear() + ", Rating: " + getRating() + ", Genre: " + getGenre());
         System.out.println("-------------");
     }
+	
+	public String[] getRow() {
+		String [] row = {super.getTitle(), artist, Integer.toString(super.getPublishYear()), Integer.toString(super.getRating()), super.getGenre() };
+		return row;
+	}
 }

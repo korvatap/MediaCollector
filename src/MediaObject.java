@@ -25,11 +25,15 @@ public class MediaObject implements MediaItem{
 	 
 	 public MediaItem getChild(int i) {
 		  return items.get(i);
-		 }
+	 }
 
-	private String getTitle() {
+	public String getTitle() {
 		// TODO Auto-generated method stub
 		return title;
+	}
+	
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	
 	public boolean isEmpty() {
@@ -38,5 +42,27 @@ public class MediaObject implements MediaItem{
 			state = true;
 		}
 		return state;
+	}
+	
+	public List<MediaItem> getItems() {
+		return items;
+	}
+	
+	public List<MediaItem> getObject(String name) {
+		List<MediaItem> objects = new ArrayList<MediaItem>();
+		Iterator<MediaItem> iterator = items.iterator();
+		while(iterator.hasNext()) {
+			MediaItem tmp = iterator.next();
+			if(tmp.getTitle() == name) {
+				objects.add(tmp);
+			}
+		}
+		return objects;
+	}
+
+	@Override
+	public String[] getRow() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

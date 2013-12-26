@@ -8,6 +8,8 @@ public class DatabaseCreator {
 	MediaObject musicDb = new MediaObject();
 	MediaObject movieDb = new MediaObject();
 	MediaObject tvDb = new MediaObject();
+	
+	
 	MediaObject masterDb = new MediaObject();
 	
 	public DatabaseCreator(FileParser fp){
@@ -31,12 +33,15 @@ public class DatabaseCreator {
 		
 		System.out.println(musicDb.isEmpty());
 		if(!musicDb.isEmpty()) {
+			musicDb.setTitle("Music");
 			masterDb.add(musicDb);
 		}
 		if(!movieDb.isEmpty()) {
+			movieDb.setTitle("Movie");
 			masterDb.add(movieDb);
 		}
 		if(!tvDb.isEmpty()) {
+			tvDb.setTitle("TVSeries");
 			masterDb.add(tvDb);
 		}
 	}
@@ -63,4 +68,7 @@ public class DatabaseCreator {
 		masterDb.print();
 	}
 	
+	public MediaObject getDatabases() {
+		return masterDb;
+	}
 }
