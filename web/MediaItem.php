@@ -1,8 +1,8 @@
 <?php
 
-interface MediaObject {
+interface MediaItem {
 
-    public function print();
+    public function info();
     public function add($item);
 }
 ?>
