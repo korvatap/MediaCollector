@@ -55,7 +55,7 @@ class BTableModel extends DefaultTableModel {
 	}
 	
 	
-	BTableModel(String type) {
+	BTableModel(String type, int del) {
 		this.type = type;
 		switch (type) {
 			case "TVSeries":
@@ -65,7 +65,6 @@ class BTableModel extends DefaultTableModel {
 				this.addColumn("Publish Year");
 				this.addColumn("Rating");
 				this.addColumn("Genre");
-				this.addColumn("Delete");
 				break;
 			case "Music":
 				this.addColumn("Title");
@@ -73,7 +72,6 @@ class BTableModel extends DefaultTableModel {
 				this.addColumn("Publish Year");
 				this.addColumn("Rating");
 				this.addColumn("Genre");
-				this.addColumn("Delete");
 				break;
 				
 			case "Movie":
@@ -82,8 +80,10 @@ class BTableModel extends DefaultTableModel {
 				this.addColumn("Publish Year");
 				this.addColumn("Rating");
 				this.addColumn("Genre");
-				this.addColumn("Delete");
 				break;
+		}
+		if(del == 1) {
+			this.addColumn("Delete");
 		}
 	}
 	
@@ -93,14 +93,16 @@ class BTableModel extends DefaultTableModel {
 
 public class MainWindow extends JFrame {
 	
+    MainWindow mainRef = this;
 	MediaObject database;
+	DatabaseCreator dc;
 	JScrollPane tvScrollPane;
 	JScrollPane movieScrollPane;
 	JScrollPane musicScrollPane;
     //Create table models for TV, movie, music
-    BTableModel tvModel = new BTableModel("TVSeries");
-    BTableModel movieModel = new BTableModel("Movie");
-    BTableModel musicModel = new BTableModel("Music");
+    BTableModel tvModel = new BTableModel("TVSeries",1);
+    BTableModel movieModel = new BTableModel("Movie",1);
+    BTableModel musicModel = new BTableModel("Music",1);
     
     //CREATE TABLES FOR TV, movie, music
     JTable tvTable = new JTable(tvModel);
@@ -113,9 +115,10 @@ public class MainWindow extends JFrame {
     JTabbedPane tabbedPane = new JTabbedPane();
 	
 	public MainWindow() {}
-	public MainWindow(MediaObject database) {
+	public MainWindow(DatabaseCreator dc) {
 		initUI();
-		this.database = database;
+		this.database = dc.getDatabases();
+		this.dc = dc;
 	}
 	
 	public final void initUI() {
@@ -167,12 +170,12 @@ public class MainWindow extends JFrame {
 	
 	    	}
 	    });
-	       
+
 	    JButton addButton = new JButton("Add");
 	    addButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent event) {
 	    		//System.exit(0);
-                AddMediaWindow xe = new AddMediaWindow();
+                AddMediaWindow xe = new AddMediaWindow(mainRef);
                 xe.setVisible(true);
 	    	}
 	    });
@@ -314,14 +317,6 @@ public class MainWindow extends JFrame {
 		}
 		
 	}
-	protected JComponent makeTextPanel(String text) {
-        JPanel panel = new JPanel(false);
-        JLabel filler = new JLabel(text);
-        filler.setHorizontalAlignment(JLabel.CENTER);
-        panel.setLayout(new GridLayout(1, 1));
-        panel.add(filler);
-        return panel;
-    }
 	
 	public static void main(String args[]) {
 		  
@@ -340,7 +335,7 @@ public class MainWindow extends JFrame {
 						e.printStackTrace();
 					}
 	            	
-	                MainWindow ex = new MainWindow(dc.getDatabases());
+	                MainWindow ex = new MainWindow(dc);
 
 	                ex.getRows("Movie");
 	                ex.getRows("Music");
@@ -374,9 +369,20 @@ public class MainWindow extends JFrame {
 			}
 		}
 		
+		if(type.equals("TVSeries")) {
+			String [] combinedString = { "TVSeries", row[0], row[1], row[2], row[3], row[4], row[5] };
+			dc.createDatabase(Arrays.toString(combinedString));
+		} else if (type.equals("Movie")) {
+			String [] combinedString = { "Movie", row[0], row[1], row[2], row[3], row[4] };
+			dc.createDatabase(Arrays.toString(combinedString));
+		} else if (type.equals("Music")) {
+			String [] combinedString = { "Music", row[0], row[1], row[2], row[3], row[4] };
+			dc.createDatabase(Arrays.toString(combinedString));
+		}
+
+		
 	}
 	protected void getRows(String type) {
-		int i = 0;
 		List<String[]> rows = new ArrayList<String[]>();
 		List<MediaItem> items = database.getObject(type);
 		List<MediaItem> item;

@@ -13,6 +13,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JScrollPane;
@@ -23,9 +24,10 @@ public class AddMediaWindow extends JFrame{
 	
 	private String[] mediaTypes = { "Movie", "Music", "Series" };
 	private String[] categories = { "Ebullient", "Obtuse", "Recalcitrant", "Brilliant", "Somnescent", "Timorous", "Florid", "Putrescent" };  
+	private MainWindow mainWindowRef;
 	
     //Create table models for TV, movie, music
-    BTableModel tableModel = new BTableModel("Movie");
+    BTableModel tableModel = new BTableModel("Movie",0);
     
     //CREATE TABLES FOR TV, movie, music
     JTable table = new JTable(tableModel);
@@ -37,6 +39,8 @@ public class AddMediaWindow extends JFrame{
 	 JPanel center = new JPanel(new BorderLayout());
 	 
 	 JComboBox<String> type = new JComboBox<String>();
+	 
+	 List<String[]> addRows = new ArrayList<String[]>();
 
 	
 	public AddMediaWindow() {
@@ -44,6 +48,12 @@ public class AddMediaWindow extends JFrame{
 	}
 	
 	
+	public AddMediaWindow(MainWindow ref) {
+		mainWindowRef = ref;
+		initWindow();
+	}
+
+
 	public final void initWindow() {
 	    JPanel panel = new JPanel();
 	    getContentPane().add(panel);
@@ -65,31 +75,21 @@ public class AddMediaWindow extends JFrame{
 	        public void actionPerformed(ActionEvent e) {
 	        	
 	           if(type.getSelectedItem().equals("Series")) {
-	        	   tableModel.setColumnCount(0);
-	        	   tableModel.addColumn("Title");
-	        	   tableModel.addColumn("Series");
-	        	   tableModel.addColumn("Episode");
-	        	   tableModel.addColumn("Publish Year");
-	        	   tableModel.addColumn("Rating");
-	        	   tableModel.addColumn("Genre");
+	        	   tableModel = new BTableModel("TVSeries",0);
+	        	   table.setModel(tableModel);
+	        	   tableModel.addRow(new Object[0]);
 	           }
 	           
 	           if(type.getSelectedItem().equals("Movie")) {
-	        	   tableModel.setColumnCount(0);
-	        	   tableModel.addColumn("Title");
-	        	   tableModel.addColumn("Language");
-	        	   tableModel.addColumn("Publish Year");
-	        	   tableModel.addColumn("Rating");
-	        	   tableModel.addColumn("Genre");
+	        	   tableModel = new BTableModel("Movie",0);
+	        	   table.setModel(tableModel);
+	        	   tableModel.addRow(new Object[0]);	 
 	           }
 	           
 	           if(type.getSelectedItem().equals("Music")) {
-	        	   tableModel.setColumnCount(0);
-	        	   tableModel.addColumn("Title");
-	        	   tableModel.addColumn("Artist");
-	        	   tableModel.addColumn("Publish Year");
-	        	   tableModel.addColumn("Rating");
-	        	   tableModel.addColumn("Genre");
+	        	   tableModel = new BTableModel("Music",0);
+	        	   table.setModel(tableModel);
+	        	   tableModel.addRow(new Object[0]);
 	           }
 	        }
 	    });
@@ -98,6 +98,7 @@ public class AddMediaWindow extends JFrame{
 	    addButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent event) {
 	    		addRowsToDatabase();
+	    		setVisible(false);
 	    	}
 	    });
 	       
@@ -146,6 +147,7 @@ public class AddMediaWindow extends JFrame{
 		int currentRow = 0;
 		int currentColumn = 0;
 		List<String[]> rows = new ArrayList<String[]>();
+		Iterator<String[]>rowIterator;
 		
 		while(currentRow < rowCount) {
 			String[] tmp = new String[columnCount];
@@ -157,7 +159,17 @@ public class AddMediaWindow extends JFrame{
 			rows.add(tmp);
 			currentRow++;
 		}
-		
+		addRows = rows;
+		rowIterator = rows.iterator();
+		while(rowIterator.hasNext()) {
+			String[] tmp = rowIterator.next();
+			if(type.getSelectedItem().toString().equals("Series")) {
+				mainWindowRef.addRow("TVSeries",tmp);
+			} else {
+				mainWindowRef.addRow(type.getSelectedItem().toString(), tmp);
+			}
+			
+		}
 	}
 
 }
