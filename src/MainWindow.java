@@ -312,7 +312,7 @@ public class MainWindow extends JFrame {
 		
 		if(rows != null) {
 			while(rowIterator.hasNext()) {
-				addRow(type, rowIterator.next());
+				addRow(type, rowIterator.next(),0);
 			}
 		}
 		
@@ -346,7 +346,7 @@ public class MainWindow extends JFrame {
 	        });
 	}
 	
-	protected void addRow(String type, String[] row) {
+	protected void addRow(String type, String[] row, int add) {
 		if(type.equals("TVSeries")) {
 			tvModel.addRow(new Object[0]);
 		} else if (type.equals("Movie")) {
@@ -368,18 +368,18 @@ public class MainWindow extends JFrame {
 				break;
 			}
 		}
-		
-		if(type.equals("TVSeries")) {
-			String [] combinedString = { "TVSeries", row[0], row[1], row[2], row[3], row[4], row[5] };
-			dc.createDatabase(Arrays.toString(combinedString));
-		} else if (type.equals("Movie")) {
-			String [] combinedString = { "Movie", row[0], row[1], row[2], row[3], row[4] };
-			dc.createDatabase(Arrays.toString(combinedString));
-		} else if (type.equals("Music")) {
-			String [] combinedString = { "Music", row[0], row[1], row[2], row[3], row[4] };
-			dc.createDatabase(Arrays.toString(combinedString));
+		if (add == 1) {
+			if(type.equals("TVSeries")) {
+				String [] combinedString = { "TVSeries", row[0], row[1], row[2], row[3], row[4], row[5] };
+				dc.createDatabase(Arrays.toString(combinedString));
+			} else if (type.equals("Movie")) {
+				String [] combinedString = { "Movie", row[0], row[1], row[2], row[3], row[4] };
+				dc.createDatabase(Arrays.toString(combinedString));
+			} else if (type.equals("Music")) {
+				String [] combinedString = { "Music", row[0], row[1], row[2], row[3], row[4] };
+				dc.createDatabase(Arrays.toString(combinedString));
+			}
 		}
-
 		
 	}
 	protected void getRows(String type) {
@@ -405,7 +405,7 @@ public class MainWindow extends JFrame {
 		
 		if(rows != null) {
 			while(rowIterator.hasNext()) {
-				addRow(type, rowIterator.next());
+				addRow(type, rowIterator.next(),0);
 			}
 		}
 		

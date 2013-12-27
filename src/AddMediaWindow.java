@@ -164,9 +164,9 @@ public class AddMediaWindow extends JFrame{
 		while(rowIterator.hasNext()) {
 			String[] tmp = rowIterator.next();
 			if(type.getSelectedItem().toString().equals("Series")) {
-				mainWindowRef.addRow("TVSeries",tmp);
+				mainWindowRef.addRow("TVSeries",tmp,1);
 			} else {
-				mainWindowRef.addRow(type.getSelectedItem().toString(), tmp);
+				mainWindowRef.addRow(type.getSelectedItem().toString(), tmp,1);
 			}
 			
 		}
