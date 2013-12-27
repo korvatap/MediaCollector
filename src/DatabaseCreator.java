@@ -61,7 +61,6 @@ public class DatabaseCreator {
 				musicDb.add(new Music(media[1], media[2], Integer.parseInt(media[3]), Integer.parseInt(media[4]), media[5]));
 				break;
 		}
-
 	}
 	
 	public void print() {

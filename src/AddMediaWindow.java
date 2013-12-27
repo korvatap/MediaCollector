@@ -59,7 +59,6 @@ public class AddMediaWindow extends JFrame{
 	    getContentPane().add(panel);
 	    panel.setLayout(new BorderLayout());
 	    table.setEnabled(true);
-	    tableModel.setColumnCount(tableModel.getColumnCount()-1);
 	    tableModel.addRow(new Object[0]);
 	    
 	    table.setFillsViewportHeight(true);
@@ -70,7 +69,7 @@ public class AddMediaWindow extends JFrame{
 	    for (int i = 0; i < mediaTypes.length; i++) {
 	        type.addItem(mediaTypes[i]);
 	    }
-	    
+
 	    type.addActionListener (new ActionListener () {
 	        public void actionPerformed(ActionEvent e) {
 	        	
@@ -97,6 +96,7 @@ public class AddMediaWindow extends JFrame{
 	    JButton addButton = new JButton("Add");
 	    addButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent event) {
+	    		tableModel.fireTableRowsUpdated(table.getRowCount()-table.getRowCount()+1, table.getRowCount());
 	    		addRowsToDatabase();
 	    		setVisible(false);
 	    	}
@@ -134,7 +134,7 @@ public class AddMediaWindow extends JFrame{
 	    north.add(typePanel);
 
 	    center.add(tableScrollPane);
-   
+	    tableModel = new BTableModel("Movie",0);
 	    setTitle("Media Collector");
 	    setSize(800, 600);
 	    setLocationRelativeTo(null);

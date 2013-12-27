@@ -31,6 +31,7 @@ import javax.swing.table.TableModel;
 
 class BTableModel extends DefaultTableModel {
 	String type;
+	int del;
 	
 	public Class<?> getColumnClass(int column) {
 		switch (column) {
@@ -57,6 +58,7 @@ class BTableModel extends DefaultTableModel {
 	
 	BTableModel(String type, int del) {
 		this.type = type;
+		this.del = del;
 		switch (type) {
 			case "TVSeries":
 				this.addColumn("Title");
@@ -86,6 +88,12 @@ class BTableModel extends DefaultTableModel {
 			this.addColumn("Delete");
 		}
 	}
+	
+	 public boolean isCellEditable ( int row, int column )
+     {
+		 if(del == 1) { return false; }
+		 else { return true; }
+     }
 	
 	BTableModel() {}
 	
@@ -382,6 +390,7 @@ public class MainWindow extends JFrame {
 		}
 		
 	}
+	
 	protected void getRows(String type) {
 		List<String[]> rows = new ArrayList<String[]>();
 		List<MediaItem> items = database.getObject(type);

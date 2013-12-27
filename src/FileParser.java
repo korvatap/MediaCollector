@@ -1,4 +1,7 @@
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
@@ -20,7 +23,20 @@ public class FileParser {
         while(scanner.hasNextLine()){
             System.out.println("Lines: "+scanner.nextLine());
         }
-        
+    }
+    
+    public void writeToFile(String line) {
+    	PrintWriter writer = null;
+    	try {
+			writer = new PrintWriter(database, "UTF-8");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	writer.println(line);
     }
     
     public String[] parseWordsFromLine(String line) {
