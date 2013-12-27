@@ -1,0 +1,4 @@
+Movie,Die Hard,English,1988,5,Action
+Movie,MacGyver: Lost Treasure of Atlantis,English,1994,5,Adventure
+TVSeries,South Park,1,1,1997,5,Animation
+Music,Piece of Mind,Iron Maiden,1983,5,Metal
