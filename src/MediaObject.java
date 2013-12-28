@@ -3,7 +3,7 @@ import java.util.Iterator;
 import java.util.List;
 
 
-public class MediaObject implements MediaItem{
+public class MediaObject implements MediaItem {
 	private String title;
 	List<MediaItem> items = new ArrayList<MediaItem>();
 	
@@ -69,6 +69,17 @@ public class MediaObject implements MediaItem{
 				tmp.deleteObjectById(id);
 			}
 		}
+	}
+	
+	public MediaItem getObjectById(int id) {
+		MediaItem item = null;
+		for(int i=0; i < items.size(); i++) {
+			MediaItem tmp = items.get(i);
+			if(tmp.getId() == id) {
+				item = tmp;
+			}
+		}
+		return item;
 	}
 
 	@Override

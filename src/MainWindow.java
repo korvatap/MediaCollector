@@ -63,6 +63,10 @@ public class MainWindow extends JFrame {
 		this.dc = dc;
 	}
 	
+	public MediaObject getDatabase() {
+		return database;
+	}
+	
 	public final void initUI() {
 	    JPanel panel = new JPanel();
 	    getContentPane().add(panel);
@@ -137,7 +141,7 @@ public class MainWindow extends JFrame {
 	    	public void actionPerformed(ActionEvent event) {
 	    		//System.exit(0);
 	    		List<Integer> idArray = getIdsFromSelectedRows();
-	    		ModifyWindow mf = new ModifyWindow(mainRef, idArray);
+	    		ModifyWindow mf = new ModifyWindow(mainRef, getDatabase(), idArray, tabbedPane.getSelectedIndex());
 	    		mf.setVisible(true);
 	    	}
 	    });
@@ -400,6 +404,7 @@ public class MainWindow extends JFrame {
 		}
 		
 	}
+	
 	public void deleteRowFromTable(int id) {
 		int currentTable = tabbedPane.getSelectedIndex();
 		

@@ -69,8 +69,7 @@ class BTableModel extends DefaultTableModel {
 		}
 	}
 	
-	 public boolean isCellEditable ( int row, int column )
-     {
+	 public boolean isCellEditable ( int row, int column ) {
 		 if(del == 1) {
 			 if(getColumnClass(column) == Boolean.class) {
 				 return true;
@@ -82,6 +81,10 @@ class BTableModel extends DefaultTableModel {
 		 }
 		
      }
+	 
+	 public String getType() {
+		 return type;
+	 }
 	
 	BTableModel() {}
 	
