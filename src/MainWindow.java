@@ -215,7 +215,8 @@ public class MainWindow extends JFrame {
 	    modifyButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent event) {
 	    		//System.exit(0);
-
+	    		List<Integer> idArray = getIdsFromSelectedRows();
+	    		ModifyWindow mf = new ModifyWindow(mainRef, idArray);
 	    	}
 	    });
 	       
@@ -235,30 +236,6 @@ public class MainWindow extends JFrame {
 	    });
 	       
 	    JButton helpButton = new JButton("Manual");
-	    helpButton.addActionListener(new ActionListener() {
-	    	public void actionPerformed(ActionEvent event) {
-	    		//System.exit(0);
-	    		HelpWindow hw = new HelpWindow();
-	    		hw.setVisible(true);
-	    	}
-	    });
-	    
-	    helpButton.addActionListener(new ActionListener() {
-	    	public void actionPerformed(ActionEvent event) {
-	    		//System.exit(0);
-	    		HelpWindow hw = new HelpWindow();
-	    		hw.setVisible(true);
-	    	}
-	    });
-	    
-	    helpButton.addActionListener(new ActionListener() {
-	    	public void actionPerformed(ActionEvent event) {
-	    		//System.exit(0);
-	    		HelpWindow hw = new HelpWindow();
-	    		hw.setVisible(true);
-	    	}
-	    });
-	    
 	    helpButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent event) {
 	    		//System.exit(0);
