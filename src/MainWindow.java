@@ -31,12 +31,16 @@ import javax.swing.table.TableModel;
 
 public class MainWindow extends JFrame {
 	
-    MainWindow mainRef = this;
+	private static final long serialVersionUID = 3485582852539131332L;
+	
+	MainWindow mainRef = this;
 	MediaObject database;
 	DatabaseCreator dc;
+	
 	JScrollPane tvScrollPane;
 	JScrollPane movieScrollPane;
 	JScrollPane musicScrollPane;
+	
     //Create table models for TV, movie, music
     BTableModel tvModel = new BTableModel("TVSeries",1);
     BTableModel movieModel = new BTableModel("Movie",1);

@@ -1,9 +1,13 @@
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JComboBox;
@@ -93,9 +97,12 @@ public class AddMediaWindow extends JFrame{
 	    });
    
 	    JButton addButton = new JButton("Add");
+	    
 	    addButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent event) {
-	    		tableModel.fireTableRowsUpdated(table.getRowCount()-table.getRowCount()+1, table.getRowCount());
+	    		if(table.isEditing()) {
+	    			 table.getCellEditor().stopCellEditing();
+	    		}
 	    		addRowsToDatabase();
 	    		setVisible(false);
 	    	}
