@@ -138,6 +138,7 @@ public class MainWindow extends JFrame {
 	    		//System.exit(0);
 	    		List<Integer> idArray = getIdsFromSelectedRows();
 	    		ModifyWindow mf = new ModifyWindow(mainRef, idArray);
+	    		mf.setVisible(true);
 	    	}
 	    });
 	       
