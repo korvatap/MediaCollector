@@ -5,16 +5,23 @@ public class TVSeries extends Media{
 
 	String episode;
 	String series;
+	private int id;
 
 	public TVSeries() {}
 	
 	public TVSeries(String title, String series, String episode, int publishYear, int rating, String genre) {
+		super.increaseId();
+		this.id = super.getId();
 		super.setTitle(title);
 		this.series = series;
 		this.episode = episode;
 		super.setPublishYear(publishYear);
 		super.setRating(rating);
 		super.setGenre(genre);
+	}
+	
+	public int getId() {
+		return id;
 	}
 	
 	public void setEpisode(String e) {
@@ -40,7 +47,7 @@ public class TVSeries extends Media{
     }
 	
 	public String[] getRow() {
-		String [] row = {super.getTitle(), series, episode, Integer.toString(super.getPublishYear()), Integer.toString(super.getRating()), super.getGenre() };
+		String [] row = { Integer.toString(getId()), super.getTitle(), series, episode, Integer.toString(super.getPublishYear()), Integer.toString(super.getRating()), super.getGenre() };
 		return row;
 	}
 }

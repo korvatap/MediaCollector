@@ -46,6 +46,8 @@ class BTableModel extends DefaultTableModel {
 		case 4:
 			return String.class;
 		case 5:
+			return String.class;
+		case 6:
 			if(type.equals("TVSeries")) {
 				return String.class;
 			} else { return Boolean.class; }
@@ -61,6 +63,7 @@ class BTableModel extends DefaultTableModel {
 		this.del = del;
 		switch (type) {
 			case "TVSeries":
+				this.addColumn("ID");
 				this.addColumn("Title");
 				this.addColumn("Series");
 				this.addColumn("Episode");
@@ -69,6 +72,7 @@ class BTableModel extends DefaultTableModel {
 				this.addColumn("Genre");
 				break;
 			case "Music":
+				this.addColumn("ID");
 				this.addColumn("Title");
 				this.addColumn("Artist");
 				this.addColumn("Publish Year");
@@ -77,6 +81,7 @@ class BTableModel extends DefaultTableModel {
 				break;
 				
 			case "Movie":
+				this.addColumn("ID");
 				this.addColumn("Title");
 				this.addColumn("Language");
 				this.addColumn("Publish Year");
@@ -85,14 +90,22 @@ class BTableModel extends DefaultTableModel {
 				break;
 		}
 		if(del == 1) {
-			this.addColumn("Delete");
+			this.addColumn("Select");
 		}
 	}
 	
 	 public boolean isCellEditable ( int row, int column )
      {
-		 if(del == 1) { return false; }
-		 else { return true; }
+		 if(del == 1) {
+			 if(getColumnClass(column) == Boolean.class) {
+				 return true;
+			 } else {
+				 return false; 
+			 }
+		 }  else {
+				 return true;
+		 }
+		
      }
 	
 	BTableModel() {}
@@ -138,6 +151,16 @@ public class MainWindow extends JFrame {
 	    panel.setLayout(panelLayout);
 	    
         panel.setToolTipText("NII VITTU USKALLA");
+        
+        //hide id column
+       /* tvTable.getColumnModel().getColumn(0).setMinWidth(0);
+        tvTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        
+        movieTable.getColumnModel().getColumn(0).setMinWidth(0);
+        movieTable.getColumnModel().getColumn(0).setMaxWidth(0);
+        
+        musicTable.getColumnModel().getColumn(0).setMinWidth(0);
+        musicTable.getColumnModel().getColumn(0).setMaxWidth(0);*/
         
 	    tvScrollPane = new JScrollPane(tvTable);
 	    movieScrollPane = new JScrollPane(movieTable);
@@ -187,13 +210,27 @@ public class MainWindow extends JFrame {
                 xe.setVisible(true);
 	    	}
 	    });
+	    
+	    JButton modifyButton = new JButton("Modify");
+	    modifyButton.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent event) {
+	    		//System.exit(0);
+
+	    	}
+	    });
 	       
 	    JButton removeButton = new JButton("Delete");
 	    removeButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent event) {
 	    		//System.exit(0);
-	    		PromptWindow pw = new PromptWindow("Oletko varma etta haluat poistaa?");
-	    		pw.setVisible(true);
+	    		List<Integer> idArray = getIdsFromSelectedRows();
+	    		if (!idArray.isEmpty()) {
+	    			PromptWindow pw = new PromptWindow("Are you sure you want to delete selected rows?", database, mainRef, idArray);
+	    			pw.setVisible(true);
+	    		} else {
+	    			PromptWindow pw = new PromptWindow("You did not choose anything to be removed!");
+	    			pw.setVisible(true);
+	    		}
 	    	}
 	    });
 	       
@@ -262,6 +299,7 @@ public class MainWindow extends JFrame {
 	    panel.add(west, BorderLayout.WEST);
 	    
 	    south.add(addButton);
+	    south.add(modifyButton);
 	    south.add(removeButton);
 	    south.add(helpButton);
 	    south.add(quitButton);
@@ -279,6 +317,50 @@ public class MainWindow extends JFrame {
 	    setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
+	protected List<Integer> getIdsFromSelectedRows() {
+		List<Integer> intList = new ArrayList<Integer>();
+		//get current table in use
+		int currentTable = tabbedPane.getSelectedIndex();
+		int currentRows;
+		int currentColumns;
+		if(currentTable == 0) {
+			currentRows = movieModel.getRowCount();
+			currentColumns = movieModel.getColumnCount();
+		} else if (currentTable == 1) {
+			currentRows = musicModel.getRowCount();
+			currentColumns = musicModel.getColumnCount();
+		} else {
+			currentRows = tvModel.getRowCount();
+			currentColumns = tvModel.getColumnCount();
+		}
+		for(int i = 0; i < currentRows; i++) {
+			
+			if(currentTable == 0) {
+				if(movieModel.getValueAt(i, currentColumns-1) != null ) {
+					if(movieModel.getValueAt(i, currentColumns-1).toString().equals("true")) {
+						intList.add(Integer.parseInt(movieModel.getValueAt(i,0).toString()));
+					}
+				}
+				
+			} else if (currentTable == 1) {
+				if(musicModel.getValueAt(i, currentColumns-1) != null ) {
+					if(musicModel.getValueAt(i, currentColumns-1).toString().equals("true")) {
+						intList.add(Integer.parseInt(musicModel.getValueAt(i,0).toString()));
+					}
+				}
+				
+			} else {
+				if(tvModel.getValueAt(i, currentColumns-1) != null ) {
+					if(tvModel.getValueAt(i, currentColumns-1).toString().equals("true")) {
+						intList.add(Integer.parseInt(tvModel.getValueAt(i,0).toString()));
+					}
+				}
+				
+			}
+		}
+			
+		return intList;
+	}
 	protected void searchDatabase(String name) {
 		String type;
 	
@@ -378,13 +460,13 @@ public class MainWindow extends JFrame {
 		}
 		if (add == 1) {
 			if(type.equals("TVSeries")) {
-				String [] combinedString = { "TVSeries", row[0], row[1], row[2], row[3], row[4], row[5] };
+				String [] combinedString = { "TVSeries", row[1], row[2], row[3], row[4], row[5], row[6] };
 				dc.createDatabase(Arrays.toString(combinedString));
 			} else if (type.equals("Movie")) {
-				String [] combinedString = { "Movie", row[0], row[1], row[2], row[3], row[4] };
+				String [] combinedString = { "Movie", row[1], row[2], row[3], row[4], row[5] };
 				dc.createDatabase(Arrays.toString(combinedString));
 			} else if (type.equals("Music")) {
-				String [] combinedString = { "Music", row[0], row[1], row[2], row[3], row[4] };
+				String [] combinedString = { "Music", row[1], row[2], row[3], row[4], row[5] };
 				dc.createDatabase(Arrays.toString(combinedString));
 			}
 		}
@@ -419,8 +501,34 @@ public class MainWindow extends JFrame {
 		}
 		
 	}
-	
-	
-}
+	public void deleteRowFromTable(int id) {
+		int currentTable = tabbedPane.getSelectedIndex();
+		
+		if(currentTable == 0) {
+			for(int row = 0;row < movieModel.getRowCount();row++) {
+				if(movieModel.getValueAt(row, 0).equals(Integer.toString(id))) {
+					movieModel.removeRow(row);
+				}
+			}
+		}
 
+		if (currentTable == 1) {
+			for(int row = 0;row < musicModel.getRowCount();row++) {
+				if(musicModel.getValueAt(row, 0).equals(Integer.toString(id))) {
+					musicModel.removeRow(row);
+				}
+			}
+
+		}
+		
+		if (currentTable == 2) {
+			for(int row = 0;row < tvModel.getRowCount();row++) {
+				if(tvModel.getValueAt(row, 0).equals(Integer.toString(id))) {
+					tvModel.removeRow(row);
+				}
+			}
+		}
+
+	}
+}
 

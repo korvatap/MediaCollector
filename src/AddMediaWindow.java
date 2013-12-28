@@ -23,7 +23,6 @@ import javax.swing.JTable;
 public class AddMediaWindow extends JFrame{
 	
 	private String[] mediaTypes = { "Movie", "Music", "Series" };
-	private String[] categories = { "Ebullient", "Obtuse", "Recalcitrant", "Brilliant", "Somnescent", "Timorous", "Florid", "Putrescent" };  
 	private MainWindow mainWindowRef;
 	
     //Create table models for TV, movie, music

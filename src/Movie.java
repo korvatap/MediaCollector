@@ -7,10 +7,13 @@ public class Movie extends Media{
 	 * @param args
 	 */
 	private String language;
-
+	private int id;
+	
 	public Movie() {}
 	
 	public Movie(String title, String language, int publishYear, int rating, String genre) {
+		super.increaseId();
+		this.id = super.getId();
 		super.setTitle(title);
 		this.language = language;
 		super.setPublishYear(publishYear);
@@ -26,6 +29,10 @@ public class Movie extends Media{
 		return language;
 	}
 	
+	public int getId() {
+		return id;
+	}
+	
 	public void print() {
         System.out.println("-------------");
         System.out.println("title: "+getTitle() + ", language: " + getLanguage() + ", PublishYear: " + getPublishYear() + ", Rating: " + getRating() + ", Genre: " + getGenre());
@@ -33,7 +40,7 @@ public class Movie extends Media{
     }
 	
 	public String[] getRow() {
-		String [] row = {super.getTitle(), language, Integer.toString(super.getPublishYear()), Integer.toString(super.getRating()), super.getGenre() };
+		String [] row = { Integer.toString(getId()), super.getTitle(), language, Integer.toString(super.getPublishYear()), Integer.toString(super.getRating()), super.getGenre() };
 		return row;
 	}
 	

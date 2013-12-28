@@ -59,10 +59,27 @@ public class MediaObject implements MediaItem{
 		}
 		return objects;
 	}
+	
+	public void deleteObjectById(int id) {
+		for(int i=0; i < items.size(); i++) {
+			MediaItem tmp = items.get(i);
+			if(tmp.getId() == id) {
+				items.remove(tmp);
+			} else {
+				tmp.deleteObjectById(id);
+			}
+		}
+	}
 
 	@Override
 	public String[] getRow() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public int getId() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

@@ -3,21 +3,29 @@ import java.util.ArrayList;
 
 public class Media implements MediaItem {
 
-	/**
-	 * @param args
-	 */
+
 	private String title;
 	private int publishYear;
 	private int rating;
 	private String genre;
-	
+	private static int id;
+	private int mid;
 	public Media() {
-		
+		increaseId();
+		mid = getId();
 	}
 	
 	public Media(String title){
         this.title = title;
     }
+	
+	public int getId() {
+		return id;
+	}
+	
+	public void increaseId() {
+		id++;
+	}
 	
 	public void setTitle(String t) {
 		this.title = t;
@@ -69,5 +77,11 @@ public class Media implements MediaItem {
 	public String[] getRow() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void deleteObjectById(int id) {
+		// TODO Auto-generated method stub
+		
 	}
 }
