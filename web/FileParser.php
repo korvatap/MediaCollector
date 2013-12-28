@@ -2,25 +2,51 @@
 //singleton pattern?
 class FileParser {
     
-    private $lineCount = 0;
+    /*private $lineCount = 0;
     private $linesRead = 0;
-    private $lines = array();
+    private $lines = array();*/
+    
+    //private $path = "Database/database.txt";
+    private $dbPath = "Database/database.dat";
     
     public function __construct() {
-        $this->lines = $this->readFile();
-        $this->lineCount = count($this->lines);
+        //$this->lines = $this->readFromFile();
     }
-    private function readFile() {
-        if (file_exists("Database/database.txt")) {
-            $lines = file("Database/database.txt");
-            //foreach ($lines as $line) {
-                //echo $line . "<br/>";
-            //}
-            return $lines;
+    /*public function readFromFile() {
+        if (file_exists($this->path)) {
+            $lines = file($this->path);
+            
+            $this->lineCount = count($lines);
+            $this->linesRead = 0;
+            
+            //return $lines;
+            $this->lines = $lines;
+        }
+    }*/
+    
+    public function writeToFile($db) {
+        $serializedDb = serialize($db);
+        /*if (!file_exists($this->dbPath)) {
+            touch($this->dbPath);
+        }*/
+        if (is_writable($this->dbPath)) {
+            $file = fopen($this->dbPath, "w");
+            fwrite($file, $serializedDb);
+            fclose($file);
         }
     }
     
-    public function parseWordsFromLine($line) {
+    public function readDbFile() {
+        $db = null;
+        if (file_exists($this->dbPath)) {
+            $serializedDb = file_get_contents($this->dbPath);
+            $db = unserialize($serializedDb);
+        }
+        
+        return $db;
+    }
+    
+    /*public function parseWordsFromLine($line) {
          $parts = explode(",", $line);
          return $parts;
     }
@@ -45,6 +71,6 @@ class FileParser {
         else {
             return false;
         }
-    }
+    }*/
 }
 ?>
