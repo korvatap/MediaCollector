@@ -6,6 +6,8 @@ class Media implements MediaItem {
     private $publishYear;
     private $rating;
     private $genre;
+    static private $id = 0;
+    //private $mid;
     
     public function __construct() {
         $arguments = func_get_args();
@@ -17,6 +19,8 @@ class Media implements MediaItem {
     
     public function __construct1($title) {
             $this->title = $title;
+            //$this->increaseId();
+            //$this->mid = $this->getId();
     }
 
     public function setTitle($title) {
@@ -57,6 +61,14 @@ class Media implements MediaItem {
     
     public function info() {
         //NOT NEEDED IN THIS BASE CLASS
+    }
+    
+    static public function getId() {
+        return self::$id;
+    }
+    
+    static protected function increaseId() {
+        self::$id++;
     }
 }
 ?>
