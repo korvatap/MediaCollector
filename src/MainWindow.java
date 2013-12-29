@@ -113,14 +113,11 @@ public class MainWindow extends JFrame {
 		    		searchInput = "";
 	    		} else {
 	    			if(tabbedPane.getSelectedIndex() == 0) {
-	    				movieModel.setRowCount(0);
-	    				getRows("Movie");
+	    				emptyRowsGetNewRows("Movie");
 	    			} else if (tabbedPane.getSelectedIndex() == 1) {
-	    				musicModel.setRowCount(0);
-	    				getRows("Music");
+	    				emptyRowsGetNewRows("Music");
 	    			} else {
-	    				tvModel.setRowCount(0);
-	    				getRows("TVSeries");
+	    				emptyRowsGetNewRows("TVSeries");
 	    			}
 	    		}
 	
@@ -401,6 +398,20 @@ public class MainWindow extends JFrame {
 			while(rowIterator.hasNext()) {
 				addRow(type, rowIterator.next(),0);
 			}
+		}
+		
+	}
+	
+	public void emptyRowsGetNewRows(String type) {
+		if(type.equals("Movie")) {
+			movieModel.setRowCount(0);
+			getRows("Movie");
+		} else if (type.equals("Music")) {
+			musicModel.setRowCount(0);
+			getRows("Music");
+		} else {
+			tvModel.setRowCount(0);
+			getRows("TVSeries");
 		}
 		
 	}

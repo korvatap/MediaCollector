@@ -28,11 +28,11 @@ public class ModifyWindow extends JFrame {
     
 	JScrollPane tableScrollPane = new JScrollPane(table);
 	
-	 JPanel south = new JPanel();
-	 JPanel center = new JPanel(new BorderLayout());
+	JPanel south = new JPanel();
+	JPanel center = new JPanel(new BorderLayout());
 	 
-	 
-	 List<String[]> addRows = new ArrayList<String[]>();
+	ModifyWindow ref;
+	List<String[]> addRows = new ArrayList<String[]>();
 
 	private List<Integer> idArray;
 
@@ -41,7 +41,7 @@ public class ModifyWindow extends JFrame {
 		this.targetTable = targetTable;
 		this.database = database;
 		this.idArray = idArray;
-
+		ref = this;
 		initWindow();
 	}
 	
@@ -54,6 +54,36 @@ public class ModifyWindow extends JFrame {
 			}
 			
 		}
+	}
+	
+	protected void saveObjects() {
+		if(targetTable == 0) {
+			for(int i = 0; i < items.size(); i++) {
+				((Movie)items.get(i)).setTitle(table.getValueAt((i),1).toString());
+				((Movie)items.get(i)).setLanguage(table.getValueAt((i),2).toString());
+				((Movie)items.get(i)).setPublishYear(Integer.valueOf(table.getValueAt((i),3).toString()));
+				((Movie)items.get(i)).setRating(Integer.valueOf(table.getValueAt((i),4).toString()));
+				((Movie)items.get(i)).setGenre(table.getValueAt((i),5).toString());
+			}	
+		} else if (targetTable == 1) {
+			for(int i = 0; i < items.size(); i++) {
+				((Music)items.get(i)).setTitle(table.getValueAt((i),1).toString());
+				((Music)items.get(i)).setArtist(table.getValueAt((i),2).toString());
+				((Music)items.get(i)).setPublishYear(Integer.valueOf(table.getValueAt((i),3).toString()));
+				((Music)items.get(i)).setRating(Integer.valueOf(table.getValueAt((i),4).toString()));
+				((Music)items.get(i)).setGenre(table.getValueAt((i),5).toString());
+			}
+		} else {
+			for(int i = 0; i < items.size(); i++) {
+				((TVSeries)items.get(i)).setTitle(table.getValueAt((i),1).toString());
+				((TVSeries)items.get(i)).setSeries(table.getValueAt((i),2).toString());
+				((TVSeries)items.get(i)).setEpisode(table.getValueAt((i),3).toString());
+				((TVSeries)items.get(i)).setPublishYear(Integer.valueOf(table.getValueAt((i),4).toString()));
+				((TVSeries)items.get(i)).setRating(Integer.valueOf(table.getValueAt((i),5).toString()));
+				((TVSeries)items.get(i)).setGenre(table.getValueAt((i),6).toString());
+			}
+		}
+		
 	}
 	
 	protected void getRowsFromTargetObjects() {
@@ -108,8 +138,18 @@ public class ModifyWindow extends JFrame {
 	    JButton nextButton = new JButton("Save");
 	    nextButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent event) {
-	    		tableModel.addRow(new Object[0]);
-	    		table.editCellAt(table.getRowCount()-1, 0);
+	    		if(table.isEditing()) {
+	    			 table.getCellEditor().stopCellEditing();
+	    		}
+	    		saveObjects();
+	    		if(targetTable == 0) {
+	    			mainRef.emptyRowsGetNewRows("Movie");
+	    		} else if (targetTable == 1) {
+	    			mainRef.emptyRowsGetNewRows("Music");
+	    		} else {
+	    			mainRef.emptyRowsGetNewRows("TVSeries");
+	    		}
+	    		ref.setVisible(false);
 	    	}
 	    });
 	       

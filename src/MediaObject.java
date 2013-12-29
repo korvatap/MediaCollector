@@ -81,6 +81,10 @@ public class MediaObject implements MediaItem {
 		}
 		return item;
 	}
+	
+	public void modifyObjectById(int id, String[] row) {
+		
+	}
 
 	@Override
 	public String[] getRow() {
