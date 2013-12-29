@@ -360,6 +360,7 @@ public class MainWindow extends JFrame {
 		}
 
 		for(int i = 0; i < row.length; i++) {
+			System.out.println(row[i]);
 			switch(type) {
 			case "TVSeries":
 				tvModel.setValueAt(row[i], tvModel.getRowCount()-1, i);
@@ -391,7 +392,9 @@ public class MainWindow extends JFrame {
 				//dc.createDatabase(Arrays.toString(combinedString));
 				dc.createDatabase(combined);
 			}
+			emptyRowsGetNewRows(type);
 		}
+		
 		
 	}
 	
