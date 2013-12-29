@@ -85,4 +85,9 @@ public class Media implements MediaItem {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public static void setId(int id) {
+		Media.id = id;
+	}
+
 }

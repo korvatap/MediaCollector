@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Iterator;
 
 
 public class DatabaseCreator {
@@ -100,5 +101,37 @@ public class DatabaseCreator {
 	// probably not needed anymore, was used for testing
 	public void setDatabases(MediaObject database) {
 		this.masterDb = database;
+	}
+	
+	public int getHighestId() {
+		int highId = 0;
+		Iterator<MediaItem> itemIterator = musicDb.getItems().iterator();
+		
+			while(itemIterator.hasNext()){
+				MediaItem tmp = itemIterator.next();
+				if (tmp.getId() > highId) {
+					highId = tmp.getId();
+				}
+		    }
+			
+			itemIterator = movieDb.getItems().iterator();
+			
+			while(itemIterator.hasNext()){
+				MediaItem tmp = itemIterator.next();
+				if (tmp.getId() > highId) {
+					highId = tmp.getId();
+				}
+			}
+			
+			itemIterator = tvDb.getItems().iterator();
+			
+			while(itemIterator.hasNext()){
+				MediaItem tmp = itemIterator.next();
+				if (tmp.getId() > highId) {
+					highId = tmp.getId();
+				}
+			}
+			
+			return highId;
 	}
 }

@@ -72,6 +72,8 @@ public class MainWindow extends JFrame {
 		//dc.setDatabases(test);
 		dc.createDatabasesNew(test);
 		this.database = dc.getDatabases();
+		System.out.println("Highest Id is: " + dc.getHighestId());
+		Media.setId(dc.getHighestId());
         getRows("Movie");
         getRows("Music");
         getRows("TVSeries");
