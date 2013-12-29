@@ -7,10 +7,8 @@ public class Media implements MediaItem {
 	private int rating;
 	private String genre;
 	private static int id;
-	private int mid;
 	public Media() {
 		increaseId();
-		mid = getId();
 	}
 	
 	public Media(String title){
@@ -27,10 +25,6 @@ public class Media implements MediaItem {
 	
 	public int getCurrentMaxId() {
 		return getId();
-	}
-	
-	public int getMid() {
-		return mid;
 	}
 	
 	public void setTitle(String t) {
