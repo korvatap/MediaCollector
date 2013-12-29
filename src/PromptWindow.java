@@ -1,34 +1,16 @@
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JComboBox;
-
-	import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.GridLayout;
+import java.awt.BorderLayout;
 import java.util.Iterator;
 import java.util.List;
 
-	import javax.swing.JScrollPane;
-import javax.swing.JTable;
-
-
 	public class PromptWindow extends JFrame{
 
-		/**
-		 * 
-		 */
 		private static final long serialVersionUID = 1L;
-		/**
-		 * @param args
-		 */
-		
 		private String message = " ";
 		private MediaObject database;
 		private List<Integer> idArray;

@@ -1,5 +1,3 @@
-import javax.swing.BoxLayout;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
@@ -8,10 +6,8 @@ import javax.swing.SwingUtilities;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
-
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.io.IOException;
@@ -19,12 +15,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
-
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 //import statements
 //Check if window closes automatically. Otherwise add suitable code
@@ -94,14 +86,14 @@ public class MainWindow extends JFrame {
         panel.setToolTipText("NII VITTU USKALLA");
         
         //hide id column
-       /* tvTable.getColumnModel().getColumn(0).setMinWidth(0);
+        tvTable.getColumnModel().getColumn(0).setMinWidth(0);
         tvTable.getColumnModel().getColumn(0).setMaxWidth(0);
         
         movieTable.getColumnModel().getColumn(0).setMinWidth(0);
         movieTable.getColumnModel().getColumn(0).setMaxWidth(0);
         
         musicTable.getColumnModel().getColumn(0).setMinWidth(0);
-        musicTable.getColumnModel().getColumn(0).setMaxWidth(0);*/
+        musicTable.getColumnModel().getColumn(0).setMaxWidth(0);
         
 	    tvScrollPane = new JScrollPane(tvTable);
 	    movieScrollPane = new JScrollPane(movieTable);
