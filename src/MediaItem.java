@@ -1,5 +1,7 @@
+import java.io.Serializable;
 
-public interface MediaItem {
+
+public interface MediaItem extends Serializable {
 
 	void print();
 

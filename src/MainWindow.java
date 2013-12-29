@@ -58,9 +58,15 @@ public class MainWindow extends JFrame {
 	
 	public MainWindow() {}
 	public MainWindow(DatabaseCreator dc) {
+		FileManager fm = new FileManager();
+		MediaObject test = fm.readFile();
+		System.out.println(test.getChild(0).getTitle());
 		initUI();
 		this.database = dc.getDatabases();
 		this.dc = dc;
+        getRows("Movie");
+        getRows("Music");
+        getRows("TVSeries");
 	}
 	
 	public MediaObject getDatabase() {
@@ -100,6 +106,8 @@ public class MainWindow extends JFrame {
 	    quitButton.setToolTipText("SAMMUTA MUT PRKL");
 	    quitButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent event) {
+	    		FileManager fm = new FileManager();
+	    		fm.writeToFile(database);
 	    		System.exit(0);
 	    	}
 	    });
@@ -326,10 +334,6 @@ public class MainWindow extends JFrame {
 					}
 	            	
 	                MainWindow ex = new MainWindow(dc);
-
-	                ex.getRows("Movie");
-	                ex.getRows("Music");
-	                ex.getRows("TVSeries");
 	                ex.setVisible(true);
 	                
 	            }
