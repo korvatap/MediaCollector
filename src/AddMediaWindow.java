@@ -95,8 +95,19 @@ public class AddMediaWindow extends JFrame{
 	    		if(table.isEditing()) {
 	    			 table.getCellEditor().stopCellEditing();
 	    		}
-	    		addRowsToDatabase();
-	    		setVisible(false);
+	    		if(checkRowCorrectness()) {
+	    			if(checkRating()) {
+		    			addRowsToDatabase();
+		    			setVisible(false);
+	    			} else {
+	    				PromptWindow c = new PromptWindow("Rating must be a number between 1-10");
+	    				c.setVisible(true);
+	    			}
+
+	    		} else {
+	    			PromptWindow d = new PromptWindow("Fields Publish Year, Rating must be a number.");
+	    			d.setVisible(true);
+	    		}
 	    	}
 	    });
 	       
@@ -139,6 +150,73 @@ public class AddMediaWindow extends JFrame{
 	    setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
+	protected boolean checkRowCorrectness() {
+		int rowCount = table.getRowCount();
+		int currentRow = 0;
+		boolean correct = false;
+		
+		if(type.getSelectedItem().toString().equals("Series")) {
+			while(currentRow < rowCount) {	
+				correct = validateIntRow(table.getValueAt(currentRow, 4).toString());
+				if(correct == false) { return false; }
+				correct = validateIntRow(table.getValueAt(currentRow, 5).toString());
+				if(correct == false) { return false; }
+				currentRow++;
+			}
+		} else  {
+			while(currentRow < rowCount) {	
+				correct = validateIntRow(table.getValueAt(currentRow, 3).toString());
+				if(correct == false) { return false; }
+				correct = validateIntRow(table.getValueAt(currentRow, 4).toString());	
+				if(correct == false) { return false; }
+				currentRow++;
+			}
+			
+		}
+		return correct;
+	}
+	
+	protected boolean checkRating() {
+		int rowCount = table.getRowCount();
+		int currentRow = 0;
+		boolean correct = false;
+		int tmp;
+		
+		if(type.getSelectedItem().toString().equals("Series")) {
+			while(currentRow < rowCount) {	
+				tmp = Integer.parseInt(table.getValueAt(currentRow, 5).toString());
+				
+				if(tmp >= 1 && tmp <= 10) {
+					correct = true;
+				} else {
+					return false;
+				}
+				currentRow++;
+			}
+		} else  {
+			while(currentRow < rowCount) {	
+				tmp = Integer.parseInt(table.getValueAt(currentRow, 4).toString());
+				if(tmp >= 1 && tmp <= 10) {
+					correct = true;
+				} else {
+					return false;
+				}
+				currentRow++;
+			}
+		}
+		return correct;
+	}
+
+
+	private boolean validateIntRow(String str) {
+		try {
+			Integer.parseInt(str);
+	        return true;
+	    } catch (NumberFormatException nfe) {}
+			return false;
+	}
+
+
 	public void addRowsToDatabase() {
 		int rowCount = table.getRowCount();
 		int columnCount = table.getColumnCount();
