@@ -30,7 +30,7 @@ public class PromptWindow extends JFrame{
 	 * @param text		text that will be displayed at the window.
 	 * @param database	database is used to make modifications to the objects.
 	 * @param mainRef	reference to the main window to inform it about changes..
-	 * @param idArray	id's of objects that will be deleted
+	 * @param idArray	id's of objects that will be deleted.
 	 */
 	public PromptWindow(String text, MediaObject database, MainWindow mainRef, List<Integer> idArray) {
 		this.database = database;

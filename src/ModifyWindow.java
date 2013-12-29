@@ -9,6 +9,13 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+/**
+ * ModifyWindow class is used to creat modify windows that are used to modify the media objects.
+ * 
+ * @author      Juha Hirvasniemi <jhirvasn@paju.oulu.fi>, Tapio Korvala <korvatap@paju.oulu.fi>
+ * @version     1.0
+ * @since       2013-12-30
+ */
 public class ModifyWindow extends JFrame {
 
 	private static final long serialVersionUID = 3781413385233728385L;
@@ -33,7 +40,15 @@ public class ModifyWindow extends JFrame {
 	List<String[]> addRows = new ArrayList<String[]>();
 
 	private List<Integer> idArray;
-
+	
+	/**
+	 * Constructor for the class ModifyWindow.
+	 * 
+	 * @param mainRef		reference to the main window.
+	 * @param database		database is used to make modifications to the objects.
+	 * @param idArray		id's of objects that will be deleted.
+	 * @param targetTable	target table used, e.x. movie, tv series, music.
+	 */
 	public ModifyWindow(MainWindow mainRef, MediaObject database, List<Integer> idArray, int targetTable) {
 		this.mainRef = mainRef;
 		this.targetTable = targetTable;
@@ -43,6 +58,9 @@ public class ModifyWindow extends JFrame {
 		initWindow();
 	}
 	
+	/**
+	 * Adds target rows to be modified to the table.
+	 */
 	protected void addTargetRows() {
 		for(int i = 0; i < rows.size(); i++) {
 			tableModel.addRow(new Object[0]);
@@ -54,6 +72,11 @@ public class ModifyWindow extends JFrame {
 		}
 	}
 	
+	/**
+	 * Checks that the publishYear and rating is type of integer.
+	 * 
+	 * @return true if integer, false if not.
+	 */
 	protected boolean checkRowCorrectness() {
 		int rowCount = table.getRowCount();
 		int currentRow = 0;
@@ -80,6 +103,11 @@ public class ModifyWindow extends JFrame {
 		return correct;
 	}
 	
+	/**
+	 * Check if the rating given is in range of 1-10.
+	 * 
+	 * @return	true, if rating is 1-0. false if not.
+	 */
 	protected boolean checkRating() {
 		int rowCount = table.getRowCount();
 		int currentRow = 0;
@@ -111,6 +139,12 @@ public class ModifyWindow extends JFrame {
 		return correct;
 	}
 	
+	/**
+	 * Checks if string is actually a number.
+	 * 
+	 * @param str	string to be checked.
+	 * @return		true if is number, false if not.
+	 */
 	private boolean validateIntRow(String str) {
 		try {
 			Integer.parseInt(str);
@@ -119,7 +153,12 @@ public class ModifyWindow extends JFrame {
 			return false;
 	}
 
-	
+	/**
+	 * Saves the modifications made in the table into the database.
+	 * @see Movie
+	 * @see Music
+	 * @see TVSeries
+	 */
 	protected void saveObjects() {
 		if(targetTable == 0) {
 			for(int i = 0; i < items.size(); i++) {
@@ -150,13 +189,20 @@ public class ModifyWindow extends JFrame {
 		
 	}
 	
+	/**
+	 * Gets the row information of the target objects.
+	 */
 	protected void getRowsFromTargetObjects() {
 		for(int i = 0; i < items.size(); i++) {
 			rows.add(items.get(i).getRow());
 		}
 	}
 	
-	
+	/**
+	 * Gets target object based on id and places them on list.
+	 * 
+	 * @param idArray	id's of target objects.
+	 */
 	protected void getTargetObjects(List<Integer> idArray) {
 		List<MediaItem> tmp;
 		if(targetTable == 0) {
@@ -174,6 +220,9 @@ public class ModifyWindow extends JFrame {
 		}
 	}
 	
+	/**
+	 * Creates a window which allows users to modify media objects.
+	 */
 	public final void initWindow() {
 	    JPanel panel = new JPanel();
 	    getContentPane().add(panel);
@@ -197,7 +246,7 @@ public class ModifyWindow extends JFrame {
 	    
 	    table.setFillsViewportHeight(true);
 	    
-        panel.setToolTipText("NII VITTU USKALLA");
+        panel.setToolTipText("Modifying media is easy and fun!");
 	       
 	    JButton nextButton = new JButton("Save");
 	    nextButton.addActionListener(new ActionListener() {
