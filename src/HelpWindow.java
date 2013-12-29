@@ -18,25 +18,41 @@ public class HelpWindow extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	JLabel helpText = new JLabel();
+	HelpWindow ref;
 
 	public HelpWindow() {
+		ref = this;
 		initWindow();
 	}
 	
 	public void setHelpText(int type) {
 		switch(type) {
-			case 1: helpText.setText("<html>Median lisaysohjeet<br> Median lisays on kivaa jee!</html>");				
+			case 1: helpText.setText("<html><h2>Add media instructions</h2>" +
+					"<br> - Media can be added using the Add button in the main window." +
+					"<br> - After this a window will open and there you have to fill the fields with information you want. <br>" +
+					" - The next button in the add window will create new row to the table which enables you to fastly add<br> multiple medias in to the database." +
+					"<br>- The Add button in the Add window finally then adds the new medias in to the database.<br> - This is supposed to be pressed when the information for the media has been inserted in to the table." +
+					"<br>- The cancel button just cancels the new media adding feature and no information is saved to the database. </html>");				
 			break;
-			case 2: helpText.setText("<html>Median etsintaohjeet<br> Median etsinta on helppoa</html>");
+			case 2: helpText.setText("<html><h2>Media search instructions</h2><br>- If you want to search media you just need to select the correct tab in the main window first.<br>" +
+					"- After this you type to the search box the search string you want to use and press search.<br>" +
+					"- The program will then list all media find using the search string.</html>");
 									
 			break;
-			case 3: helpText.setText("<html>Median poistoohjeet <br> Median poistaminen kay katevasti</html>");
+			case 3: helpText.setText("<html><h2>How to delete media </h2<br>- You can delete media by ticking the select column of the corresponding media you want to delete.<br>" +
+					"- After this you just press delete button and the media will be deleted if you choose to confirm the removal of the media.</html>");
 									
 			break;
-			case 4: helpText.setText("<html>Median muokkausohjeet <br> Median muokkaus on nopeaa toimintaa ja ehka hieman pervoa</html>");
+			case 4: helpText.setText("<html><h2>How to modify media</h2> <br>- To be able to modify media you first have to select the media you want to modify." +
+					"<br>.- This can be achieved by ticking the select column of the target media to be modified.<br>" +
+					"- After this you just press the modify button and a new window will open.<br>" +
+					"- In the new window you have a table with the media information you selected.<br>" +
+					"- Now you can modify the media information straight from the table and after that pressing save to save the media.<br>" +
+					"- Cancel button is to cancel the procedure and now modifications to the media will be saved.</html>");
 									
 			break;
-			default: helpText.setText("<html>Median etsintaohjeet <br>Median etsinta on helppoa</html>");
+			default: helpText.setText("<html><h2>How to delete media </h2<br>- You can delete media by ticking the select column of the corresponding media you want to delete.<br>" +
+					"- After this you just press delete button and the media will be deleted if you choose to confirm the removal of the media.</html>");
 									
 			break;
 		}
@@ -47,31 +63,38 @@ public class HelpWindow extends JFrame {
 		 getContentPane().add(panel);
 		 panel.setLayout(new BorderLayout());
 		 
-		 helpText.setText("Valitse painikeesta ohje mita haluat tarkastella");
+		 helpText.setText("Choose which instruction you want to watch by pressing the corresponding button.");
 		 
 		 
-		 JButton mediaAddHelp = new JButton("Median lisays ohjeet");
+		 JButton mediaAddHelp = new JButton("How to add media");
 		 mediaAddHelp.addActionListener(new ActionListener() {
 		    	public void actionPerformed(ActionEvent event) {
 		    		setHelpText(1);
 		    	}
 		 });
 		 
-		 JButton mediaSearchHelp = new JButton("Median etsintaohjeet");
+		 JButton closeButton = new JButton("Close");
+		 mediaAddHelp.addActionListener(new ActionListener() {
+		    	public void actionPerformed(ActionEvent event) {
+		    		setVisible(false);
+		    	}
+		 });
+		 
+		 JButton mediaSearchHelp = new JButton("How to search media");
 		 mediaSearchHelp.addActionListener(new ActionListener() {
 		    	public void actionPerformed(ActionEvent event) {
 		    		setHelpText(2);
 		    	}
 		 });
 		 
-		 JButton mediaDeleteHelp = new JButton("Median poistoohjeet");
+		 JButton mediaDeleteHelp = new JButton("How to remove media");
 		 mediaDeleteHelp.addActionListener(new ActionListener() {
 		    	public void actionPerformed(ActionEvent event) {
 		    		setHelpText(3);
 		    	}
 		 });
 		 
-		 JButton mediaModifyHelp = new JButton("Median muokkausohjeet");
+		 JButton mediaModifyHelp = new JButton("How to modify media");
 		 mediaModifyHelp.addActionListener(new ActionListener() {
 		    	public void actionPerformed(ActionEvent event) {
 		    		setHelpText(4);
@@ -80,22 +103,26 @@ public class HelpWindow extends JFrame {
 		 
 		 JPanel north = new JPanel();
 		 JPanel center = new JPanel();
+		 JPanel south = new JPanel();
 		 center.setBorder(BorderFactory.createLineBorder(Color.black));
 		    
 		 panel.add(north, BorderLayout.NORTH);
 		 panel.add(center, BorderLayout.CENTER);
+		 panel.add(south, BorderLayout.SOUTH);
 		    
 		 north.add(mediaAddHelp);
 		 north.add(mediaSearchHelp);
 		 north.add(mediaDeleteHelp);
 		 north.add(mediaModifyHelp);
 		 
+		 south.add(closeButton);
+		 
 		 center.add(helpText);
 
 		 setTitle("Media Collector");
 		 setSize(800, 600);
 		 setLocationRelativeTo(null);
-		 setDefaultCloseOperation(EXIT_ON_CLOSE);
+		 setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}
 
 }

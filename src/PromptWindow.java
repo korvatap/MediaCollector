@@ -128,7 +128,7 @@ import javax.swing.JTable;
 		    setTitle("Media Collector");
 		    setSize(500, 200);
 		    setLocationRelativeTo(null);
-		    setDefaultCloseOperation(EXIT_ON_CLOSE);
+		    setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		}
 
 	}

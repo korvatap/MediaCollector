@@ -249,7 +249,7 @@ public class ModifyWindow extends JFrame {
 	    setTitle("Media Collector");
 	    setSize(800, 600);
 	    setLocationRelativeTo(null);
-	    setDefaultCloseOperation(EXIT_ON_CLOSE);
+	    setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}
 
 }
