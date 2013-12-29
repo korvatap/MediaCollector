@@ -29,6 +29,10 @@ public class Media implements MediaItem {
 		return getId();
 	}
 	
+	public int getMid() {
+		return mid;
+	}
+	
 	public void setTitle(String t) {
 		this.title = t;
 	}

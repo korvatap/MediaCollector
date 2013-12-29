@@ -12,7 +12,6 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.JScrollPane;
@@ -370,18 +369,18 @@ public class MainWindow extends JFrame {
 		if (add == 1) {
 		
 			if(type.equals("TVSeries")) {
-				String [] combinedString = { "TVSeries", row[1], row[2], row[3], row[4], row[5], row[6] };
+				//String [] combinedString = { "TVSeries", row[1], row[2], row[3], row[4], row[5], row[6] };
 				String combined = "TVSeries" + "," + row[1] + "," + row[2] + "," + row[3] + "," + row[4] + "," + row[5] + "," + row[6];
 				//dc.createDatabase(Arrays.toString(combinedString));
 				dc.createDatabase(combined);
 			} else if (type.equals("Movie")) {
-				System.out.println("ADDING MOVIE TO DATABASE");
-				String [] combinedString = { "Movie", row[1], row[2], row[3], row[4], row[5] };
-				System.out.println(Arrays.toString(combinedString));
+				//System.out.println("ADDING MOVIE TO DATABASE");
+				//String [] combinedString = { "Movie", row[1], row[2], row[3], row[4], row[5] };
+				//System.out.println(Arrays.toString(combinedString));
 				String combined = "Movie" + "," + row[1] + "," + row[2] + "," + row[3] + "," + row[4] + "," + row[5];
 				dc.createDatabase(combined);
 			} else if (type.equals("Music")) {
-				String [] combinedString = { "Music", row[1], row[2], row[3], row[4], row[5] };
+				//String [] combinedString = { "Music", row[1], row[2], row[3], row[4], row[5] };
 				String combined = "Music" + "," + row[1] + "," + row[2] + "," + row[3] + "," + row[4] + "," + row[5];
 				//dc.createDatabase(Arrays.toString(combinedString));
 				dc.createDatabase(combined);
