@@ -28,6 +28,10 @@ public class Media implements MediaItem {
 		id++;
 	}
 	
+	public int getCurrentMaxId() {
+		return getId();
+	}
+	
 	public void setTitle(String t) {
 		this.title = t;
 	}
