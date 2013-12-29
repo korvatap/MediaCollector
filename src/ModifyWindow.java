@@ -140,7 +140,7 @@ public class ModifyWindow extends JFrame {
 		} else {
 			for(int i = 0; i < items.size(); i++) {
 				((TVSeries)items.get(i)).setTitle(table.getValueAt((i),1).toString());
-				((TVSeries)items.get(i)).setSeries(table.getValueAt((i),2).toString());
+				((TVSeries)items.get(i)).setSeason(table.getValueAt((i),2).toString());
 				((TVSeries)items.get(i)).setEpisode(table.getValueAt((i),3).toString());
 				((TVSeries)items.get(i)).setPublishYear(Integer.valueOf(table.getValueAt((i),4).toString()));
 				((TVSeries)items.get(i)).setRating(Integer.valueOf(table.getValueAt((i),5).toString()));

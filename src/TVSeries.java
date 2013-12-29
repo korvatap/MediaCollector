@@ -4,14 +4,14 @@
  * 
  * @author      Juha Hirvasniemi <jhirvasn@paju.oulu.fi>, Tapio Korvala <korvatap@paju.oulu.fi>
  * @version     1.0
- * @since       2013-12-30          (the version of the package this class was first added to)
+ * @since       2013-12-30
  */
 
 public class TVSeries extends Media {
 
 	static final long serialVersionUID = 53L;
 	String episode;
-	String series;
+	String season;
 	private int id;
 	
 	/**
@@ -19,17 +19,17 @@ public class TVSeries extends Media {
 	 * without using any setters.
 	 * 
 	 * @param title		title for the tv series.
-	 * @param series 	season name for the series or a number.
+	 * @param season 	season name for the series or a number.
 	 * @param episode 	name of the episode or a number.
-	 * @param publishYear the year of the current episode was produced.
+	 * @param publishYear the year the current episode was produced.
 	 * @param rating 	the rating of the episode, 1-10.
 	 * @param genre 	the genre for the tv series e.x. Action.
 	 */
-	public TVSeries(String title, String series, String episode, int publishYear, int rating, String genre) {
+	public TVSeries(String title, String season, String episode, int publishYear, int rating, String genre) {
 		super.increaseId();
 		this.id = super.getId();
 		super.setTitle(title);
-		this.series = series;
+		this.season = season;
 		this.episode = episode;
 		super.setPublishYear(publishYear);
 		super.setRating(rating);
@@ -68,8 +68,8 @@ public class TVSeries extends Media {
 	 * 
 	 * @param s		value to be set as name of the season.
 	 */
-	public void setSeries(String s) {
-		this.series = s;
+	public void setSeason(String s) {
+		this.season = s;
 	}
 	
 	/**
@@ -77,13 +77,13 @@ public class TVSeries extends Media {
 	 * 
 	 * @return		name of the season.
 	 */
-	public String getSeries() {
-		return series;
+	public String getSeason() {
+		return season;
 	}
 	
 	public void print() {
         System.out.println("-------------");
-        System.out.println("title: " + getTitle() + ", Series: " + getSeries() + ", Episode: " + getEpisode() +  ", PublishYear: " + getPublishYear() + ", Rating: " + getRating() + ", Genre: " + getGenre());
+        System.out.println("title: " + getTitle() + ", Series: " + getSeason() + ", Episode: " + getEpisode() +  ", PublishYear: " + getPublishYear() + ", Rating: " + getRating() + ", Genre: " + getGenre());
         System.out.println("-------------");
     }
 	
@@ -93,7 +93,7 @@ public class TVSeries extends Media {
 	 * @return		values of tv series.
 	 */
 	public String[] getRow() {
-		String [] row = { Integer.toString(getId()), super.getTitle(), series, episode, Integer.toString(super.getPublishYear()), Integer.toString(super.getRating()), super.getGenre() };
+		String [] row = { Integer.toString(getId()), super.getTitle(), season, episode, Integer.toString(super.getPublishYear()), Integer.toString(super.getRating()), super.getGenre() };
 		return row;
 	}
 }
