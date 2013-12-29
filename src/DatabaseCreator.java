@@ -46,10 +46,36 @@ public class DatabaseCreator {
 		}
 	}
 	
+	public void createDatabasesNew (MediaObject dbFromFile) {
+		if (dbFromFile != null && !dbFromFile.isEmpty()) {
+			musicDb = (MediaObject)dbFromFile.getChild(0);
+			movieDb = (MediaObject)dbFromFile.getChild(1);
+			tvDb = (MediaObject)dbFromFile.getChild(2);
+
+			masterDb.add(musicDb);
+			masterDb.add(movieDb);
+			masterDb.add(tvDb);
+			System.out.println(movieDb.isEmpty());
+		}
+		else {
+			
+			musicDb.setTitle("Music");
+			masterDb.add(musicDb);
+		
+			movieDb.setTitle("Movie");
+			masterDb.add(movieDb);
+			
+			tvDb.setTitle("TVSeries");
+			masterDb.add(tvDb);
+		}
+		
+	}
+	
 	public void createDatabase(String line) {
 		String[] media = fp.parseWordsFromLine(line);
 		switch(media[0]) {
 			case "Movie":
+				System.out.println("Adding movie named: " + media[1]);
 				movieDb.add(new Movie(media[1], media[2], Integer.parseInt(media[3]), Integer.parseInt(media[4]), media[5]));
 				break;
 				
@@ -69,5 +95,10 @@ public class DatabaseCreator {
 	
 	public MediaObject getDatabases() {
 		return masterDb;
+	}
+	
+	// probably not needed anymore, was used for testing
+	public void setDatabases(MediaObject database) {
+		this.masterDb = database;
 	}
 }

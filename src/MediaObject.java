@@ -4,6 +4,7 @@ import java.util.List;
 
 
 public class MediaObject implements MediaItem {
+	static final long serialVersionUID = 53L;
 	private String title;
 	List<MediaItem> items = new ArrayList<MediaItem>();
 	
@@ -53,7 +54,7 @@ public class MediaObject implements MediaItem {
 		Iterator<MediaItem> iterator = items.iterator();
 		while(iterator.hasNext()) {
 			MediaItem tmp = iterator.next();
-			if(tmp.getTitle() == name) {
+			if(tmp.getTitle().equals(name)) {
 				objects.add(tmp);
 			}
 		}

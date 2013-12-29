@@ -1,6 +1,7 @@
 
 public class Music extends Media {
 	
+	static final long serialVersionUID = 53L;
 	String artist;
 	private int id;
 

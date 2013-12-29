@@ -22,6 +22,10 @@ import javax.swing.JTable;
 	public class PromptWindow extends JFrame{
 
 		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		/**
 		 * @param args
 		 */
 		

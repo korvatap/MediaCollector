@@ -13,7 +13,11 @@ import javax.swing.JPanel;
 
 public class HelpWindow extends JFrame {
 	
-	 JLabel helpText = new JLabel();
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	JLabel helpText = new JLabel();
 
 	public HelpWindow() {
 		initWindow();

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 public class Media implements MediaItem {
 
 
+	static final long serialVersionUID = 53L;
 	private String title;
 	private int publishYear;
 	private int rating;

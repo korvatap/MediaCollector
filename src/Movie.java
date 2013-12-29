@@ -6,6 +6,7 @@ public class Movie extends Media{
 	/**
 	 * @param args
 	 */
+	static final long serialVersionUID = 53L;
 	private String language;
 	private int id;
 	

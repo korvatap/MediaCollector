@@ -13,7 +13,7 @@ import javax.swing.JTable;
 
 public class ModifyWindow extends JFrame {
 
-	private static final long serialVersionUID = 3781413385233728385L;
+	//private static final long serialVersionUID = 3781413385233728385L;
 	
 	private MainWindow mainRef;
 	private int targetTable;

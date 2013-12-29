@@ -33,9 +33,9 @@ public class MainWindow extends JFrame {
 	
 	private static final long serialVersionUID = 3485582852539131332L;
 	
-	MainWindow mainRef = this;
-	MediaObject database;
-	DatabaseCreator dc;
+	private MainWindow mainRef = this;
+	private MediaObject database;
+	private DatabaseCreator dc;
 	
 	JScrollPane tvScrollPane;
 	JScrollPane movieScrollPane;
@@ -60,11 +60,18 @@ public class MainWindow extends JFrame {
 	public MainWindow(DatabaseCreator dc) {
 		FileManager fm = new FileManager();
 		MediaObject test = fm.readFile();
-		System.out.println(test.getChild(2).getTitle());
+		//System.out.println(test.getChild(1).getTitle());
+		System.out.println("DATA IN SaveObj.sav:");
+		if (test != null) {
+			test.print();
+		}
 		
 		initUI();
-		this.database = dc.getDatabases();
+		//this.database = dc.getDatabases();
 		this.dc = dc;
+		//dc.setDatabases(test);
+		dc.createDatabasesNew(test);
+		this.database = dc.getDatabases();
         getRows("Movie");
         getRows("Music");
         getRows("TVSeries");
@@ -108,7 +115,9 @@ public class MainWindow extends JFrame {
 	    quitButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent event) {
 	    		FileManager fm = new FileManager();
-	    		fm.writeToFile(database);
+	    		System.out.println("Just Before Quit");
+	    		dc.print();
+	    		fm.writeToFile(dc.getDatabases());
 	    		System.exit(0);
 	    	}
 	    });
@@ -326,8 +335,8 @@ public class MainWindow extends JFrame {
 	            	try {
 	            		fp = new FileParser();
 	            		dc = new DatabaseCreator(fp);
-	            		dc.createDatabases();
-	            		dc.print();
+	            		//dc.createDatabases();
+	            		//dc.print();
 	            		
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
@@ -364,15 +373,23 @@ public class MainWindow extends JFrame {
 			}
 		}
 		if (add == 1) {
+		
 			if(type.equals("TVSeries")) {
 				String [] combinedString = { "TVSeries", row[1], row[2], row[3], row[4], row[5], row[6] };
-				dc.createDatabase(Arrays.toString(combinedString));
+				String combined = "TVSeries" + "," + row[1] + "," + row[2] + "," + row[3] + "," + row[4] + "," + row[5] + "," + row[6];
+				//dc.createDatabase(Arrays.toString(combinedString));
+				dc.createDatabase(combined);
 			} else if (type.equals("Movie")) {
+				System.out.println("ADDING MOVIE TO DATABASE");
 				String [] combinedString = { "Movie", row[1], row[2], row[3], row[4], row[5] };
-				dc.createDatabase(Arrays.toString(combinedString));
+				System.out.println(Arrays.toString(combinedString));
+				String combined = "Movie" + "," + row[1] + "," + row[2] + "," + row[3] + "," + row[4] + "," + row[5];
+				dc.createDatabase(combined);
 			} else if (type.equals("Music")) {
 				String [] combinedString = { "Music", row[1], row[2], row[3], row[4], row[5] };
-				dc.createDatabase(Arrays.toString(combinedString));
+				String combined = "Music" + "," + row[1] + "," + row[2] + "," + row[3] + "," + row[4] + "," + row[5];
+				//dc.createDatabase(Arrays.toString(combinedString));
+				dc.createDatabase(combined);
 			}
 		}
 		
@@ -381,6 +398,7 @@ public class MainWindow extends JFrame {
 	protected void getRows(String type) {
 		List<String[]> rows = new ArrayList<String[]>();
 		List<MediaItem> items = database.getObject(type);
+		
 		List<MediaItem> item;
 
 		Iterator<MediaItem> iterator = items.iterator();

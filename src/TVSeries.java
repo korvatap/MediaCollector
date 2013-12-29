@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class TVSeries extends Media{
 
+	static final long serialVersionUID = 53L;
 	String episode;
 	String series;
 	private int id;
