@@ -50,8 +50,8 @@ public class TVSeries extends Media {
 	 * 	
 	 * @param e		value to set as episode name.
 	 */
-	public void setEpisode(String e) {
-		this.episode = e;
+	public void setEpisode(String episode) {
+		this.episode = episode;
 	}
 	
 	/**
@@ -68,8 +68,8 @@ public class TVSeries extends Media {
 	 * 
 	 * @param s		value to be set as name of the season.
 	 */
-	public void setSeason(String s) {
-		this.season = s;
+	public void setSeason(String season) {
+		this.season = season;
 	}
 	
 	/**

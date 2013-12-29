@@ -7,8 +7,6 @@ public class Movie extends Media{
 	private String language;
 	private int id;
 	
-	public Movie() {}
-	
 	public Movie(String title, String language, int publishYear, int rating, String genre) {
 		super.increaseId();
 		this.id = super.getId();
