@@ -60,7 +60,8 @@ public class MainWindow extends JFrame {
 	public MainWindow(DatabaseCreator dc) {
 		FileManager fm = new FileManager();
 		MediaObject test = fm.readFile();
-		System.out.println(test.getChild(0).getTitle());
+		System.out.println(test.getChild(2).getTitle());
+		
 		initUI();
 		this.database = dc.getDatabases();
 		this.dc = dc;
