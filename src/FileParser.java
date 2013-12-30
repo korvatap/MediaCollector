@@ -50,10 +50,8 @@ public class FileParser {
     	try {
 			writer = new PrintWriter(database, "UTF-8");
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     	writer.println(line);
