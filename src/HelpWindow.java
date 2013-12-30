@@ -87,7 +87,7 @@ public class HelpWindow extends JFrame {
 		 });
 		 
 		 JButton closeButton = new JButton("Close");
-		 mediaAddHelp.addActionListener(new ActionListener() {
+		 closeButton.addActionListener(new ActionListener() {
 		    	public void actionPerformed(ActionEvent event) {
 		    		setVisible(false);
 		    	}
