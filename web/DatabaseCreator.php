@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * DatabaseCreator class help in creating databases that have been gotten from the FileParser class.
+ * 
+ * @author      Juha Hirvasniemi <jhirvasn@paju.oulu.fi>, Tapio Korvala <korvatap@paju.oulu.fi>
+ * @version     1.0
+ * @since       2013-12-30
+ */
 class DatabaseCreator {
 
     private $fp;
@@ -8,6 +15,12 @@ class DatabaseCreator {
     private $tvDb;
     private $masterDB;
     
+	/**
+	 * Constructor for the DatabaseCreator.
+     * Creates MediaObjects that form the master database.
+     *
+	 * @param fp        FileParser object needed in creating the database.
+	 */
     public function __construct($fp) {
         $this->fp = $fp;
         $this->musicDb = new MediaObject();
@@ -16,6 +29,9 @@ class DatabaseCreator {
         $this->masterDb = new MediaObject();
     }
     
+	/**
+	 * Creates the databases using the FileParser object.
+	 */
     public function createDatabases() {
         $line = "";
         while ($this->fp->hasNextLine()) {
@@ -40,6 +56,11 @@ class DatabaseCreator {
         
     }
     
+	/**
+	 * Adds a new Media object to the database.
+	 * 
+	 * @param line      values for creating a new media.
+	 */
     private function createDatabase($line) {
         $media = $this->fp->parseWordsFromLine($line);
         switch ($media[0]) {
@@ -54,11 +75,20 @@ class DatabaseCreator {
                 break;
         }
     }
-    
+   
+	/**
+	 * Calls for the databases info() function.
+	 * @see MediaObject
+	 */
     public function info() {
         $this->masterDb->info();
     }
     
+	/**
+	 * Returns the main database.
+	 * 
+	 * @return      main database.
+	 */
     public function getDatabases() {
         return $this->masterDb;
     }
