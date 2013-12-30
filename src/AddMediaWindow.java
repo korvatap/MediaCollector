@@ -13,7 +13,13 @@ import java.util.List;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-
+/**
+ * AddMediaWindow class is used to create window where users can add new media to the program.
+ * 
+ * @author      Juha Hirvasniemi <jhirvasn@paju.oulu.fi>, Tapio Korvala <korvatap@paju.oulu.fi>
+ * @version     1.0
+ * @since       2013-12-30
+ */
 public class AddMediaWindow extends JFrame{
 	
 	private static final long serialVersionUID = -2846640589177978406L;
@@ -37,18 +43,24 @@ public class AddMediaWindow extends JFrame{
 	 
 	 List<String[]> addRows = new ArrayList<String[]>();
 
-	
+	/**
+	 * Constructor for class AddMediaWindow.
+	 */
 	public AddMediaWindow() {
 		initWindow();
 	}
 	
-	
+	/**
+	 * Constructor for class AddMediaWindow.
+	 */
 	public AddMediaWindow(MainWindow ref) {
 		mainWindowRef = ref;
 		initWindow();
 	}
 
-
+	/**
+	 * Creates a window which allows users to add media objects.
+	 */
 	public final void initWindow() {
 	    JPanel panel = new JPanel();
 	    getContentPane().add(panel);
@@ -150,6 +162,11 @@ public class AddMediaWindow extends JFrame{
 	    setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}
 	
+	/**
+	 * Checks that the publishYear and rating is type of integer.
+	 * 
+	 * @return true if integer, false if not.
+	 */
 	protected boolean checkRowCorrectness() {
 		int rowCount = table.getRowCount();
 		int currentRow = 0;
@@ -176,6 +193,11 @@ public class AddMediaWindow extends JFrame{
 		return correct;
 	}
 	
+	/**
+	 * Check if the rating given is in range of 1-10.
+	 * 
+	 * @return	true, if rating is 1-0. false if not.
+	 */
 	protected boolean checkRating() {
 		int rowCount = table.getRowCount();
 		int currentRow = 0;
@@ -207,7 +229,12 @@ public class AddMediaWindow extends JFrame{
 		return correct;
 	}
 
-
+	/**
+	 * Checks if string is actually a number.
+	 * 
+	 * @param str	string to be checked.
+	 * @return		true if is number, false if not.
+	 */
 	private boolean validateIntRow(String str) {
 		try {
 			Integer.parseInt(str);
@@ -216,7 +243,9 @@ public class AddMediaWindow extends JFrame{
 			return false;
 	}
 
-
+	/**
+	 * Used to add rows from the table actual Media and into the database.
+	 */
 	public void addRowsToDatabase() {
 		int rowCount = table.getRowCount();
 		int columnCount = table.getColumnCount();
