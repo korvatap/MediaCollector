@@ -64,10 +64,28 @@ class FileParser {
             $serializedDb = file_get_contents($this->dbPath);
             $db = unserialize($serializedDb);
         }
-        
+        $this->highestId($db);
         return $db;
     }
     
+    /**
+     * Searches a database for the highest id and sets it to 
+     * the static id in Media class.
+     * 
+     * @param db     database from which the highest id is searched.
+     */
+    public function highestId($db) {
+        $highestId = 0;
+        $items = $db->getItems();
+        
+        foreach ($items as $item) {
+            if ($item->id() != null && ($item->id() > $highestId)) {
+                $highestId = $item->id();
+            }
+        }
+        
+        Media::setId($highestId);
+    }
     /*public function parseWordsFromLine($line) {
          $parts = explode(",", $line);
          return $parts;

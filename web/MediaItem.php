@@ -12,5 +12,6 @@ interface MediaItem {
 
     public function info();
     public function add($item);
+    public function id();
 }
 ?>

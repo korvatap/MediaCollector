@@ -110,30 +110,46 @@ class Media implements MediaItem {
     }
     
     /**
-     * Inherited function not used in Media.
+     * Function not used in Media.
      * @see MediaObject
      */
     public function add($item) {
     }
     
     /**
-     * Inherited function not used in Media.
+     * Function not used in Media.
      * @see MediaObject
      */
     public function info() {
     }
     
     /**
-     * Returns the id of the Media Object.
+     * Returns the id for a new object instantiated from
+     * Media classes subclass.
      * 
-     * @return      id of the object.
+     * @return      id for a new object.
      */
     static public function getId() {
         return self::$id;
     }
     
     /**
-     * Increases id by one.
+     * Sets the static id.
+     * 
+     * @param id    id to be set.
+     */
+    static public function setId($id) {
+        self::$id = $id;
+    }
+    
+    /**
+     * Function that is not used in Media.
+     */
+    public function id() {
+    }
+    
+    /**
+     * Increases static id counter by one.
      */
     static protected function increaseId() {
         self::$id++;

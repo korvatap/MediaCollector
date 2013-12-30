@@ -84,5 +84,21 @@ class MediaObject implements MediaItem {
     public function isEmpty() {
         return empty($this->items);
     }
+    
+    /**
+     * Not needed in this class.
+     * @see Movie
+     */
+    public function id() {
+    }
+    
+    /**
+     * Returns the array of items this MediaObject holds.
+     * 
+     * @return      array of items.
+     */
+    public function getItems() {
+        return $this->items;
+    }
 }
 ?>
