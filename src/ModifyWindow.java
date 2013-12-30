@@ -10,7 +10,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 /**
- * ModifyWindow class is used to creat modify windows that are used to modify the media objects.
+ * ModifyWindow class is used to create modify windows that are used to modify the media objects.
  * 
  * @author      Juha Hirvasniemi <jhirvasn@paju.oulu.fi>, Tapio Korvala <korvatap@paju.oulu.fi>
  * @version     1.0
