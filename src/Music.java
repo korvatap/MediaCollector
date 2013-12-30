@@ -13,7 +13,7 @@ public class Music extends Media {
 	private int id;
 
 	/**
-	 * Constructor for class Music which can store the information about TV series
+	 * Constructor for class Music which can store the information about an album.
 	 * without using any setters.
 	 * @param title			title for the album.
 	 * @param artist		name of the artist.
