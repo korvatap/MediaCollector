@@ -8,21 +8,32 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-
+/**
+ * HelpWindow class is used as to create help window to assis users in the usage of the program.
+ * 
+ * @author      Juha Hirvasniemi <jhirvasn@paju.oulu.fi>, Tapio Korvala <korvatap@paju.oulu.fi>
+ * @version     1.0
+ * @since       2013-12-30
+ */
 public class HelpWindow extends JFrame {
-	
-	 /**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	JLabel helpText = new JLabel();
 	HelpWindow ref;
 
+	/**
+	 * Constructor for HelpWindow class.
+	 */
 	public HelpWindow() {
 		ref = this;
 		initWindow();
 	}
 	
+	/**
+	 * Used to choose which help text to be presented for the user.
+	 * 
+	 * @param type	which kind of text to be presented.
+	 */
 	public void setHelpText(int type) {
 		switch(type) {
 			case 1: helpText.setText("<html><h2>Add media instructions</h2>" +
@@ -56,6 +67,10 @@ public class HelpWindow extends JFrame {
 		}
 	}
 	
+	/**
+	 * Used to create the help window. Constains definitions of 
+	 * buttons and labels.
+	 */
 	public final void initWindow() {
 		 JPanel panel = new JPanel();
 		 getContentPane().add(panel);
