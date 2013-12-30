@@ -16,7 +16,7 @@ class MediaObject implements MediaItem {
     /**
 	 * Adds new MediaItems to an array.
 	 * 
-	 * @param item	MediaItem to be added.
+	 * @param item      MediaItem to be added.
 	 */
     public function add($item) {
         $this->items[$item->id()] = $item;
@@ -31,13 +31,15 @@ class MediaObject implements MediaItem {
     /**
 	 * Removes MediaItems from the array.
 	 * 
-	 * @param item MediaItem to be removed.
+	 * @param item      MediaItem to be removed.
 	 */
     public function remove($item) {
         unset($this->items[$item->id()]);
     }
     
-    
+	/**
+	 * Goes through the Media objects and prints their info.
+	 */
     public function info() {
         foreach ($this->items as $item) {
             $item->info();
@@ -47,8 +49,8 @@ class MediaObject implements MediaItem {
     /**
 	 * Gets child of mediaObject.
 	 * 
-	 * @param i	Index of the item to get.
-	 * @return	MediaItem which is part of the array of MediaItems.
+	 * @param i	    index of the item to get.
+	 * @return      MediaItem which is part of the array of MediaItems.
 	 */
     public function getChild($i) {
         if (array_key_exists ($i, $this->items) ) {
@@ -59,7 +61,7 @@ class MediaObject implements MediaItem {
     /**
 	 * Returns the title of the mediaObject.
 	 * 
-	 * @return  title of the mediaObject.
+	 * @return      title of the mediaObject.
 	 */
     public function getTitle() {
         return $this->title;
@@ -68,7 +70,7 @@ class MediaObject implements MediaItem {
     /**
 	 * Sets the title of the mediaObject.
 	 * 
-	 * @param title name of the title to be set.
+	 * @param title     name of the title to be set.
 	 */
     public function setTitle($title) {
         $this->title = $title;
@@ -77,7 +79,7 @@ class MediaObject implements MediaItem {
     /**
 	 * Checks if array of MediaItems is empty.
 	 * 
-	 * @return	true if empty, false if not.
+	 * @return      true if empty, false if not.
 	 */
     public function isEmpty() {
         return empty($this->items);
