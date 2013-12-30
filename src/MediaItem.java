@@ -2,6 +2,7 @@ import java.io.Serializable;
 
 /**
  * MediaItem class is used as a component in composite pattern.
+ * Contains skeleton functions for other classes that inherit MediaItem.
  * 
  * @author      Juha Hirvasniemi <jhirvasn@paju.oulu.fi>, Tapio Korvala <korvatap@paju.oulu.fi>
  * @version     1.0
