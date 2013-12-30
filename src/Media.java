@@ -1,5 +1,12 @@
+/**
+ * MediaItem class is used as a component in composite pattern.
+ * Contains skeleton functions for other classes that inherit MediaItem.
+ * 
+ * @author      Juha Hirvasniemi <jhirvasn@paju.oulu.fi>, Tapio Korvala <korvatap@paju.oulu.fi>
+ * @version     1.0
+ * @since       2013-12-30
+ */
 public class Media implements MediaItem {
-
 
 	static final long serialVersionUID = 53L;
 	private String title;
@@ -7,84 +14,161 @@ public class Media implements MediaItem {
 	private int rating;
 	private String genre;
 	private static int id;
+	
+	/**
+	 * Constuctor for class media.
+	 */
 	public Media() {
 		increaseId();
 	}
 	
+	/**
+	 * Another constructor for class media.
+	 * Can set a title for the object.
+	 * 
+	 * @param title
+	 */
 	public Media(String title){
         this.title = title;
     }
 	
+	/**
+	 * Returns the id of the Media Object.
+	 * 
+	 * @return id of the object.
+	 */
 	public int getId() {
 		return id;
 	}
 	
+	/**
+	 * Used to increase id by one.
+	 */
 	public void increaseId() {
 		id++;
 	}
 	
+	/**
+	 * Used to get the current maximum id.
+	 * 
+	 * @return current max id.
+	 */
 	public int getCurrentMaxId() {
 		return getId();
 	}
 	
-	public void setTitle(String t) {
-		this.title = t;
+	/**
+	 * Used to set the title of the Media.
+	 * 
+	 * @param title title to be set.
+	 */
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	
+	/**
+	 * Returns the title of the Media.
+	 * 
+	 * @return title of the media.
+	 */
 	public String getTitle() {
 		return this.title;
 	}
 	
-	public void setPublishYear(int p) {
-		this.publishYear = p;
+	/**
+	 * Used to se the publish year of the media.
+	 * @param publishYear year to be set.
+	 */
+	public void setPublishYear(int publishYear) {
+		this.publishYear = publishYear;
 	}
 	
+	/**
+	 * Returns the publish year of the Media.
+	 * 
+	 * @return publishYear of the media.
+	 */
 	public int getPublishYear() {
 		return this.publishYear;
 	}
 	
-	public void setRating(int r) {
-		this.rating = r;
+	/**
+	 * Used to set the rating of the Media.
+	 * @param rating value to be set.
+	 */
+	public void setRating(int rating) {
+		this.rating = rating;
 	}
 	
+	/**
+	 * Returns the rating of the Media.
+	 * 
+	 * @return rating of the media.
+	 */
 	public int getRating() {
 		return this.rating;
 	}
 	
+	/**
+	 * Used to set the genre of the Media.
+	 * 
+	 * @param genre value to be set.
+	 */
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
 	
+	/**
+	 * Returns the genre of the Media.
+	 * 
+	 * @return genre of the media.
+	 */
 	public String getGenre() {
 		return genre;
 	}
-	
 
+	/**
+	 * Inherited function not used in Media.
+	 * @see MediaObject
+	 */
 	@Override
 	public void add(MediaItem item) {
-		// TODO Auto-generated method stub
-		
 	}
 
+	/**
+	 * Inherited function not used in Media.
+	 * @see MediaObject
+	 */
 	@Override
-	// NOT NEEDED SINCE SUPER CLASS CAN BE LEFT AS STUB
 	public void print() {
-		// TODO Auto-generated method stub
-		
 	}
 
+	/**
+	 * Inherited function not used in Media.
+	 * @see Movie
+	 * @see Music
+	 * @see TVSeries
+	 */
 	@Override
 	public String[] getRow() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * Inherited function not used in Media.
+	 * @see MediaObject
+	 */
 	@Override
 	public void deleteObjectById(int id) {
 		// TODO Auto-generated method stub
 		
 	}
 	
+	/**
+	 * Used to set the id of Media.
+	 * 
+	 * @param id	id to be set.
+	 */
 	public static void setId(int id) {
 		Media.id = id;
 	}
