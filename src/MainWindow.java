@@ -17,9 +17,13 @@ import java.util.List;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-//import statements
-//Check if window closes automatically. Otherwise add suitable code
-
+/**
+ * MainWindow class is used as to create main window for the program.
+ * 
+ * @author      Juha Hirvasniemi <jhirvasn@paju.oulu.fi>, Tapio Korvala <korvatap@paju.oulu.fi>
+ * @version     1.0
+ * @since       2013-12-30
+ */
 public class MainWindow extends JFrame {
 	
 	private static final long serialVersionUID = 3485582852539131332L;
@@ -47,7 +51,11 @@ public class MainWindow extends JFrame {
     
     JTabbedPane tabbedPane = new JTabbedPane();
 	
-	public MainWindow() {}
+    /**
+     * Constructor for the class MainWindow.
+     * 
+     * @param dc	database of MediaItems.
+     */
 	public MainWindow(DatabaseCreator dc) {
 		FileManager fm = new FileManager();
 		MediaObject test = fm.readFile();
@@ -70,10 +78,18 @@ public class MainWindow extends JFrame {
         getRows("TVSeries");
 	}
 	
+	/**
+	 * Used to get the database of MediaItems.
+	 * 
+	 * @return	database of MediaItems.
+	 */
 	public MediaObject getDatabase() {
 		return database;
 	}
 	
+	/**
+	 * Used to create the actual window of MainWindow.
+	 */
 	public final void initUI() {
 	    JPanel panel = new JPanel();
 	    getContentPane().add(panel);
@@ -228,6 +244,11 @@ public class MainWindow extends JFrame {
 	    setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
+	/**
+	 * Used to get the ID's of the items in the table.
+	 * 
+	 * @return
+	 */
 	protected List<Integer> getIdsFromSelectedRows() {
 		List<Integer> intList = new ArrayList<Integer>();
 		//get current table in use
@@ -272,6 +293,13 @@ public class MainWindow extends JFrame {
 			
 		return intList;
 	}
+	
+	/**
+	 * Used to search the database of specific objects using
+	 * a search string.
+	 * 
+	 * @param name	name of the object wanted.
+	 */
 	protected void searchDatabase(String name) {
 		String type;
 	
@@ -343,6 +371,13 @@ public class MainWindow extends JFrame {
 	        });
 	}
 	
+	/**
+	 * Used to add row to the table and to add new media to the database.
+	 * 
+	 * @param type	which kind of media is currently wanted to be added.
+	 * @param row	contains the information which will be inserted to the media items.
+	 * @param add	if 1 then add new media item to database.
+	 */
 	protected void addRow(String type, String[] row, int add) {
 		if(type.equals("TVSeries")) {
 			tvModel.addRow(new Object[0]);
@@ -391,6 +426,12 @@ public class MainWindow extends JFrame {
 		
 	}
 	
+	/**
+	 * Gets all media items of certain type and adds them to the
+	 * corresponding table
+	 * 
+	 * @param type	type of the media. e.x. Music.
+	 */
 	protected void getRows(String type) {
 		List<String[]> rows = new ArrayList<String[]>();
 		List<MediaItem> items = database.getObject(type);
@@ -421,6 +462,13 @@ public class MainWindow extends JFrame {
 		
 	}
 	
+	/**
+	 * Used to empty all rows of table and
+	 * get new ones from the database. Used to update the table
+	 * in a way.
+	 * 
+	 * @param type which table to be emptied and updated.
+	 */
 	public void emptyRowsGetNewRows(String type) {
 		if(type.equals("Movie")) {
 			movieModel.setRowCount(0);
@@ -435,6 +483,11 @@ public class MainWindow extends JFrame {
 		
 	}
 	
+	/**
+	 * Used to delete row using an id.
+	 * 
+	 * @param id	target row to be deleted.
+	 */
 	public void deleteRowFromTable(int id) {
 		int currentTable = tabbedPane.getSelectedIndex();
 		

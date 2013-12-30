@@ -1,6 +1,5 @@
 /**
- * MediaItem class is used as a component in composite pattern.
- * Contains skeleton functions for other classes that inherit MediaItem.
+ * Media class is a super class of Movie, Music, TVSeries.
  * 
  * @author      Juha Hirvasniemi <jhirvasn@paju.oulu.fi>, Tapio Korvala <korvatap@paju.oulu.fi>
  * @version     1.0
