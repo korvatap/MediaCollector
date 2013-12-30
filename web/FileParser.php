@@ -1,5 +1,13 @@
 <?php
 //singleton pattern?
+
+/**
+ * FileParser class is used read files and write to files.
+ * 
+ * @author      Juha Hirvasniemi <jhirvasn@paju.oulu.fi>, Tapio Korvala <korvatap@paju.oulu.fi>
+ * @version     1.0
+ * @since       2013-12-30
+ */
 class FileParser {
     
     /*private $lineCount = 0;
@@ -9,6 +17,9 @@ class FileParser {
     //private $path = "Database/database.txt";
     private $dbPath = "Database/database.dat";
     
+	/**
+	 * Constructor for the FileParser.
+	 */
     public function __construct() {
         //$this->lines = $this->readFromFile();
     }
@@ -24,6 +35,12 @@ class FileParser {
         }
     }*/
     
+	/**
+	 * Serializes and writes MediaObject to file, which
+	 * is a database of MediaItems.
+	 * 
+	 * @param db        target MediaObject to be saved.
+	 */
     public function writeToFile($db) {
         $serializedDb = serialize($db);
         /*if (!file_exists($this->dbPath)) {
@@ -35,7 +52,12 @@ class FileParser {
             fclose($file);
         }
     }
-    
+
+	/**
+	 * Unserializes and reads the file and gets the MediaObject from it.
+	 * 
+	 * @return      MediaObject read from file.
+	 */
     public function readDbFile() {
         $db = null;
         if (file_exists($this->dbPath)) {
