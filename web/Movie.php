@@ -20,15 +20,15 @@ class Movie extends Media {
         } 
     }
 
-	/**
-	 * Constructor for class Movie which can store the information about a movie.
+    /**
+     * Constructor for class Movie which can store the information about a movie.
      *
-	 * @param title         title for the movie.
-	 * @param language      language of the movie.
-	 * @param publishYear   the year the movie was produced.
-	 * @param rating        the rating of the movie, 1-10.
-	 * @param genre         the genre for the movie e.g. Action.
-	 */
+     * @param title         title for the movie.
+     * @param language      language of the movie.
+     * @param publishYear   the year the movie was produced.
+     * @param rating        the rating of the movie, 1-10.
+     * @param genre         the genre for the movie e.g. Action.
+     */
     public function __construct5($title, $language, $publishYear, $rating, $genre) {
         parent::setTitle($title);
         $this->language = $language;
@@ -40,35 +40,35 @@ class Movie extends Media {
     }
 
     /**
-	 * Sets the language of the movie.
-	 * 
-	 * @param language      language to be set.
-	 */
+     * Sets the language of the movie.
+     * 
+     * @param language      language to be set.
+     */
     public function setLanguage($language) {
         $this->language = $language;
     }
 
-	/**
-	 * Returns the language of the movie.
-	 * 
-	 * @return      language of the movie.
-	 */
+    /**
+     * Returns the language of the movie.
+     * 
+     * @return      language of the movie.
+     */
     public function getLanguage() {
         return $this->language;
     }
    
-	/**
-	 * Returns the id of the movie.
-	 * 
-	 * @return      id of the movie.
-	 */
+    /**
+     * Returns the id of the movie.
+     * 
+     * @return      id of the movie.
+     */
     public function id() {
         return $this->id;
     }
     
-	/**
-	 * Prints the info of the Movie object.
-	 */
+    /**
+     * Prints the info of the Movie object.
+     */
     public function info() {
         echo "-------------<br/>";
         echo "ID: " .$this->id() .", Title: " .parent::getTitle() .", Language: " .$this->getLanguage() .", PublishYear: " .parent::getPublishYear() .", Rating: " .parent::getRating() .", Genre: " .parent::getGenre() ."<br/>";
