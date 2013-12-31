@@ -10,7 +10,6 @@ import java.util.Iterator;
 public class DatabaseCreator {
 	
 	private FileParser fp;
-	private String line;
 	private MediaObject musicDb = new MediaObject();
 	private MediaObject movieDb = new MediaObject();
 	private MediaObject tvDb = new MediaObject();
@@ -27,39 +26,6 @@ public class DatabaseCreator {
 		this.fp = fp;
 	}
 
-	/**
-	 * Used to create the databases from file.
-	 */
-	public void createDatabases() {
-		if(fp.hasNextLine()) {
-			line = fp.getLine();
-		} else {
-			return;
-		}
-		
-		if(line != null) {
-			createDatabase(line);
-			while(fp.hasNextLine()) {
-				line = fp.getLine();
-				createDatabase(line);
-			}
-		}
-		
-		System.out.println(musicDb.isEmpty());
-		if(!musicDb.isEmpty()) {
-			musicDb.setTitle("Music");
-			masterDb.add(musicDb);
-		}
-		if(!movieDb.isEmpty()) {
-			movieDb.setTitle("Movie");
-			masterDb.add(movieDb);
-		}
-		if(!tvDb.isEmpty()) {
-			tvDb.setTitle("TVSeries");
-			masterDb.add(tvDb);
-		}
-	}
-	
 	/**
 	 * Creates new database from MediaObject.
 	 * 
@@ -127,16 +93,6 @@ public class DatabaseCreator {
 	public MediaObject getDatabases() {
 		return masterDb;
 	}
-	
-	// probably not needed anymore, was used for testing
-	/**
-	 * Used to set database to another database.
-	 * 
-	 * @param database target database to be set.
-	 */
-	//public void setDatabases(MediaObject database) {
-		//this.masterDb = database;
-	//}
 	
 	/**
 	 * Used to find the highest id of media items in the database.
