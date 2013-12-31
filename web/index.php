@@ -354,11 +354,13 @@
         
         $item = $masterDb->getById($id);
         
+        $type = "";
         if ($item != null) {
             $masterDb->remove($item);
             $fp->writeToFile($masterDb);
-            showMovie($masterDb);
+            $type = get_class($item);
         }
+        header("Location: index.php?link=" .$type);
     }
     
     function getClasses($db, $type) {
