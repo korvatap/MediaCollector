@@ -96,8 +96,6 @@
     else {
        $masterDb = new MediaObject();
        $fp->writeToFile($masterDb);
-       echo "<p id='teksti'>lappa </p>";
-
     }
     
 
@@ -143,7 +141,7 @@
         $movieDb->setTitle("Movie");
         $movieDb->info();*/
         
-        $masterDb->add($movie1);
+        //$masterDb->add($movie1);
         //$masterDb->add($movie2);
         //$masterDb->add($movie3);
         //$masterDb->add($movie4);
@@ -184,7 +182,7 @@
         $musicDb->setTitle("Music");
         $musicDb->info();*/
 
-        $masterDb->add($music1);
+        //$masterDb->add($music1);
         //$masterDb->add($music2);
         //$masterDb->add($music3);
         //$masterDb->add($music4);
@@ -224,7 +222,7 @@
         $tvDb->setTitle("TVSeries");
         $tvDb->info();*/
         
-        $masterDb->add($tv1);
+        //$masterDb->add($tv1);
         //$masterDb->add($tv2);
         //$masterDb->add($tv3);
         //$masterDb->add($tv4);
@@ -234,7 +232,6 @@
     }
 
     function showManual() {
-        echo "LOL MANUAL<br>";
         echo "<h2>Add media instructions</h2>"
             ."<p id='teksti'><br> - Media can be added using the Add button in the main window."
             ."<br> - After this a window will open and there you have to fill the fields with information you want. <br>"
@@ -257,7 +254,6 @@
     }
 
     function modifyMedia($id,$type) {
-        //echo "LOL" . "$id";
         $fp = new FileParser();
         $masterDb = $fp->readDbFile();
         $item = $masterDb->getById($id);
@@ -272,7 +268,7 @@
                 $language = $item->getLanguage();
  
                 echo '<form action=' .htmlspecialchars($_SERVER["PHP_SELF"]) .' method="post" id="form">';
-	         echo "<input type='hidden' name='id' value='$id'>";
+                echo "<input type='hidden' name='id' value='$id'>";
                 echo "Title: <br><input type='text' name='title' size=40 value='$title'> <br>";
                 echo "Language: <br><input type='text' name='language' size=40 value='$language'> <br>";
                 echo "Publish Year: <br><input type='text' name='publishYear' size=40 value='$publishYear'> <br>";
@@ -285,7 +281,7 @@
             if($type == 'Music') {
                 $artist = $item->getArtist();
                 echo '<form action=' .htmlspecialchars($_SERVER["PHP_SELF"]) .' method="post" id="form">';
-		  echo "<input type='hidden' name='id' value='$id'>";
+                echo "<input type='hidden' name='id' value='$id'>";
                 echo "Title: <br><input type='text' name='title' size=40 value='$title'> <br>";
                 echo "Artist: <br><input type='text' name='artist' size=40 value='$artist'> <br>";
                 echo "Publish Year: <br><input type='text' name='publishYear' size=40 value='$publishYear'> <br>";
@@ -300,7 +296,7 @@
                 $episode = $item->getEpisode();
  
                 echo '<form action=' .htmlspecialchars($_SERVER["PHP_SELF"]) .' method="post" id="form">';
-		  echo "<input type='hidden' name='id' value='$id'>";
+                echo "<input type='hidden' name='id' value='$id'>";
                 echo "Title: <br><input type='text' name='title' size=40 value='$title'> <br>";
                 echo "Season: <br><input type='text' name='season' size=40 value='$season'> <br>";
                 echo "Episode: <br><input type='text' name='episode' size=40 value='$episode'> <br>";
@@ -315,7 +311,6 @@
     }
 
     function deleteMedia($id) {
-        echo "DELETE" . "$id";
         
         $fp = new FileParser();
         $masterDb = $fp->readDbFile();
@@ -413,6 +408,8 @@
        
         $masterDb->add($mv);
         $fp->writeToFile($masterDb);
+        
+        header('Location: index.php');
         //$masterDb = $fp->readDbFile();
         //$masterDb->info();
     }
@@ -430,6 +427,8 @@
        
         $masterDb->add($music);
         $fp->writeToFile($masterDb);
+        
+        header('Location: index.php?link=Music');
         //$masterDb = $fp->readDbFile();
         //$masterDb->info();
     }
@@ -448,6 +447,8 @@
        
         $masterDb->add($tv);
         $fp->writeToFile($masterDb);
+        
+        header('Location: index.php?link=TVSeries');
         //$masterDb = $fp->readDbFile();
         //$masterDb->info();
     }
@@ -458,16 +459,18 @@
         $publishYear = validateInput($_POST["publishYear"]);
         $rating = validateInput($_POST["rating"]);
         $genre = validateInput($_POST["genre"]);
-	 $id = validateInput($_POST["id"]);
-	 $masterDb = $fp->readDbFile();
+        $id = validateInput($_POST["id"]);
+        $masterDb = $fp->readDbFile();
 	
-	 $item = $masterDb->getById($id);
-	 $item->setTitle($title);
-	 $item->setArtist($artist);
-	 $item->setPublishYear($publishYear);
-	 $item->setRating($rating);
-	 $item->setGenre($genre);
-	 $fp->writeToFile($masterDb);
+        $item = $masterDb->getById($id);
+        $item->setTitle($title);
+        $item->setArtist($artist);
+        $item->setPublishYear($publishYear);
+        $item->setRating($rating);
+        $item->setGenre($genre);
+        $fp->writeToFile($masterDb);
+        
+        header('Location: index.php?link=Music');
     }
 
     if (isset($_POST["movieSave"])) {
@@ -476,17 +479,19 @@
         $publishYear = validateInput($_POST["publishYear"]);
         $rating = validateInput($_POST["rating"]);
         $genre = validateInput($_POST["genre"]);
-	 $id = validateInput($_POST["id"]);
+        $id = validateInput($_POST["id"]);
 
-	 $masterDb = $fp->readDbFile();
+        $masterDb = $fp->readDbFile();
 	
-	 $item = $masterDb->getById($id);
-	 $item->setTitle($title);
-	 $item->setLanguage($language);
-	 $item->setPublishYear($publishYear);
-	 $item->setRating($rating);
-	 $item->setGenre($genre);
-	 $fp->writeToFile($masterDb);
+        $item = $masterDb->getById($id);
+        $item->setTitle($title);
+        $item->setLanguage($language);
+        $item->setPublishYear($publishYear);
+        $item->setRating($rating);
+        $item->setGenre($genre);
+        $fp->writeToFile($masterDb);
+        
+        header('Location: index.php');
     }
 
     if (isset($_POST["tvSave"])) {
@@ -496,19 +501,21 @@
         $publishYear = validateInput($_POST["publishYear"]);
         $rating = validateInput($_POST["rating"]);
         $genre = validateInput($_POST["genre"]);
-	 $id = validateInput($_POST["id"]);
+        $id = validateInput($_POST["id"]);
 
-	 $masterDb = $fp->readDbFile();
+        $masterDb = $fp->readDbFile();
 	
-	 $item = $masterDb->getById($id);
-	 $item->setTitle($title);
-	 $item->setSeason($season);
-	 $item->setEpisode($episode);
-	 $item->setPublishYear($publishYear);
-	 $item->setRating($rating);
-	 $item->setGenre($genre);
+        $item = $masterDb->getById($id);
+        $item->setTitle($title);
+        $item->setSeason($season);
+        $item->setEpisode($episode);
+        $item->setPublishYear($publishYear);
+        $item->setRating($rating);
+        $item->setGenre($genre);
 
-	 $fp->writeToFile($masterDb);
+        $fp->writeToFile($masterDb);
+        
+        header('Location: index.php?link=TVSeries');
     }
     
     function validateInput($input) {

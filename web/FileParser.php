@@ -52,7 +52,6 @@ class FileParser {
             $file = fopen($this->dbPath, "w");
             fwrite($file, $serializedDb);
             fclose($file);
-            echo "<p id='teksti'>tallennettu </p>";
         }
     }
 
