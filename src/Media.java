@@ -25,7 +25,7 @@ public class Media implements MediaItem {
 	 * Another constructor for class media.
 	 * Can set a title for the object.
 	 * 
-	 * @param title
+	 * @param title		title for Media object.
 	 */
 	public Media(String title){
         this.title = title;
@@ -76,6 +76,7 @@ public class Media implements MediaItem {
 	
 	/**
 	 * Used to se the publish year of the media.
+	 * 
 	 * @param publishYear year to be set.
 	 */
 	public void setPublishYear(int publishYear) {
@@ -93,6 +94,7 @@ public class Media implements MediaItem {
 	
 	/**
 	 * Used to set the rating of the Media.
+	 * 
 	 * @param rating value to be set.
 	 */
 	public void setRating(int rating) {
@@ -159,8 +161,6 @@ public class Media implements MediaItem {
 	 */
 	@Override
 	public void deleteObjectById(int id) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	/**
