@@ -235,6 +235,25 @@
 
     function showManual() {
         echo "LOL MANUAL<br>";
+        echo "<h2>Add media instructions</h2>"
+            ."<p id='teksti'><br> - Media can be added using the Add button in the main window."
+            ."<br> - After this a window will open and there you have to fill the fields with information you want. <br>"
+            ." - The next button in the add window will create new row to the table which enables you to add<br> multiple medias in a fast way in to the database."
+            ."<br>- The Add button in the Add window finally then adds the new medias in to the database.<br> - This is supposed to be pressed when the information for the media has been inserted in to the table."
+            ."<br>- The cancel button just cancels the new media adding feature and no information is saved to the database.</p>";
+            
+        echo "<h2>How to delete media </h2><br>"
+                ."<p id='teksti'>- You can delete media by ticking the select column of the corresponding media you want to delete.<br>"
+                ."- After this you just press delete button and the media will be deleted if you choose to confirm the removal of the media.</p>";
+                
+        echo "<h2>How to modify media</h2><br>"
+                ."<p id='teksti'>- To be able to modify media you first have to select the media you want to modify."
+				."<br>- This can be achieved by ticking the select column of the target media to be modified.<br>"
+                ."- After this you just press the modify button and a new window will open.<br>"
+                ."- In the new window you have a table with the media information you selected.<br>"
+                ."- Now you can modify the media information straight from the table and after that pressing save to save the media.<br>"
+                ."- Cancel button is to cancel the procedure and no modifications to the media will be saved.</p>";
+                
     }
 
     function modifyMedia($id) {
