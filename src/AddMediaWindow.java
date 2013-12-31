@@ -70,13 +70,16 @@ public class AddMediaWindow extends JFrame{
 	    
 	    table.setFillsViewportHeight(true);
 	    
-        panel.setToolTipText("NII VITTU USKALLA");
-	   
+        panel.setToolTipText("Media Collector add media window");
+        
+        //hide id column
+        table.getColumnModel().getColumn(0).setMinWidth(0);
+        table.getColumnModel().getColumn(0).setMaxWidth(0);
 	    
 	    for (int i = 0; i < mediaTypes.length; i++) {
 	        type.addItem(mediaTypes[i]);
 	    }
-
+	    type.setToolTipText("Select type of media");
 	    type.addActionListener (new ActionListener () {
 	        public void actionPerformed(ActionEvent e) {
 	        	
@@ -101,7 +104,7 @@ public class AddMediaWindow extends JFrame{
 	    });
    
 	    JButton addButton = new JButton("Add");
-	    
+	    addButton.setToolTipText("Add new media items to database");
 	    addButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent event) {
 	    		if(table.isEditing()) {
@@ -122,8 +125,9 @@ public class AddMediaWindow extends JFrame{
 	    		}
 	    	}
 	    });
-	       
+	    
 	    JButton nextButton = new JButton("Next");
+	    nextButton.setToolTipText("Add new row");
 	    nextButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent event) {
 	    		tableModel.addRow(new Object[0]);
@@ -132,6 +136,7 @@ public class AddMediaWindow extends JFrame{
 	    });
 	       
 	    JButton cancelButton = new JButton("Cancel");
+	    cancelButton.setToolTipText("Cancel adding new media items");
 	    cancelButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent event) {
 	    		setVisible(false);
@@ -156,6 +161,7 @@ public class AddMediaWindow extends JFrame{
 
 	    center.add(tableScrollPane);
 	    tableModel = new BTableModel("Movie",0);
+	    table.setToolTipText("Add information to all the fields in this table, rating and publish year must be a number. Rating must be in range of 1-10");
 	    setTitle("Media Collector");
 	    setSize(800, 600);
 	    setLocationRelativeTo(null);

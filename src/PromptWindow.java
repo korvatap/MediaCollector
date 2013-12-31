@@ -73,6 +73,7 @@ public class PromptWindow extends JFrame{
 		JLabel messageJlb = new JLabel(message,JLabel.CENTER); 
 			
 		JButton confirmButton = new JButton("OK");
+		confirmButton.setToolTipText("Press OK to confirm");
 	    confirmButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent event) {
 	    		ref.setVisible(false);
@@ -102,11 +103,10 @@ public class PromptWindow extends JFrame{
 	    getContentPane().add(panel);
 	    panel.setLayout(new BorderLayout());
 		    
-	    panel.setToolTipText("NII VITTU USKALLA");
-		    
 	    JLabel messageJlb = new JLabel(message,JLabel.CENTER); 
    
 	    JButton confirmButton = new JButton("Yes");
+	    confirmButton.setToolTipText("Press yes if you are sure");
 	    confirmButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent event) {
 	    		Iterator<Integer> idIterator = idArray.iterator(); 
@@ -120,6 +120,7 @@ public class PromptWindow extends JFrame{
 	    });
 		       
 	    JButton cancelButton = new JButton("No");
+	    cancelButton.setToolTipText("Press no if not sure");
 	    cancelButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent event) {
 	    		ref.setVisible(false);

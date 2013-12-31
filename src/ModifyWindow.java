@@ -247,8 +247,13 @@ public class ModifyWindow extends JFrame {
 	    table.setFillsViewportHeight(true);
 	    
         panel.setToolTipText("Modifying media is easy and fun!");
-	       
+        
+        //hide id column
+        table.getColumnModel().getColumn(0).setMinWidth(0);
+        table.getColumnModel().getColumn(0).setMaxWidth(0);
+	    
 	    JButton nextButton = new JButton("Save");
+	    nextButton.setToolTipText("Save modified information to database");
 	    nextButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent event) {
 	    		if(table.isEditing()) {
@@ -280,6 +285,7 @@ public class ModifyWindow extends JFrame {
 	    });
 	       
 	    JButton cancelButton = new JButton("Cancel");
+	    cancelButton.setToolTipText("Abort modifying the media items");
 	    cancelButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent event) {
 	    		setVisible(false);
@@ -293,6 +299,7 @@ public class ModifyWindow extends JFrame {
 	    south.add(cancelButton);
 
 	    center.add(tableScrollPane);
+	    table.setToolTipText("Modify wanted fields of the media and press save to save information to database");
 	    setTitle("Media Collector");
 	    setSize(800, 600);
 	    setLocationRelativeTo(null);

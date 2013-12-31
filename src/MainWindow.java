@@ -98,7 +98,7 @@ public class MainWindow extends JFrame {
 	    panelLayout.setVgap(10);
 	    panel.setLayout(panelLayout);
 	    
-        panel.setToolTipText("NII VITTU USKALLA");
+        panel.setToolTipText("Using media collector main window");
         
         //hide id column
         tvTable.getColumnModel().getColumn(0).setMinWidth(0);
@@ -120,7 +120,7 @@ public class MainWindow extends JFrame {
 	       
 	    JButton quitButton = new JButton("Quit");
 	    //quitButton.setBounds(50, 60, 80, 30);
-	    quitButton.setToolTipText("SAMMUTA MUT PRKL");
+	    quitButton.setToolTipText("Shutdown the program");
 	    quitButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent event) {
 	    		FileManager fm = new FileManager();
@@ -132,6 +132,7 @@ public class MainWindow extends JFrame {
 	    });
    
 	    JButton searchButton = new JButton("Search");
+	    searchButton.setToolTipText("Search for media");
 	    searchButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent event) {
 	    		if(!search.getText().equals("")) {
@@ -152,6 +153,7 @@ public class MainWindow extends JFrame {
 	    });
 
 	    JButton addButton = new JButton("Add");
+	    addButton.setToolTipText("Add more media");
 	    addButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent event) {
 	    		//System.exit(0);
@@ -161,6 +163,7 @@ public class MainWindow extends JFrame {
 	    });
 	    
 	    JButton modifyButton = new JButton("Modify");
+	    modifyButton.setToolTipText("Modify selected media items");
 	    modifyButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent event) {
 	    		//System.exit(0);
@@ -177,6 +180,7 @@ public class MainWindow extends JFrame {
 	    });
 	       
 	    JButton removeButton = new JButton("Delete");
+	    removeButton.setToolTipText("Delete selected media items");
 	    removeButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent event) {
 	    		//System.exit(0);
@@ -192,6 +196,7 @@ public class MainWindow extends JFrame {
 	    });
 	       
 	    JButton helpButton = new JButton("Manual");
+	    helpButton.setToolTipText("See manual on the usage of this program");
 	    helpButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent event) {
 	    		//System.exit(0);
@@ -214,17 +219,20 @@ public class MainWindow extends JFrame {
 	    searchLabel.setSize(50, 10);
 	    
 	    tabbedPane.addTab("Movies", null, movieScrollPane,
-	                      "Does nothing");
+	                      "Open movie table");
 	    tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
 	    
         tabbedPane.addTab("Music", null, musicScrollPane,
-                "Does twice as much nothing");
+                "Open music table");
         tabbedPane.setMnemonicAt(1, KeyEvent.VK_2);
          
         tabbedPane.addTab("Series", null, tvScrollPane,
-                "Still does nothing");
+                "Open series table");
         tabbedPane.setMnemonicAt(2, KeyEvent.VK_3);
-       
+        
+        movieTable.setToolTipText("This table contains all movie medias that are stored in the database");
+        tvTable.setToolTipText("This table contains all tv series that are stored in the database");
+        musicTable.setToolTipText("This table contains all music medias that are stored in the database");
 	    
 	    panel.add(north, BorderLayout.NORTH);
 	    panel.add(south, BorderLayout.SOUTH);
