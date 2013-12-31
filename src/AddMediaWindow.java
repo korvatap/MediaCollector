@@ -235,7 +235,6 @@ public class AddMediaWindow extends JFrame{
 		return true;
 	}
 	
-	
 	/**
 	 * Check if the rating given is in range of 1-10.
 	 * 

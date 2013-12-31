@@ -139,6 +139,25 @@ public class ModifyWindow extends JFrame {
 		return correct;
 	}
 	
+
+	/**
+	 * Check for empty cells in the table
+	 *
+	 * @return true if cells not empty, false if empty.
+	 */
+	protected boolean checkForEmptyCells() {
+		for(int i=0;i< table.getRowCount();i++) {
+			for (int j=0;j<table.getColumnCount();j++) {
+				Object om=table.getValueAt(i,j);
+				if(om == null) {
+					return false;
+				}
+			}
+		
+		}
+		return true;
+	}
+	
 	/**
 	 * Checks if string is actually a number.
 	 * 
@@ -259,19 +278,23 @@ public class ModifyWindow extends JFrame {
 	    		if(table.isEditing()) {
 	    			 table.getCellEditor().stopCellEditing();
 	    		}
-	    		
-	    		if(checkRowCorrectness()) {
-	    			if(checkRating()) {
-		    			saveObjects();
-		    			setVisible(false);
-	    			} else {
-	    				PromptWindow c = new PromptWindow("Rating must be a number between 1-10");
-	    				c.setVisible(true);
-	    			}
-
+	    		if(!checkForEmptyCells()) {
+	    			PromptWindow c = new PromptWindow("Please fill all fields");
+    				c.setVisible(true);
 	    		} else {
-	    			PromptWindow d = new PromptWindow("Fields Publish Year, Rating must be a number.");
-	    			d.setVisible(true);
+	    			if(checkRowCorrectness()) {
+	    				if(checkRating()) {
+	    					saveObjects();
+	    					setVisible(false);
+	    				} else {
+	    					PromptWindow c = new PromptWindow("Rating must be a number between 1-10");
+	    					c.setVisible(true);
+	    				}
+
+	    			} else {
+	    				PromptWindow d = new PromptWindow("Fields Publish Year, Rating must be a number.");
+	    				d.setVisible(true);
+	    			}
 	    		}
 	    		
 	    		if(targetTable == 0) {
