@@ -256,8 +256,60 @@
                 
     }
 
-    function modifyMedia($id) {
-       //echo "LOL" . "$id";
+    function modifyMedia($id,$type) {
+        //echo "LOL" . "$id";
+        $fp = new FileParser();
+        $masterDb = $fp->readDbFile();
+        $item = $masterDb->getById($id);
+       
+        if($item != null) {
+            $title = $item->getTitle();
+            $publishYear = $item->getPublishYear();
+            $rating = $item->getRating();
+            $genre = $item->getGenre();
+            if($type == 'Movie') {
+                $language = $item->getLanguage();
+ 
+                echo "<form method='post' id='form'>";
+                echo "Title: <br><input type='text' name='title' size=40 value='$title'> <br>";
+                echo "Language: <br><input type='text' name='language' size=40 value='$language'> <br>";
+                echo "Publish Year: <br><input type='text' name='publishYear' size=40 value='$publishYear'> <br>";
+                echo "Rating: <br><input type='text' name='rating' size=40 value='$rating'> <br>";
+                echo "Genre: <br><input type='text' name='genre' size=40 value='$genre'> <br>";
+                echo '<br><input type="submit" name="save" value="Save">';
+                echo '</form>';
+            }
+ 
+            if($type == 'Music') {
+                $artist = $item->getArtist();
+                echo "<form method='post' id='form'>";
+                echo "Title: <br><input type='text' name='title' size=40 value='$title'> <br>";
+                echo "Artist: <br><input type='text' name='artist' size=40 value='$artist'> <br>";
+                echo "Publish Year: <br><input type='text' name='publishYear' size=40 value='$publishYear'> <br>";
+                echo "Rating: <br><input type='text' name='rating' size=40 value='$rating'> <br>";
+                echo "Genre: <br><input type='text' name='genre' size=40 value='$genre'> <br>";
+                echo '<br><input type="submit" name="save" value="Save">';
+                echo '</form>';
+            }
+ 
+            if($type == 'TVSeries') {
+                $season = $item->getSeason();
+                $episode = $item->getEpisode();
+ 
+                //echo "<form method='post' id='form'>";
+                echo "Title: <br><input type='text' name='title' size=40 value='$title'> <br>";
+                echo "Season: <br><input type='text' name='season' size=40 value='$season'> <br>";
+                echo "Episode: <br><input type='text' name='episode' size=40 value='$episode'> <br>";
+                echo "Publish Year: <br><input type='text' name='publishYear' size=40 value='$publishYear'> <br>";
+                echo "Rating: <br><input type='text' name='rating' size=40 value='$rating'> <br>";
+                echo "Genre: <br><input type='text' name='genre' size=40 value='$genre'> <br>";
+                echo '<br><input type="submit" name="save" value="Save">';
+                echo '</form>';
+            }
+           
+        echo "<input type='hidden' name='current_table' value='$type'/>";
+ 
+        }
     }
 
     function deleteMedia($id) {
