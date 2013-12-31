@@ -70,7 +70,15 @@ class Music extends Media {
      * Prints the info of the Music object.
      */
     public function info() {
-        echo "<p id='teksti'>ID: " .$this->id() .", Title: " .parent::getTitle() .", Artist: " .$this->getArtist() .", PublishYear: " .parent::getPublishYear() .", Rating: " .parent::getRating() .", Genre: " .parent::getGenre() ." <a href='?link=Modify&id=" .$this->id() ."&type=Music'>Modify</a> ". "<a href=?link=Delete&id=" .$this->id() ."&type=Music>Delete</a>"."<br/></p>";
-    }
+	 echo '<tr>';
+	 echo '<td>'.parent::getTitle().'</td>';
+	 echo '<td>'.$this->getArtist().'</td>';
+	 echo '<td>'.parent::getPublishYear().'</td>';
+	 echo '<td>'.parent::getRating().'</td>';
+	 echo '<td>'.parent::getGenre().'</td>';
+	 echo '<td><a href=?link=Modify&id=' .$this->id() .'&type=Music id="tableLink">Modify</a></td>';
+	 echo '<td><a href=?link=Delete&id=' .$this->id() .'&type=Music id="tableLink">Delete</a></td>';
+	 echo "</tr>"; 
+   }
 }
 ?>

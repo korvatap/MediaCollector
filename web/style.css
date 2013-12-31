@@ -74,6 +74,10 @@ margin-left:15px;
 
 }
 
+#tableLink {
+   color:blue;
+}
+
 #teksti {
    margin: 15px;
    margin-top:-1px;
