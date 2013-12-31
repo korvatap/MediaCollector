@@ -148,7 +148,7 @@
         //$masterDb->add($movie5);
         //$masterDb->setTitle("Movie");
         $typeDb->info();
-        return $masterDb;
+        //return $masterDb;
 
     }
 
@@ -188,7 +188,7 @@
         //$masterDb->add($music4);
         //$masterDb->add($music5);
         $typeDb->info();
-        return $masterDb;
+        //return $masterDb;
     }
 
     function showTVSeries($masterDb) {
@@ -228,7 +228,7 @@
         //$masterDb->add($tv4);
         //$masterDb->add($tv5);
         $typeDb->info();
-        return $masterDb;
+        //return $masterDb;
     }
 
     function showManual() {
@@ -319,6 +319,7 @@
         
         if ($item != null) {
             $masterDb->remove($item);
+            $masterDb->info();
             $fp->writeToFile($masterDb);
         }
     }
@@ -345,15 +346,15 @@
     switch($linkchoice){ 
         
         case 'Movie' : 
-            $masterDb = showMovie($masterDb);
+            showMovie($masterDb);
             break; 
 
         case 'Music' : 
-            $masterDb = showMusic($masterDb); 
+            showMusic($masterDb); 
             break; 
 
         case 'TVSeries' :
-            $masterDb = showTVSeries($masterDb);
+            showTVSeries($masterDb);
             break;
 
         case 'Manual' :
@@ -366,6 +367,7 @@
 
         case 'Delete' :
             deleteMedia($_GET['id']);
+            break;
 
         default : 
             //$masterDb = showMovie($masterDb);
