@@ -147,8 +147,20 @@
         //$masterDb->add($movie4);
         //$masterDb->add($movie5);
         //$masterDb->setTitle("Movie");
+        echo "<table border='1' id='media'>";
+        echo "<tr>";
+        echo '<td>Title</td>';
+        echo '<td>Language</td>';
+        echo '<td>Publish Year</td>';
+        echo '<td>Rating</td>';
+        echo '<td>Genre</td>';
+        echo '<td>Modify</td>';
+        echo '<td>Delete</td>';
+        echo '</tr>';
         $typeDb->info();
         //return $masterDb;
+        echo "</table>";
+        return $masterDb;
 
     }
 
@@ -187,8 +199,21 @@
         //$masterDb->add($music3);
         //$masterDb->add($music4);
         //$masterDb->add($music5);
+        echo "<table border='1' id='media'>";
+        echo "<tr>";
+        echo '<td>Title</td>';
+        echo '<td>Artist</td>';
+        echo '<td>Publish Year</td>';
+        echo '<td>Rating</td>';
+        echo '<td>Genre</td>';
+        echo '<td>Modify</td>';
+        echo '<td>Delete</td>';
+        echo '</tr>';
         $typeDb->info();
         //return $masterDb;
+        echo "</table>";
+        return $masterDb;
+
     }
 
     function showTVSeries($masterDb) {
@@ -227,8 +252,21 @@
         //$masterDb->add($tv3);
         //$masterDb->add($tv4);
         //$masterDb->add($tv5);
+        echo "<table border='1' id='media'>";
+        echo "<tr>";
+        echo '<td>Title</td>';
+        echo '<td>Season</td>';
+        echo '<td>Episode</td>';
+        echo '<td>Publish Year</td>';
+        echo '<td>Rating</td>';
+        echo '<td>Genre</td>';
+        echo '<td>Modify</td>';
+        echo '<td>Delete</td>';
+        echo '</tr>';
         $typeDb->info();
         //return $masterDb;
+        echo "</table>";
+        return $masterDb;
     }
 
     function showManual() {
@@ -311,7 +349,6 @@
     }
 
     function deleteMedia($id) {
-        
         $fp = new FileParser();
         $masterDb = $fp->readDbFile();
         
@@ -319,8 +356,8 @@
         
         if ($item != null) {
             $masterDb->remove($item);
-            $masterDb->info();
             $fp->writeToFile($masterDb);
+            showMovie($masterDb);
         }
     }
     
@@ -377,7 +414,7 @@
     //$movie2 = new Movie("MacGyver: Lost Treasure of Atlantis", "English", 1994, 5, "Adventure");
     //$masterDb->add($movie2);
     
-    $fp->writeToFile($masterDb);
+    //$fp->writeToFile($masterDb);
     //$masterDb = $fp->readDbFile();
     //$masterDb->info();
     

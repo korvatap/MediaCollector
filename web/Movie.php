@@ -70,7 +70,17 @@ class Movie extends Media {
      * Prints the info of the Movie object.
      */
     public function info() {
-        echo "<p id='teksti'>ID: " .$this->id() .", Title: " .parent::getTitle() .", Language: " .$this->getLanguage() .", PublishYear: " .parent::getPublishYear() .", Rating: " .parent::getRating() .", Genre: " .parent::getGenre() ." <a href='?link=Modify&id=" .$this->id() ."&type=Movie'>Modify</a> ". "<a href=?link=Delete&id=" .$this->id() ."&type=Movie>Delete</a>"."<br/></p>";
-    }
+
+	 echo '<tr>';
+	 echo '<td>'.parent::getTitle().'</td>';
+	 echo '<td>'.$this->getLanguage().'</td>';
+	 echo '<td>'.parent::getPublishYear().'</td>';
+	 echo '<td>'.parent::getRating().'</td>';
+	 echo '<td>'.parent::getGenre().'</td>';
+	 echo '<td><a href=?link=Modify&id=' .$this->id() .'&type=Movie id="tableLink">Modify</a></td>';
+	 echo '<td><a href=?link=Delete&id=' .$this->id() .'&type=Movie id="tableLink">Delete</a></td>';
+	 echo "</tr>"; 
+
+   }
 }
 ?>

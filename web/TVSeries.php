@@ -91,7 +91,17 @@ class TVSeries extends Media {
      * Prints the info of the TVSeries object.
      */
     public function info() {
-        echo "<p id='teksti'>ID: " .$this->id() .", Title: " .parent::getTitle() .", Season: " .$this->getSeason() .", Episode: " .$this->getEpisode() .", PublishYear: " .parent::getPublishYear() .", Rating: " .parent::getRating() .", Genre: " .parent::getGenre() ." <a href='?link=Modify&id=" .$this->id() ."&type=TVSeries'>Modify</a> ". "<a href=?link=Delete&id=" .$this->id() ."&type=TVSeries>Delete</a>"."<br/></p>";
+
+	 echo '<tr>';
+	 echo '<td>'.parent::getTitle().'</td>';
+	 echo '<td>'.$this->getSeason().'</td>';
+	 echo '<td>'.$this->getEpisode().'</td>';
+	 echo '<td>'.parent::getPublishYear().'</td>';
+	 echo '<td>'.parent::getRating().'</td>';
+	 echo '<td>'.parent::getGenre().'</td>';
+	 echo '<td><a href=?link=Modify&id=' .$this->id() .'&type=TVSeries id="tableLink">Modify</a></td>';
+	 echo '<td><a href=?link=Delete&id=' .$this->id() .'&type=TVSeries id="tableLink">Delete</a></td>';
+	 echo "</tr>"; 
     }
 }
 ?>
