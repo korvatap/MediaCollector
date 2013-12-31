@@ -43,13 +43,16 @@ class FileParser {
      */
     public function writeToFile($db) {
         $serializedDb = serialize($db);
-        /*if (!file_exists($this->dbPath)) {
+        
+        if (!file_exists($this->dbPath)) {
             touch($this->dbPath);
-        }*/
+        }
+        
         if (is_writable($this->dbPath)) {
             $file = fopen($this->dbPath, "w");
             fwrite($file, $serializedDb);
             fclose($file);
+            echo "<p id='teksti'>tallennettu </p>";
         }
     }
 
@@ -64,7 +67,10 @@ class FileParser {
             $serializedDb = file_get_contents($this->dbPath);
             $db = unserialize($serializedDb);
         }
-        $this->highestId($db);
+        
+        if ($db != null) {
+            $this->highestId($db);
+        }
         return $db;
     }
     
