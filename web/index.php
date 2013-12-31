@@ -368,17 +368,9 @@
             deleteMedia($_GET['id']);
 
         default : 
-            $masterDb = showMovie($masterDb);
+            //$masterDb = showMovie($masterDb);
 
     } 
-
-
-    echo "<p id='teksti'>From .dat file: </p>";
-    
- 
-    
-    echo "<br/><br/>";
-    echo "<p id='teksti'>From .dat file with added movie: <br/></p>";
     
     //$movie2 = new Movie("MacGyver: Lost Treasure of Atlantis", "English", 1994, 5, "Adventure");
     //$masterDb->add($movie2);
@@ -389,8 +381,7 @@
     
     //$masterDb->remove($movie2);
     
-    echo "<br/><br/>";
-    //echo "<p id='teksti'>From .dat file with one movie removed: <br/></p>";
+     //echo "<p id='teksti'>From .dat file with one movie removed: <br/></p>";
     //$fp->writeToFile($masterDb);
     //$masterDb = $fp->readDbFile();
     //$masterDb->info();
@@ -470,6 +461,7 @@
         $item->setGenre($genre);
         $fp->writeToFile($masterDb);
         
+        echo "<p id='teksti'>New media saved</p>";
         header('Location: index.php?link=Music');
     }
 
@@ -491,7 +483,9 @@
         $item->setGenre($genre);
         $fp->writeToFile($masterDb);
         
+        echo "<p id='teksti'>New media saved</p>";
         header('Location: index.php');
+
     }
 
     if (isset($_POST["tvSave"])) {
@@ -515,6 +509,7 @@
 
         $fp->writeToFile($masterDb);
         
+        echo "<p id='teksti'>New media saved</p>";
         header('Location: index.php?link=TVSeries');
     }
     
