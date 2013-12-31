@@ -15,11 +15,11 @@ public class Movie extends Media {
 	/**
 	 * Constructor for class Movie which can store the information about movie
 	 * without using any setters.
-	 * @param title			title for the album.
+	 * @param title			title for the movie.
 	 * @param language		language of the movie
-	 * @param publishYear	the year the album was produced.
-	 * @param rating		the rating of the album, 1-10.
-	 * @param genre			the genre for the album e.x. Rock.
+	 * @param publishYear	the year the movie was produced.
+	 * @param rating		the rating of the movie, 1-10.
+	 * @param genre			the genre for the movie e.x. Action.
 	 */
 	public Movie(String title, String language, int publishYear, int rating, String genre) {
 		super.increaseId();
@@ -41,7 +41,7 @@ public class Movie extends Media {
 	}
 	
 	/**
-	 * Returns the language movie.
+	 * Returns the language of the movie.
 	 * 
 	 * @return		language of the movie.
 	 */
