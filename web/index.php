@@ -267,28 +267,31 @@
             $publishYear = $item->getPublishYear();
             $rating = $item->getRating();
             $genre = $item->getGenre();
+	    
             if($type == 'Movie') {
                 $language = $item->getLanguage();
  
-                echo "<form method='post' id='form'>";
+                echo '<form action=' .htmlspecialchars($_SERVER["PHP_SELF"]) .' method="post" id="form">';
+	         echo "<input type='hidden' name='id' value='$id'>";
                 echo "Title: <br><input type='text' name='title' size=40 value='$title'> <br>";
                 echo "Language: <br><input type='text' name='language' size=40 value='$language'> <br>";
                 echo "Publish Year: <br><input type='text' name='publishYear' size=40 value='$publishYear'> <br>";
                 echo "Rating: <br><input type='text' name='rating' size=40 value='$rating'> <br>";
                 echo "Genre: <br><input type='text' name='genre' size=40 value='$genre'> <br>";
-                echo '<br><input type="submit" name="save" value="Save">';
+                echo '<br><input type="submit" name="movieSave" value="Save">';
                 echo '</form>';
             }
  
             if($type == 'Music') {
                 $artist = $item->getArtist();
-                echo "<form method='post' id='form'>";
+                echo '<form action=' .htmlspecialchars($_SERVER["PHP_SELF"]) .' method="post" id="form">';
+		  echo "<input type='hidden' name='id' value='$id'>";
                 echo "Title: <br><input type='text' name='title' size=40 value='$title'> <br>";
                 echo "Artist: <br><input type='text' name='artist' size=40 value='$artist'> <br>";
                 echo "Publish Year: <br><input type='text' name='publishYear' size=40 value='$publishYear'> <br>";
                 echo "Rating: <br><input type='text' name='rating' size=40 value='$rating'> <br>";
                 echo "Genre: <br><input type='text' name='genre' size=40 value='$genre'> <br>";
-                echo '<br><input type="submit" name="save" value="Save">';
+                echo '<br><input type="submit" name="musicSave" value="Save">';
                 echo '</form>';
             }
  
@@ -296,18 +299,17 @@
                 $season = $item->getSeason();
                 $episode = $item->getEpisode();
  
-                //echo "<form method='post' id='form'>";
+                echo '<form action=' .htmlspecialchars($_SERVER["PHP_SELF"]) .' method="post" id="form">';
+		  echo "<input type='hidden' name='id' value='$id'>";
                 echo "Title: <br><input type='text' name='title' size=40 value='$title'> <br>";
                 echo "Season: <br><input type='text' name='season' size=40 value='$season'> <br>";
                 echo "Episode: <br><input type='text' name='episode' size=40 value='$episode'> <br>";
                 echo "Publish Year: <br><input type='text' name='publishYear' size=40 value='$publishYear'> <br>";
                 echo "Rating: <br><input type='text' name='rating' size=40 value='$rating'> <br>";
                 echo "Genre: <br><input type='text' name='genre' size=40 value='$genre'> <br>";
-                echo '<br><input type="submit" name="save" value="Save">';
+                echo '<br><input type="submit" name="tvSave" value="Save">';
                 echo '</form>';
             }
-           
-        echo "<input type='hidden' name='current_table' value='$type'/>";
  
         }
     }
@@ -364,7 +366,7 @@
             break;
 
         case 'Modify' :
-            modifyMedia($_GET['id']);
+            modifyMedia($_GET['id'], $_GET['type']);
             break;
 
         case 'Delete' :
@@ -448,6 +450,65 @@
         $fp->writeToFile($masterDb);
         //$masterDb = $fp->readDbFile();
         //$masterDb->info();
+    }
+
+    if (isset($_POST["musicSave"])) {
+        $title = validateInput($_POST["title"]);
+        $artist = validateInput($_POST["artist"]);
+        $publishYear = validateInput($_POST["publishYear"]);
+        $rating = validateInput($_POST["rating"]);
+        $genre = validateInput($_POST["genre"]);
+	 $id = validateInput($_POST["id"]);
+	 $masterDb = $fp->readDbFile();
+	
+	 $item = $masterDb->getById($id);
+	 $item->setTitle($title);
+	 $item->setArtist($artist);
+	 $item->setPublishYear($publishYear);
+	 $item->setRating($rating);
+	 $item->setGenre($genre);
+	 $fp->writeToFile($masterDb);
+    }
+
+    if (isset($_POST["movieSave"])) {
+        $title = validateInput($_POST["title"]);
+        $language = validateInput($_POST["language"]);
+        $publishYear = validateInput($_POST["publishYear"]);
+        $rating = validateInput($_POST["rating"]);
+        $genre = validateInput($_POST["genre"]);
+	 $id = validateInput($_POST["id"]);
+
+	 $masterDb = $fp->readDbFile();
+	
+	 $item = $masterDb->getById($id);
+	 $item->setTitle($title);
+	 $item->setLanguage($language);
+	 $item->setPublishYear($publishYear);
+	 $item->setRating($rating);
+	 $item->setGenre($genre);
+	 $fp->writeToFile($masterDb);
+    }
+
+    if (isset($_POST["tvSave"])) {
+        $title = validateInput($_POST["title"]);
+        $season = validateInput($_POST["season"]);
+        $episode = validateInput($_POST["episode"]);
+        $publishYear = validateInput($_POST["publishYear"]);
+        $rating = validateInput($_POST["rating"]);
+        $genre = validateInput($_POST["genre"]);
+	 $id = validateInput($_POST["id"]);
+
+	 $masterDb = $fp->readDbFile();
+	
+	 $item = $masterDb->getById($id);
+	 $item->setTitle($title);
+	 $item->setSeason($season);
+	 $item->setEpisode($episode);
+	 $item->setPublishYear($publishYear);
+	 $item->setRating($rating);
+	 $item->setGenre($genre);
+
+	 $fp->writeToFile($masterDb);
     }
     
     function validateInput($input) {
