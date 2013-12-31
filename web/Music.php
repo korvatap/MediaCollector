@@ -36,9 +36,9 @@ class Music extends Media {
     }
     
     public function info() {
-        echo "-------------<br/>";
-        echo "ID: " .$this->id() .", Title: " .parent::getTitle() .", Artist: " .$this->getArtist() .", PublishYear: " .parent::getPublishYear() .", Rating: " .parent::getRating() .", Genre: " .parent::getGenre() ."<br/>";
-        echo "-------------<br/>";
+        echo "<p id='teksti'>-------------<br/></p>";
+        echo "<p id='teksti'>ID: " .$this->id() .", Title: " .parent::getTitle() .", Artist: " .$this->getArtist() .", PublishYear: " .parent::getPublishYear() .", Rating: " .parent::getRating() .", Genre: " .parent::getGenre() ." <a href='?link=Modify&id=$this->id()&type=Music'>Modify</a> ". "<a href=?link=Delete&id=$this->id()&type=Music>Delete</a>"."<br/></p>";
+        echo "<p id='teksti'>-------------<br/></p>";
     }
 }
 ?>
