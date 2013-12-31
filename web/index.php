@@ -242,7 +242,17 @@
     }
 
     function deleteMedia($id) {
-       echo "DELETE" . "$id";
+        echo "DELETE" . "$id";
+        
+        $fp = new FileParser();
+        $masterDb = $fp->readDbFile();
+        
+        $item = $masterDb->getById($id);
+        
+        if ($item != null) {
+            $masterDb->remove($item);
+            $fp->writeToFile($masterDb);
+        }
     }
     
     function getClasses($db, $type) {
@@ -317,7 +327,7 @@
     //$masterDb = $fp->readDbFile();
     //$masterDb->info();
     
-    /*if (isset($_POST["submit1"])) {
+    if (isset($_POST["submit1"])) {
         echo "Painettu <br/>";
         $title = validateInput($_POST["title"]);
         $language = validateInput($_POST["language"]);
@@ -330,7 +340,7 @@
         $fp->writeToFile($masterDb);
         $masterDb = $fp->readDbFile();
         $masterDb->info();
-    }*/
+    }
     
     function validateInput($input) {
         $input = htmlspecialchars($input);

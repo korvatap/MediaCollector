@@ -100,5 +100,21 @@ class MediaObject implements MediaItem {
     public function getItems() {
         return $this->items;
     }
+    
+    /**
+     * Returns an item hold by MediaObject, which
+     * has the id given as parameter.
+     * 
+     * @return      item hold by MediaObject.
+     */
+    public function getById($id) {
+        foreach ($this->items as $item) {
+            if ($item->id() == $id) {
+                return $item;
+            }
+        }
+        
+        return null;
+    }
 }
 ?>
