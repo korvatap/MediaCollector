@@ -107,13 +107,13 @@
 	//$movieDb = $masterDb->getChild(0);
 	//$movieDb->info();
 
-        echo '<form action="htmlspecialchars($_SERVER["PHP_SELF"])" method="post" id="form">';
+        echo '<form action=' .htmlspecialchars($_SERVER["PHP_SELF"]) .' method="post" id="form">';
         echo 'Title: <br><input type="text" name="title" size=40> <br>';
         echo 'Language: <br><input type="text" name="language" size=40> <br>';
         echo 'Publish Year: <br><input type="text" name="publishYear" size=40> <br>';
         echo 'Rating: <br><input type="text" name="rating" size=40> <br>';
         echo 'Genre: <br><input type="text" name="genre" size=40> <br>';
-        echo '<br><input type="submit" name="submit1" value="Add">';
+        echo '<br><input type="submit" name="submitMovie" value="Add">';
         echo '</form>';
 
         $fp = new FileParser();
@@ -155,13 +155,13 @@
     }
 
     function showMusic($masterDb) {
-        echo '<form action="htmlspecialchars($_SERVER["PHP_SELF"])" method="post" id="form">';
+        echo '<form action=' .htmlspecialchars($_SERVER["PHP_SELF"]) .' method="post" id="form">';
         echo 'Title: <br><input type="text" name="title" size=40> <br>';
         echo 'Artist: <br><input type="text" name="artist" size=40> <br>';
         echo 'Publish Year: <br><input type="text" name="publishYear" size=40> <br>';
         echo 'Rating: <br><input type="text" name="rating" size=40> <br>';
         echo 'Genre: <br><input type="text" name="genre" size=40> <br>';
-        echo '<br><input type="submit" name="submit1" value="Add">';
+        echo '<br><input type="submit" name="submitMusic" value="Add">';
         echo '</form>';
 
         $fp = new FileParser();
@@ -194,14 +194,14 @@
     }
 
     function showTVSeries($masterDb) {
-        echo '<form action="htmlspecialchars($_SERVER["PHP_SELF"])" method="post" id="form">';
+        echo '<form action=' .htmlspecialchars($_SERVER["PHP_SELF"]) .' method="post" id="form">';
         echo 'Title: <br><input type="text" name="title" size=40> <br>';
         echo 'Season: <br><input type="text" name="season" size=40> <br>';
         echo 'Episode: <br><input type="text" name="episode" size=40> <br>';
         echo 'Publish Year: <br><input type="text" name="publishYear" size=40> <br>';
         echo 'Rating: <br><input type="text" name="rating" size=40> <br>';
         echo 'Genre: <br><input type="text" name="genre" size=40> <br>';
-        echo '<br><input type="submit" name="submit1" value="Add">';
+        echo '<br><input type="submit" name="submitTVSeries" value="Add">';
         echo '</form>';   
 
         $fp = new FileParser();
@@ -346,7 +346,7 @@
     //$masterDb = $fp->readDbFile();
     //$masterDb->info();
     
-    if (isset($_POST["submit1"])) {
+    if (isset($_POST["submitMovie"])) {
         echo "Painettu <br/>";
         $title = validateInput($_POST["title"]);
         $language = validateInput($_POST["language"]);
@@ -354,11 +354,48 @@
         $rating = validateInput($_POST["rating"]);
         $genre = validateInput($_POST["genre"]);
         
+        $masterDb = $fp->readDbFile();
         $mv = new Movie($title, $language, $publishYear, $rating, $genre);
+       
         $masterDb->add($mv);
         $fp->writeToFile($masterDb);
+        //$masterDb = $fp->readDbFile();
+        //$masterDb->info();
+    }
+    
+    if (isset($_POST["submitMusic"])) {
+        echo "Painettu <br/>";
+        $title = validateInput($_POST["title"]);
+        $artist = validateInput($_POST["artist"]);
+        $publishYear = validateInput($_POST["publishYear"]);
+        $rating = validateInput($_POST["rating"]);
+        $genre = validateInput($_POST["genre"]);
+        
         $masterDb = $fp->readDbFile();
-        $masterDb->info();
+        $music = new Music($title, $artist, $publishYear, $rating, $genre);
+       
+        $masterDb->add($music);
+        $fp->writeToFile($masterDb);
+        //$masterDb = $fp->readDbFile();
+        //$masterDb->info();
+    }
+    
+    if (isset($_POST["submitTVSeries"])) {
+        echo "Painettu <br/>";
+        $title = validateInput($_POST["title"]);
+        $season = validateInput($_POST["season"]);
+        $episode = validateInput($_POST["episode"]);
+        $publishYear = validateInput($_POST["publishYear"]);
+        $rating = validateInput($_POST["rating"]);
+        $genre = validateInput($_POST["genre"]);
+        
+        $masterDb = $fp->readDbFile();
+        $tv = new TVSeries($title, $season, $episode, $publishYear, $rating, $genre);
+       
+        $masterDb->add($tv);
+        $fp->writeToFile($masterDb);
+        //$masterDb = $fp->readDbFile();
+        //$masterDb->info();
     }
     
     function validateInput($input) {
