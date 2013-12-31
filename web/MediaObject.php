@@ -21,12 +21,6 @@ class MediaObject implements MediaItem {
     public function add($item) {
         $this->items[$item->id()] = $item;
     }
-
-    /*public function remove($item) {
-        foreach (array_keys($this->items, $item, true) as $key) {
-            unset($this->items[$key]);
-        }
-    }*/
     
     /**
      * Removes MediaItems from the array.

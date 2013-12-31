@@ -1,5 +1,4 @@
 <?php
-//singleton pattern?
 
 /**
  * FileParser class is used read files and write to files.
@@ -10,30 +9,13 @@
  */
 class FileParser {
     
-    /*private $lineCount = 0;
-    private $linesRead = 0;
-    private $lines = array();*/
-    
-    //private $path = "Database/database.txt";
     private $dbPath = "Database/database.dat";
     
     /**
      * Constructor for the FileParser.
      */
     public function __construct() {
-        //$this->lines = $this->readFromFile();
     }
-    /*public function readFromFile() {
-        if (file_exists($this->path)) {
-            $lines = file($this->path);
-            
-            $this->lineCount = count($lines);
-            $this->linesRead = 0;
-            
-            //return $lines;
-            $this->lines = $lines;
-        }
-    }*/
     
     /**
      * Serializes and writes MediaObject to file, which
@@ -91,31 +73,5 @@ class FileParser {
         
         Media::setId($highestId);
     }
-    /*public function parseWordsFromLine($line) {
-         $parts = explode(",", $line);
-         return $parts;
-    }
-    
-    public function getNextLine() {
-        $nextLine = "";
-        if ($this->hasNextLine()) {
-            $nextLine = $this->lines[$this->linesRead];
-            $this->linesRead++;
-        }
-        else {
-            return null;
-        }
-        
-        return $nextLine;
-    }
-    
-    public function hasNextLine() {
-        if ($this->linesRead < $this->lineCount) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }*/
 }
 ?>

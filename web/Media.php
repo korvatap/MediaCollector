@@ -1,5 +1,4 @@
 <?php
-// abstract?
 
 /**
  * Media class is a base class of Movie, Music and TVSeries.
@@ -15,7 +14,6 @@ class Media implements MediaItem {
     private $rating;
     private $genre;
     static private $id = 0;
-    //private $mid;
     
     public function __construct() {
         $arguments = func_get_args();
@@ -33,8 +31,6 @@ class Media implements MediaItem {
      */
     public function __construct1($title) {
             $this->title = $title;
-            //$this->increaseId();
-            //$this->mid = $this->getId();
     }
 
     /**
