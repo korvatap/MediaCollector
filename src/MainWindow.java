@@ -165,8 +165,14 @@ public class MainWindow extends JFrame {
 	    	public void actionPerformed(ActionEvent event) {
 	    		//System.exit(0);
 	    		List<Integer> idArray = getIdsFromSelectedRows();
-	    		ModifyWindow mf = new ModifyWindow(mainRef, getDatabase(), idArray, tabbedPane.getSelectedIndex());
-	    		mf.setVisible(true);
+	    		if(idArray.isEmpty()) {
+	    			PromptWindow pw = new PromptWindow("You did not choose anything to be modified!");
+	    			pw.setVisible(true);
+	    		} else {
+		    		ModifyWindow mf = new ModifyWindow(mainRef, getDatabase(), idArray, tabbedPane.getSelectedIndex());
+		    		mf.setVisible(true);
+	    		}
+
 	    	}
 	    });
 	       
