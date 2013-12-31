@@ -53,45 +53,13 @@
     include("Music.php");
     include("TVSeries.php");
     include("FileParser.php");
-    include("DatabaseCreator.php");
-    
-    /*$movie = new Movie("Die Hard", "English", 1988, 5, "Action");
-    $music = new Music("The Trooper", "Iron Maiden", 1983, 5, "Metal");
-    $tv = new TVSeries("MacGyver", 1, 5, 1985, 5, "Action");
-    $mObject = new MediaObject();
-    $mObject->add($movie);
-    $mObject->add($music);
-    $mObject->add($tv);*/
-    
-    //$mObject->info();
-    
-    //$fp = new FileParser();
-    //$fp->readFile();
-    
-    //echo "<br/><br/>";
-    
-    //$db = new DatabaseCreator(new FileParser());
-    //$db->createDatabases();
-    //$db->info();
-    
-    //echo "From text file: <br/>";
+
     $fp = new FileParser();
-    //$fp->readFromFile();
-    
-    //$db = new DatabaseCreator($fp);
-    //$db->createDatabases();
-    //$db->info();
-    
-    //echo "<br/><br/>";
-    
-    //$fp->writeToFile($db->getDatabases());
-    //$masterDb = new MediaObject();
-    //$fp->writeToFile($mObject);
+
     global $linkchoice;
     $masterDb = $fp->readDbFile();
 
     if($masterDb != null) {
-        //$masterDb->info();
     } 
     else {
        $masterDb = new MediaObject();
@@ -100,10 +68,6 @@
     
 
     function showMovie($masterDb) {
-     //  $fp = new FileParser();
-      // $masterDb = $fp->readDbFile();
-	//$movieDb = $masterDb->getChild(0);
-	//$movieDb->info();
 
         echo '<form action=' .htmlspecialchars($_SERVER["PHP_SELF"]) .' method="post" id="form">';
         echo 'Title: <br><input type="text" name="title" size=40> <br>';
@@ -119,34 +83,6 @@
     
         $typeDb = getClasses($masterDb, "Movie");
         
-        /*if($masterDb != null) {
-            //$masterDb->info();
-        } 
-        else {
-            $masterDb = new MediaObject();
-        }*/
-	
-        $movie1 = new Movie("Die Hard", "English", 1988, 5, "Action");
-        $movie2 = new Movie("Die Hard", "English", 1988, 5, "Action");
-        $movie3 = new Movie("Die Hard", "English", 1988, 5, "Action");	
-        $movie4 = new Movie("Die Hard", "English", 1988, 5, "Action");
-        $movie5 = new Movie("Die Hard", "English", 1988, 5, "Action");
-
-        /*$movieDb = new MediaObject();
-        $movieDb->add($movie1);
-        $movieDb->add($movie2);
-        $movieDb->add($movie3);
-        $movieDb->add($movie4);
-        $movieDb->add($movie5);
-        $movieDb->setTitle("Movie");
-        $movieDb->info();*/
-        
-        //$masterDb->add($movie1);
-        //$masterDb->add($movie2);
-        //$masterDb->add($movie3);
-        //$masterDb->add($movie4);
-        //$masterDb->add($movie5);
-        //$masterDb->setTitle("Movie");
         echo "<table border='1' id='media'>";
         echo "<tr>";
         echo '<td>Title</td>';
@@ -158,9 +94,7 @@
         echo '<td>Delete</td>';
         echo '</tr>';
         $typeDb->info();
-        //return $masterDb;
         echo "</table>";
-        return $masterDb;
 
     }
 
@@ -179,26 +113,6 @@
         
         $typeDb = getClasses($masterDb, "Music");
         
-        $music1 = new Music("The Trooper", "Iron Maiden", 1983, 5, "Metal");
-        $music2 = new Music("The Trooper", "Iron Maiden", 1983, 5, "Metal");	
-        $music3 = new Music("The Trooper", "Iron Maiden", 1983, 5, "Metal");
-        $music4 = new Music("The Trooper", "Iron Maiden", 1983, 5, "Metal");
-        $music5 = new Music("The Trooper", "Iron Maiden", 1983, 5, "Metal");
-        
-        /*$musicDb = new MediaObject();
-        $musicDb->add($music1);
-        $musicDb->add($music2);
-        $musicDb->add($music3);	
-        $musicDb->add($music4);
-        $musicDb->add($music5);
-        $musicDb->setTitle("Music");
-        $musicDb->info();*/
-
-        //$masterDb->add($music1);
-        //$masterDb->add($music2);
-        //$masterDb->add($music3);
-        //$masterDb->add($music4);
-        //$masterDb->add($music5);
         echo "<table border='1' id='media'>";
         echo "<tr>";
         echo '<td>Title</td>';
@@ -210,9 +124,7 @@
         echo '<td>Delete</td>';
         echo '</tr>';
         $typeDb->info();
-        //return $masterDb;
         echo "</table>";
-        return $masterDb;
 
     }
 
@@ -232,26 +144,6 @@
         
         $typeDb = getClasses($masterDb, "TVSeries");
         
-        $tv1= new TVSeries("MacGyver", 1, 5, 1985, 5, "Action");
-        $tv2= new TVSeries("MacGyver", 1, 5, 1985, 5, "Action");
-        $tv3= new TVSeries("MacGyver", 1, 5, 1985, 5, "Action");
-        $tv4= new TVSeries("MacGyver", 1, 5, 1985, 5, "Action");
-        $tv5= new TVSeries("MacGyver", 1, 5, 1985, 5, "Action");
-        
-        /*$tvDb = new MediaObject();
-        $tvDb->add($tv1);
-        $tvDb->add($tv2);
-        $tvDb->add($tv3);
-        $tvDb->add($tv4);
-        $tvDb->add($tv5);
-        $tvDb->setTitle("TVSeries");
-        $tvDb->info();*/
-        
-        //$masterDb->add($tv1);
-        //$masterDb->add($tv2);
-        //$masterDb->add($tv3);
-        //$masterDb->add($tv4);
-        //$masterDb->add($tv5);
         echo "<table border='1' id='media'>";
         echo "<tr>";
         echo '<td>Title</td>';
@@ -264,9 +156,7 @@
         echo '<td>Delete</td>';
         echo '</tr>';
         $typeDb->info();
-        //return $masterDb;
         echo "</table>";
-        return $masterDb;
     }
 
     function showManual() {
@@ -403,23 +293,9 @@
             break;
 
         default : 
-            //$masterDb = showMovie($masterDb);
+            //showMovie($masterDb);
 
     } 
-    
-    //$movie2 = new Movie("MacGyver: Lost Treasure of Atlantis", "English", 1994, 5, "Adventure");
-    //$masterDb->add($movie2);
-    
-    //$fp->writeToFile($masterDb);
-    //$masterDb = $fp->readDbFile();
-    //$masterDb->info();
-    
-    //$masterDb->remove($movie2);
-    
-     //echo "<p id='teksti'>From .dat file with one movie removed: <br/></p>";
-    //$fp->writeToFile($masterDb);
-    //$masterDb = $fp->readDbFile();
-    //$masterDb->info();
     
     if (isset($_POST["submitMovie"])) {
         echo "Painettu <br/>";
@@ -435,9 +311,7 @@
         $masterDb->add($mv);
         $fp->writeToFile($masterDb);
         
-        header('Location: index.php');
-        //$masterDb = $fp->readDbFile();
-        //$masterDb->info();
+        header('Location: index.php?link=Movie');
     }
     
     if (isset($_POST["submitMusic"])) {
@@ -455,8 +329,6 @@
         $fp->writeToFile($masterDb);
         
         header('Location: index.php?link=Music');
-        //$masterDb = $fp->readDbFile();
-        //$masterDb->info();
     }
     
     if (isset($_POST["submitTVSeries"])) {
@@ -475,8 +347,6 @@
         $fp->writeToFile($masterDb);
         
         header('Location: index.php?link=TVSeries');
-        //$masterDb = $fp->readDbFile();
-        //$masterDb->info();
     }
 
     if (isset($_POST["musicSave"])) {
@@ -519,7 +389,7 @@
         $fp->writeToFile($masterDb);
         
         echo "<p id='teksti'>New media saved</p>";
-        header('Location: index.php');
+        header('Location: index.php?link=Movie');
 
     }
 
