@@ -9,18 +9,19 @@ import java.util.Iterator;
  */
 public class DatabaseCreator {
 	
-	FileParser fp;
-	String line;
-	MediaObject musicDb = new MediaObject();
-	MediaObject movieDb = new MediaObject();
-	MediaObject tvDb = new MediaObject();
+	private FileParser fp;
+	private String line;
+	private MediaObject musicDb = new MediaObject();
+	private MediaObject movieDb = new MediaObject();
+	private MediaObject tvDb = new MediaObject();
 	
 	
-	MediaObject masterDb = new MediaObject();
+	private MediaObject masterDb = new MediaObject();
 	
 	/**
 	 * Constructor for the DatabaseCreator.
-	 * @param fp
+	 * 
+	 * @param fp	FileParser object
 	 */
 	public DatabaseCreator(FileParser fp){
 		this.fp = fp;
@@ -73,7 +74,6 @@ public class DatabaseCreator {
 			masterDb.add(musicDb);
 			masterDb.add(movieDb);
 			masterDb.add(tvDb);
-			System.out.println(movieDb.isEmpty());
 		}
 		else {
 			
@@ -98,7 +98,6 @@ public class DatabaseCreator {
 		String[] media = fp.parseWordsFromLine(line);
 		switch(media[0]) {
 			case "Movie":
-				System.out.println("Adding movie named: " + media[1]);
 				movieDb.add(new Movie(media[1], media[2], Integer.parseInt(media[3]), Integer.parseInt(media[4]), media[5]));
 				break;
 				
@@ -135,9 +134,9 @@ public class DatabaseCreator {
 	 * 
 	 * @param database target database to be set.
 	 */
-	public void setDatabases(MediaObject database) {
-		this.masterDb = database;
-	}
+	//public void setDatabases(MediaObject database) {
+		//this.masterDb = database;
+	//}
 	
 	/**
 	 * Used to find the highest id of media items in the database.

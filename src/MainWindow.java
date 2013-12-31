@@ -58,20 +58,13 @@ public class MainWindow extends JFrame {
      */
 	public MainWindow(DatabaseCreator dc) {
 		FileManager fm = new FileManager();
-		MediaObject test = fm.readFile();
-		//System.out.println(test.getChild(1).getTitle());
-		System.out.println("DATA IN SaveObj.sav:");
-		if (test != null) {
-			test.print();
-		}
+		MediaObject dbFromFile = fm.readFile();
 		
 		initUI();
-		//this.database = dc.getDatabases();
 		this.dc = dc;
-		//dc.setDatabases(test);
-		dc.createDatabasesNew(test);
+		dc.createDatabasesNew(dbFromFile);
 		this.database = dc.getDatabases();
-		System.out.println("Highest Id is: " + dc.getHighestId());
+		
 		Media.setId(dc.getHighestId());
         getRows("Movie");
         getRows("Music");
@@ -119,13 +112,10 @@ public class MainWindow extends JFrame {
 	    musicTable.setFillsViewportHeight(true);
 	       
 	    JButton quitButton = new JButton("Quit");
-	    //quitButton.setBounds(50, 60, 80, 30);
 	    quitButton.setToolTipText("Shutdown the program");
 	    quitButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent event) {
 	    		FileManager fm = new FileManager();
-	    		System.out.println("Just Before Quit");
-	    		dc.print();
 	    		fm.writeToFile(dc.getDatabases());
 	    		System.exit(0);
 	    	}
@@ -156,7 +146,6 @@ public class MainWindow extends JFrame {
 	    addButton.setToolTipText("Add more media");
 	    addButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent event) {
-	    		//System.exit(0);
                 AddMediaWindow xe = new AddMediaWindow(mainRef);
                 xe.setVisible(true);
 	    	}
@@ -166,7 +155,6 @@ public class MainWindow extends JFrame {
 	    modifyButton.setToolTipText("Modify selected media items");
 	    modifyButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent event) {
-	    		//System.exit(0);
 	    		List<Integer> idArray = getIdsFromSelectedRows();
 	    		if(idArray.isEmpty()) {
 	    			PromptWindow pw = new PromptWindow("You did not choose anything to be modified!");
@@ -183,7 +171,6 @@ public class MainWindow extends JFrame {
 	    removeButton.setToolTipText("Delete selected media items");
 	    removeButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent event) {
-	    		//System.exit(0);
 	    		List<Integer> idArray = getIdsFromSelectedRows();
 	    		if (!idArray.isEmpty()) {
 	    			PromptWindow pw = new PromptWindow("Are you sure you want to delete selected rows?", database, mainRef, idArray);
@@ -199,7 +186,6 @@ public class MainWindow extends JFrame {
 	    helpButton.setToolTipText("See manual on the usage of this program");
 	    helpButton.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent event) {
-	    		//System.exit(0);
 	    		HelpWindow hw = new HelpWindow();
 	    		hw.setVisible(true);
 	    	}
@@ -370,11 +356,8 @@ public class MainWindow extends JFrame {
 	            	try {
 	            		fp = new FileParser();
 	            		dc = new DatabaseCreator(fp);
-	            		//dc.createDatabases();
-	            		//dc.print();
 	            		
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 	            	
@@ -402,7 +385,7 @@ public class MainWindow extends JFrame {
 		}
 
 		for(int i = 0; i < row.length; i++) {
-			System.out.println(row[i]);
+			//System.out.println(row[i]);
 			switch(type) {
 			case "TVSeries":
 				tvModel.setValueAt(row[i], tvModel.getRowCount()-1, i);
@@ -418,20 +401,13 @@ public class MainWindow extends JFrame {
 		if (add == 1) {
 		
 			if(type.equals("TVSeries")) {
-				//String [] combinedString = { "TVSeries", row[1], row[2], row[3], row[4], row[5], row[6] };
 				String combined = "TVSeries" + "," + row[1] + "," + row[2] + "," + row[3] + "," + row[4] + "," + row[5] + "," + row[6];
-				//dc.createDatabase(Arrays.toString(combinedString));
 				dc.createDatabase(combined);
 			} else if (type.equals("Movie")) {
-				//System.out.println("ADDING MOVIE TO DATABASE");
-				//String [] combinedString = { "Movie", row[1], row[2], row[3], row[4], row[5] };
-				//System.out.println(Arrays.toString(combinedString));
 				String combined = "Movie" + "," + row[1] + "," + row[2] + "," + row[3] + "," + row[4] + "," + row[5];
 				dc.createDatabase(combined);
 			} else if (type.equals("Music")) {
-				//String [] combinedString = { "Music", row[1], row[2], row[3], row[4], row[5] };
 				String combined = "Music" + "," + row[1] + "," + row[2] + "," + row[3] + "," + row[4] + "," + row[5];
-				//dc.createDatabase(Arrays.toString(combinedString));
 				dc.createDatabase(combined);
 			}
 			emptyRowsGetNewRows(type);

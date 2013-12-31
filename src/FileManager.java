@@ -25,15 +25,6 @@ public class FileManager {
 	FileManager() {
 		try {
 			dbFile = new File("SaveObj.sav");
-			/*if (dbFile.isFile()) {
-				readSaveFile = new FileInputStream(dbFile);
-				readSave = new ObjectInputStream(readSaveFile);
-			}
-			else {
-				dbFile.createNewFile();
-				readSaveFile = new FileInputStream(dbFile);
-				readSave = new ObjectInputStream(readSaveFile);
-			}*/
 			
 		} catch (Exception exc) {
 			exc.printStackTrace();
@@ -46,12 +37,10 @@ public class FileManager {
 	 * @return MediaObject gotten from file or null if does not exist.
 	 */
 	public MediaObject readFile() {
-		//File dbFile = new File("SaveObj.sav");
 		try {
 			if(!dbFile.exists()) {
 				return null;
 			}
-			//readSaveFile = new FileInputStream("SaveObj.sav");
 			readSaveFile = new FileInputStream(dbFile);
 			readSave = new ObjectInputStream(readSaveFile);
 			return (MediaObject) readSave.readObject();
@@ -83,12 +72,11 @@ public class FileManager {
 	 * @param db target MediaObject to be written.
 	 */
 	public void writeToFile(MediaObject db) {
-		//File dbFile = new File("SaveObj.sav");
 		try {
 			if(!dbFile.exists()) {
 				dbFile.createNewFile();
 			}
-			//saveFile = new FileOutputStream("SaveObj.sav");
+			
 			saveFile = new FileOutputStream(dbFile);
 			save = new ObjectOutputStream(saveFile);
 			

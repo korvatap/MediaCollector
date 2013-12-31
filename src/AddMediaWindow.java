@@ -52,6 +52,8 @@ public class AddMediaWindow extends JFrame{
 	
 	/**
 	 * Constructor for class AddMediaWindow.
+	 * 
+	 * @param ref	MainWindow object.
 	 */
 	public AddMediaWindow(MainWindow ref) {
 		mainWindowRef = ref;
@@ -87,18 +89,27 @@ public class AddMediaWindow extends JFrame{
 	        	   tableModel = new BTableModel("TVSeries",0);
 	        	   table.setModel(tableModel);
 	        	   tableModel.addRow(new Object[0]);
+	        	   
+	        	   table.getColumnModel().getColumn(0).setMinWidth(0);
+	        	   table.getColumnModel().getColumn(0).setMaxWidth(0);
 	           }
 	           
 	           if(type.getSelectedItem().equals("Movie")) {
 	        	   tableModel = new BTableModel("Movie",0);
 	        	   table.setModel(tableModel);
-	        	   tableModel.addRow(new Object[0]);	 
+	        	   tableModel.addRow(new Object[0]);
+	        	   
+	        	   table.getColumnModel().getColumn(0).setMinWidth(0);
+	        	   table.getColumnModel().getColumn(0).setMaxWidth(0);
 	           }
 	           
 	           if(type.getSelectedItem().equals("Music")) {
 	        	   tableModel = new BTableModel("Music",0);
 	        	   table.setModel(tableModel);
 	        	   tableModel.addRow(new Object[0]);
+	        	   
+	        	   table.getColumnModel().getColumn(0).setMinWidth(0);
+	        	   table.getColumnModel().getColumn(0).setMaxWidth(0);
 	           }
 	        }
 	    });
@@ -290,7 +301,6 @@ public class AddMediaWindow extends JFrame{
 			String[] tmp = new String[columnCount];
 			while(currentColumn < columnCount) {
 				tmp[currentColumn] = ((String) table.getValueAt(currentRow, currentColumn));
-				System.out.println(((String) table.getValueAt(currentRow, currentColumn)));
 				currentColumn++;
 			}
 			rows.add(tmp);
