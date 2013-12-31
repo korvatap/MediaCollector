@@ -345,15 +345,15 @@
     }
 
     function deleteMedia($id) {
-        
         $fp = new FileParser();
         $masterDb = $fp->readDbFile();
         
         $item = $masterDb->getById($id);
         
         if ($item != null) {
-            $masterDb->remove($item);
+	     $masterDb->remove($item);
             $fp->writeToFile($masterDb);
+	     showMovie($masterDb);
         }
     }
     
@@ -400,6 +400,7 @@
 
         case 'Delete' :
             deleteMedia($_GET['id']);
+	     break;
 
         default : 
             //$masterDb = showMovie($masterDb);
@@ -409,7 +410,7 @@
     //$movie2 = new Movie("MacGyver: Lost Treasure of Atlantis", "English", 1994, 5, "Adventure");
     //$masterDb->add($movie2);
     
-    $fp->writeToFile($masterDb);
+    //$fp->writeToFile($masterDb);
     //$masterDb = $fp->readDbFile();
     //$masterDb->info();
     
