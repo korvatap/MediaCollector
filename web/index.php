@@ -53,7 +53,7 @@
     include("Music.php");
     include("TVSeries.php");
     include("FileParser.php");
-    include("DatabaseCreator.php");
+    //include("DatabaseCreator.php");
     
     /*$movie = new Movie("Die Hard", "English", 1988, 5, "Action");
     $music = new Music("The Trooper", "Iron Maiden", 1983, 5, "Metal");
@@ -441,7 +441,7 @@
         $masterDb->add($mv);
         $fp->writeToFile($masterDb);
         
-        header('Location: index.php');
+        header('Location: index.php?link=Movie');
         //$masterDb = $fp->readDbFile();
         //$masterDb->info();
     }
@@ -525,7 +525,7 @@
         $fp->writeToFile($masterDb);
         
         echo "<p id='teksti'>New media saved</p>";
-        header('Location: index.php');
+        header('Location: index.php?link=Movie');
 
     }
 
